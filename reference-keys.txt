@@ -1,2 +1,2 @@
 gather-datasets-and-qc
-import-the-first-slide
+gather-resources
