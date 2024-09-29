@@ -1,6 +1,0 @@
-fig:unnamed-chunk-4
-gather-datasets-and-qc
-gather-resources
-samples-overview
-to-do
-horizontal-integration
