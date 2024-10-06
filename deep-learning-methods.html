@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrea Del Cortona">
-<meta name="dcterms.date" content="2024-09-29">
 
-<title>Multi-omics integration for target discovery in cancer</title>
+<title>deep-learning-methods – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./gather-datasets-and-QC.html" rel="next">
+<link href="./results-comparisons.html" rel="next">
+<link href="./machine-learning-methods.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -94,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Abstract</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction-to-multiomics-integration.html">(Multi-omics) Integration and Analysis</a></li><li class="breadcrumb-item"><a href="./deep-learning-methods.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">deep-learning-methods.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -108,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
@@ -218,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deep-learning-methods.html" class="sidebar-item-text sidebar-link">
+  <a href="./deep-learning-methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">deep-learning-methods.html</span></span></a>
   </div>
 </li>
@@ -298,60 +297,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Multi-omics integration for target discovery in cancer</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrea Del Cortona </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2024</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<section id="abstract" class="level1 unnumbered">
-<h1 class="unnumbered">Abstract</h1>
-<p>[[rewrite]]</p>
-<p>The complex and heterogeneous nature of cancer necessitates innovative approaches for effective target discovery and therapeutic development. Multiomics integration—combining genomic, transcriptomic, proteomic, metabolomic, and epigenomic data—has emerged as a transformative strategy in cancer research, significantly accelerating the identification of novel therapeutic targets. By leveraging the wealth of biological information from multiple layers of molecular data, researchers can gain comprehensive insights into tumor biology, elucidate underlying mechanisms of disease progression, and uncover potential vulnerabilities in cancer cells.</p>
-<p>Recent advancements in computational tools and methodologies have enabled the seamless integration of multiomics data. Techniques such as network analysis, machine learning, and pathway enrichment analysis facilitate the identification of key molecular interactions and regulatory networks that drive tumorigenesis (Duan et al., 2021; DOI: 10.1016/j.cell.2021.03.005). Furthermore, integrative approaches can reveal context-specific biomarkers and therapeutic targets that may be overlooked when examining individual omics datasets in isolation (Huang et al., 2020; DOI: 10.1038/s41598-020-64873-7).</p>
-<p>The availability of public databases, such as The Cancer Genome Atlas (TCGA), Genomic Data Commons (GDC), and the Cancer Cell Line Encyclopedia (CCLE), plays a crucial role in facilitating multiomics integration. These resources provide a rich repository of high-quality data, allowing researchers to validate findings across diverse cancer types and patient populations. The utilization of such publicly available data enhances the reproducibility and robustness of target discovery efforts while promoting collaborative research (Ghandi et al., 2019; DOI: 10.1038/s41586-019-0361-1).</p>
-<p>Moreover, multiomics integration enhances the identification of patient-specific therapeutic targets, paving the way for personalized medicine. By integrating patient-derived multiomics data, researchers can uncover unique tumor profiles that inform targeted treatment strategies, improving clinical outcomes (Berglund et al., 2020; DOI: 10.1016/j.cell.2020.09.034). The dynamic interplay between genetic alterations and their downstream effects on cellular pathways underscores the need for comprehensive multiomics analyses in cancer research.</p>
-<p>In conclusion, the integration of multiomics data is revolutionizing cancer target discovery by providing a holistic view of tumor biology, enhancing our understanding of complex molecular interactions, and facilitating the identification of novel therapeutic strategies. The continued collaboration between public databases and cutting-edge analytical techniques will be pivotal in translating these discoveries into clinical applications, ultimately improving patient outcomes in cancer treatment.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -776,10 +730,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./machine-learning-methods.html" class="pagination-link" aria-label="machine-learning-methods.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">machine-learning-methods.html</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./gather-datasets-and-QC.html" class="pagination-link" aria-label="Gather Datasets and QC">
-        <span class="nav-page-text">Gather Datasets and QC</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./results-comparisons.html" class="pagination-link" aria-label="results-comparisons.html">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">results-comparisons.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

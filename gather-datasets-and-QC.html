@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrea Del Cortona">
-<meta name="dcterms.date" content="2024-09-29">
 
-<title>Multi-omics integration for target discovery in cancer</title>
+<title>Gather Datasets and QC – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./gather-datasets-and-QC.html" rel="next">
+<link href="./dataset-exploration.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +68,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-fixedcolumns-1.13.6/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedcolumns-1.13.6/js/dataTables.fixedColumns.min.js"></script>
+<link href="site_libs/dt-ext-fixedheader-1.13.6/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedheader-1.13.6/js/dataTables.fixedHeader.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
 </head>
@@ -94,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Abstract</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gather-datasets-and-QC.html">Gather Datasets and QC</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -108,13 +121,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gather-datasets-and-QC.html" class="sidebar-item-text sidebar-link">
+  <a href="./gather-datasets-and-QC.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Gather Datasets and QC</span></a>
   </div>
 </li>
@@ -303,7 +316,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#gather-resources" id="toc-gather-resources" class="nav-link active" data-scroll-target="#gather-resources">Gather resources</a></li>
+  <li><a href="#samples-overview" id="toc-samples-overview" class="nav-link" data-scroll-target="#samples-overview">Samples Overview</a>
+  <ul class="collapse">
+  <li><a href="#cohort-demographics" id="toc-cohort-demographics" class="nav-link" data-scroll-target="#cohort-demographics">Cohort demographics</a></li>
+  <li><a href="#clinical-overview" id="toc-clinical-overview" class="nav-link" data-scroll-target="#clinical-overview">Clinical overview</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -312,26 +330,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Multi-omics integration for target discovery in cancer</h1>
+<h1 class="title">Gather Datasets and QC</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrea Del Cortona </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -341,16 +347,102 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="abstract" class="level1 unnumbered">
-<h1 class="unnumbered">Abstract</h1>
-<p>[[rewrite]]</p>
-<p>The complex and heterogeneous nature of cancer necessitates innovative approaches for effective target discovery and therapeutic development. Multiomics integration—combining genomic, transcriptomic, proteomic, metabolomic, and epigenomic data—has emerged as a transformative strategy in cancer research, significantly accelerating the identification of novel therapeutic targets. By leveraging the wealth of biological information from multiple layers of molecular data, researchers can gain comprehensive insights into tumor biology, elucidate underlying mechanisms of disease progression, and uncover potential vulnerabilities in cancer cells.</p>
-<p>Recent advancements in computational tools and methodologies have enabled the seamless integration of multiomics data. Techniques such as network analysis, machine learning, and pathway enrichment analysis facilitate the identification of key molecular interactions and regulatory networks that drive tumorigenesis (Duan et al., 2021; DOI: 10.1016/j.cell.2021.03.005). Furthermore, integrative approaches can reveal context-specific biomarkers and therapeutic targets that may be overlooked when examining individual omics datasets in isolation (Huang et al., 2020; DOI: 10.1038/s41598-020-64873-7).</p>
-<p>The availability of public databases, such as The Cancer Genome Atlas (TCGA), Genomic Data Commons (GDC), and the Cancer Cell Line Encyclopedia (CCLE), plays a crucial role in facilitating multiomics integration. These resources provide a rich repository of high-quality data, allowing researchers to validate findings across diverse cancer types and patient populations. The utilization of such publicly available data enhances the reproducibility and robustness of target discovery efforts while promoting collaborative research (Ghandi et al., 2019; DOI: 10.1038/s41586-019-0361-1).</p>
-<p>Moreover, multiomics integration enhances the identification of patient-specific therapeutic targets, paving the way for personalized medicine. By integrating patient-derived multiomics data, researchers can uncover unique tumor profiles that inform targeted treatment strategies, improving clinical outcomes (Berglund et al., 2020; DOI: 10.1016/j.cell.2020.09.034). The dynamic interplay between genetic alterations and their downstream effects on cellular pathways underscores the need for comprehensive multiomics analyses in cancer research.</p>
-<p>In conclusion, the integration of multiomics data is revolutionizing cancer target discovery by providing a holistic view of tumor biology, enhancing our understanding of complex molecular interactions, and facilitating the identification of novel therapeutic strategies. The continued collaboration between public databases and cutting-edge analytical techniques will be pivotal in translating these discoveries into clinical applications, ultimately improving patient outcomes in cancer treatment.</p>
+<section id="gather-resources" class="level2">
+<h2 class="anchored" data-anchor-id="gather-resources">Gather resources</h2>
+<p>We can gather cancer multi-omics datasets from large public data resources such as TCGA (<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga">The Cancer Genome Atlas</a>) and the GDC (<a href="https://gdc.cancer.gov/">Genomic Data Commons</a>), as well as smaller-scale datasets generated by individual labs from the <a href="https://xena.ucsc.edu/">USDC Xena platform</a>. From the Xena platform, we can find the data from <a href="https://www.cell.com/pb-assets/consortium/pancanceratlas/pancani3/index.html">Pan-Cancer Atlas consortium</a>, which provides textbook high quality datasets that can be explored for target discovery in cancer.</p>
+<p>TCGA PanCan collects 12,839 samples from 28 organs, 69 primary sites spanning 32 different cancer types.</p>
+<p>The metadata available for the samples and the subjects include:</p>
+<ul>
+<li>biopsys type (metastatic, primary tumor, solid tissue normal) –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGA_phenotype_denseDataOnlyDownload.tsv.gz">data</a></li>
+<li>cancer subtype based on canonical molecular classification (methylation, miRNA, mRNA, proteins, etc.) –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGASubtype.20170308.tsv.gz">data</a></li>
+<li>cancer subtype based on the immune models –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Subtype_Immune_Model_Based.txt.gz">data</a></li>
+<li>overall survival information –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Survival_SupplementalTable_S1_20171025_xena_sp">data</a></li>
+</ul>
+<p>For these samples, there are available rich clinical metadata and matched multiomics datasets.</p>
+<p>We can retrieved the following multiomics readouts:</p>
+<ul>
+<li>copy number variants at the gene level –&gt; <a href="https://tcga-xena-hub.s3.us-east-1.amazonaws.com/download/TCGA.PANCAN.sampleMap%2FGistic2_CopyNumber_Gistic2_all_thresholded.by_genes.gz">data</a></li>
+<li>DNA methylation data –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/jhu-usc.edu_PANCAN_HumanMethylation450.betaValue_whitelisted.tsv.synapse_download_5096262.xena.gz">data</a></li>
+<li>gene expression (RNAseq) –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz">data</a></li>
+<li>micro RNAs (miRNA) –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithUnCorrectMiRs_08_04_16.xena.gz">data</a></li>
+<li>protein expression –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGA-RPPA-pancan-clean.xena.gz">data</a></li>
+<li>somatic mutations –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/mc3.v0.2.8.PUBLIC.nonsilentGene.xena.gz">data</a></li>
+</ul>
+<p>All the multiomics readouts are at the gene level, except for the DNA methylation data, that will have to be mapped and normalized at the gene level. Luckily, a <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/probeMap%2FilluminaMethyl450_hg19_GPL16304_TCGAlegacy">mapping file</a> is available as well.</p>
+<p>Xena provides as well already precomputed enrichments and cell types deconvolutions:</p>
+<ul>
+<li>gene programs that are canonical drug targets –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/Pancan12_GenePrograms_drugTargetCanon_in_Pancan33.tsv.gz">data</a></li>
+<li>homologous recombination deficiency (HRD) –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGA.HRD_withSampleID.txt.gz">data</a></li>
+<li>immune signaling –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/TCGA_pancancer_10852whitelistsamples_68ImmuneSigs.xena.gz">data</a></li>
+<li>ssGSEA PARADIGM annotations –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/PanCan33_ssGSEA_1387GeneSets_NonZero_sample_level.txt.gz">data</a></li>
+<li>stemness score based on DNA methylation signals –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/StemnessScores_DNAmeth_20170210.tsv.gz">data</a></li>
+<li>stemnsess score based on the RNAseq expression of 103 key genes –&gt; <a href="https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/StemnessScores_RNAexp_20170127.2.tsv.gz">data</a></li>
+</ul>
+<p>I assure you that integrating all these data will be fun, and it will provide deep insights on each cancer we decided to analyse.</p>
+</section>
+<section id="samples-overview" class="level2">
+<h2 class="anchored" data-anchor-id="samples-overview">Samples Overview</h2>
+<p>Next step is to integrate together all the available sample and subjects metadata. This allows to break down the samples by cancer type and demographic distributions. While Xena provides some information, it lacks a cleaned table containing all the demographic information of the subjects. Conveniently, GitHub user <a href="https://github.com/ipezoa/TCGA-metadata/tree/main">ipezoa</a> already retrieved from GDC and CGC and combined together <a href="https://github.com/Hereje-CL/TCGA-metadata/blob/main/metadata/all_metadata_TCGA.tar.xz">all the metadata</a> obtained from JSON and XML files. A thorough explanation of each metadata field is reported <a href="https://docs.cancergenomicscloud.org/docs/tcga-metadata">here</a>.</p>
+<p>Let’s integrate all the metadata together. We have indeed access to a rich and comprehensive ensemble of clinical and sample metadata for the samples at hand.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-92b0117310ac3f7248ed" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-92b0117310ac3f7248ed">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Sample and clinical metadata available for the PanCan dataset<\/caption>","data":[["sample","cgc_case_primary_site_1_1","gdc_center.name_1_1","gdc_center.short_name_1_1","gdc_cases.submitter_id_1_1","gdc_cases.demographic.gender_1_1","gdc_cases.demographic.year_of_birth_1_1","gdc_cases.demographic.race_1_1","gdc_cases.demographic.ethnicity_1_1","gdc_cases.project.project_id_1_1","gdc_cases.tissue_source_site.project_1_1","gdc_cases.diagnoses.tumor_stage_1_1","gdc_cases.diagnoses.age_at_diagnosis_1_1","gdc_cases.samples.sample_type_1_1","gdc_cases.exposures.cigarettes_per_day_1_1","cgc_slide_percent_normal_cells_1_1","cgc_slide_percent_tumor_cells_1_1","cgc_slide_percent_tumor_nuclei_1_1","cgc_slide_percent_monocyte_infiltration_1_1","cgc_slide_percent_lymphocyte_infiltration_1_1","cgc_slide_percent_stromal_cells_1_1","cgc_slide_percent_necrosis_1_1","cgc_slide_percent_neutrophil_infiltration_1_1","cgc_sample_country_of_sample_procurement_1_1","cgc_case_primary_therapy_outcome_success_1_1","cgc_case_prior_diagnosis_1_1","cgc_case_pathologic_n_1_1","cgc_case_histological_diagnosis_1_1","cgc_case_clinical_stage_1_1","cgc_case_pathologic_stage_1_1","cgc_case_pathologic_t_1_1","cgc_drug_therapy_pharmaceutical_therapy_type_1_1","cgc_radiation_therapy_radiation_type_1_1","cgc_radiation_therapy_radiation_therapy_site_1_1","cgc_follow_up_new_tumor_event_after_initial_treatment_1_1","cgc_follow_up_tumor_status_1_1","xml_histological_type_1_1","xml_primary_lymph_node_presentation_assessment_1_1","xml_lymph_node_examined_count_1_1","xml_number_of_lymphnodes_positive_by_he_1_1","xml_tobacco_smoking_history_1_1","xml_stopped_smoking_year_1_1","xml_number_pack_years_smoked_1_1","xml_targeted_molecular_therapy_1_1","xml_primary_therapy_outcome_success_1_1","xml_stage_event_pathologic_stage_1_1","xml_breast_carcinoma_progesterone_receptor_status_1_1","xml_margin_status_1_1","xml_breast_carcinoma_estrogen_receptor_status_1_1","Subtype_mRNA","Subtype_DNAmeth","Subtype_protein","Subtype_miRNA","Subtype_CNA","Subtype_Integrative","Subtype_other","Subtype_Selected","Subtype_Immune_Model_Based","ajcc_pathologic_tumor_stage","clinical_stage","histological_type","histological_grade","initial_pathologic_dx_year","menopause_status","vital_status","tumor_status","death_days_to","cause_of_death","new_tumor_event_type","new_tumor_event_site","new_tumor_event_site_other","new_tumor_event_dx_days_to","treatment_outcome_first_course","margin_status","residual_tumor","OS","OS.time","DSS","DSS.time","DFI","DFI.time","PFI","PFI.time","Redaction"],[11283,11283,11284,11284,11284,11245,11074,11245,11245,11284,11284,11245,11119,11284,1792,10568,10589,10665,7852,8056,10527,10665,7859,11283,2147,10619,8483,9328,2403,7590,8540,3821,2840,2808,7134,8100,9364,4822,4146,4254,3126,1286,1792,1545,2163,7577,1185,1646,1186,5626,2877,1780,2592,2080,1388,3812,7217,9234,11244,11244,11244,11244,11109,11244,11244,11244,3347,11244,11244,11244,11244,3173,11244,11244,11244,11237,11181,10810,11067,5862,5851,11111,11066,11244],[1,1,0,0,0,39,210,39,39,0,0,39,165,0,9492,716,695,619,3432,3228,757,619,3425,1,9137,665,2801,1956,8881,3694,2744,7463,8444,8476,4150,3184,1920,6462,7138,7030,8158,9998,9492,9739,9121,3707,10099,9638,10098,5658,8407,9504,8692,9204,9896,7472,4067,2050,40,40,40,40,175,40,40,40,7937,40,40,40,40,8111,40,40,40,47,103,474,217,5422,5433,173,218,40],["TCGA-DD-AAVP-01; TCGA-KK-A7B2-01; TCGA-DC-6158-01","Liver; Prostate; Colorectal","University of North Carolina; University of North Carolina; University of North Carolina","UNC; UNC; UNC","TCGA-DD-AAVP; TCGA-KK-A7B2; TCGA-DC-6158","male; male; male","1959; 1944; 1940","asian; not reported; white","not hispanic or latino; not reported; not hispanic or latino","TCGA-LIHC; TCGA-PRAD; TCGA-READ","Liver hepatocellular carcinoma; Prostate adenocarcinoma; Rectum adenocarcinoma","stage i; not reported; stage i","17833; 24845; 25842","Primary Tumor; Primary Tumor; Primary Tumor","NA; NA; NA","0; 0; 8","80; 44; 67","80; 80; 70","1; 2; NA","2; 10; NA","20; 55; 20","0; 1; 5","1; 2; NA","Korea South; United States; United States","NA; Stable Disease; NA","No; No; No","N0; N1; N0","Hepatocellular Carcinoma; Prostate Adenocarcinoma Acinar Type; Rectal Adenocarcinoma","NA; NA; NA","Stage I; NA; Stage I","T1; T3a; T2","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; YES; NO","NA; WITH TUMOR; TUMOR FREE","Hepatocellular Carcinoma; Prostate Adenocarcinoma Acinar Type; Rectal Adenocarcinoma","NA; NA; YES","NA; NA; 1","NA; 1; 0","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NO; NA","NA; Stable Disease; NA","Stage I; NA; Stage I","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; NA","NA; NA; CIN","NA; NA; GI.CIN","Inflammatory (Immune C3); NA; IFN-gamma Dominant (Immune C2)","Stage I; ; Stage I","; ; ","Hepatocellular Carcinoma; Prostate Adenocarcinoma Acinar Type; Rectal Adenocarcinoma","G1; ; ","2007; 2012; 2010","; ; ","Alive; Alive; Dead","TUMOR FREE; WITH TUMOR; TUMOR FREE","NA; NA; 334","; ; ","Locoregional Recurrence; Biochemical evidence of disease; ","Liver; ; ","; ; ","903; 692; NA","; Stable Disease; ","; ; ","R0; ; ","0; 0; 1","2752; 1099; 334","0; 0; 0","2752; 1099; 334","1; NA; NA","903; NA; NA","1; 1; 0","903; 692; 334","; ; "]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N.value.available<\/th>\n      <th>N.NAs<\/th>\n      <th>example<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N.value.available","targets":1},{"name":"N.NAs","targets":2},{"name":"example","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<section id="cohort-demographics" class="level3">
+<h3 class="anchored" data-anchor-id="cohort-demographics">Cohort demographics</h3>
+<p>Let’s check the overall demographic distributions of all the samples.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Demographic overview</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We notice that the ration between males and females included in the PanCan dataset is almost 1:1. As well, the age distributions for both sexes are very similar, and the averages of the two distributions almost overlap around 60 years old (59.4 years for female and 60.3 years for males). Race-wise, we have an over-representation of whites (73,4% of samples), followed by 12.0% of samples for which no race information is available. Blacks or african americans and asian represent a small percentage of the samples available, with 8.3% and 6.0% of the samples respectively.</p>
+</section>
+<section id="clinical-overview" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-overview">Clinical overview</h3>
+<p>Let’s check now the different cancer included in the study.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Clinical overview</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can check for any biases in terms of sex and ethnicity in the collected cancer samples. I would not expect any surprise here. Let’s see.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Clinical metadata breakdown by sex and ethnicity</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Lastly, we can test how much … discrimination power gene expression filter lowly expressed genes selecte the top 1000 most variable genes By selecting the top 1,000 most variable genes we can see that there are clear differences between each cancer type, as captured by the UMAP.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>UMAP RNAseq</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -776,10 +868,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Abstract">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abstract</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./gather-datasets-and-QC.html" class="pagination-link" aria-label="Gather Datasets and QC">
-        <span class="nav-page-text">Gather Datasets and QC</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dataset-exploration.html" class="pagination-link" aria-label="dataset-exploration.html">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">dataset-exploration.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
