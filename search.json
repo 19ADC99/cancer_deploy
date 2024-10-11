@@ -34,9 +34,141 @@
     "href": "gather-datasets-and-QC.html#samples-overview",
     "title": "Gather Datasets and QC",
     "section": "Samples Overview",
-    "text": "Samples Overview\nNext step is to integrate together all the available sample and subjects metadata. This allows to break down the samples by cancer type and demographic distributions. While Xena provides some information, it lacks a cleaned table containing all the demographic information of the subjects. Conveniently, GitHub user ipezoa already retrieved from GDC and CGC and combined together all the metadata obtained from JSON and XML files. A thorough explanation of each metadata field is reported here.\nLet’s integrate all the metadata together. We have indeed access to a rich and comprehensive ensemble of clinical and sample metadata for the samples at hand.\n\n\n\n\n\n\n\nCohort demographics\nLet’s check the overall demographic distributions of all the samples.\n\n\n\n\n\nDemographic overview\n\n\n\n\nWe notice that the ration between males and females included in the PanCan dataset is almost 1:1. As well, the age distributions for both sexes are very similar, and the averages of the two distributions almost overlap around 60 years old (59.4 years for female and 60.3 years for males). Race-wise, we have an over-representation of whites (73,4% of samples), followed by 12.0% of samples for which no race information is available. Blacks or african americans and asian represent a small percentage of the samples available, with 8.3% and 6.0% of the samples respectively.\n\n\nClinical overview\nLet’s check now the different cancer included in the study.\n\n\n\n\n\nClinical overview\n\n\n\n\nWe can check for any biases in terms of sex and ethnicity in the collected cancer samples. I would not expect any surprise here. Let’s see.\n\n\n\n\n\nClinical metadata breakdown by sex and ethnicity\n\n\n\n\nLastly, we can test how much … discrimination power gene expression filter lowly expressed genes selecte the top 1000 most variable genes By selecting the top 1,000 most variable genes we can see that there are clear differences between each cancer type, as captured by the UMAP.\n\n\n\n\n\nUMAP RNAseq",
+    "text": "Samples Overview\nNext step is to integrate together all the available sample and subjects metadata. This allows to break down the samples by cancer type and demographic distributions. While Xena provides some information, it lacks a cleaned table containing all the demographic information of the subjects. Conveniently, GitHub user ipezoa already retrieved from GDC and CGC and combined together all the metadata obtained from JSON and XML files. A thorough explanation of each metadata field is reported here.\nLet’s integrate all the metadata together. We have indeed access to a rich and comprehensive ensemble of clinical and sample metadata for the samples at hand.\n\n\n\n\n\n\n\nCohort demographics\nLet’s check the overall demographic distributions of all the samples.\n\n\n\n\n\nDemographic overview\n\n\n\n\nWe notice that the ration between males and females included in the PanCan dataset is almost 1:1. As well, the age distributions for both sexes are very similar, and the averages of the two distributions almost overlap around 60 years old (59.4 years for female and 60.3 years for males). Race-wise, we have an over-representation of whites (73,4% of samples), followed by 12.0% of samples for which no race information is available. Blacks or african americans and asian represent a small percentage of the samples available, with 8.3% and 6.0% of the samples respectively.\n\n\nClinical overview\nLet’s check now the different cancer included in the study.\n\n\n\n\n\nClinical overview\n\n\n\n\nWe can check for any biases in terms of sex and ethnicity in the collected cancer samples. I would not expect any surprise here. Let’s see.\n\n\n\n\n\nClinical metadata breakdown by sex and ethnicity\n\n\n\n\nLastly, we can test how much … discrimination power gene expression filter lowly expressed genes selecte the top 1000 most variable genes By selecting the top 1,000 most variable genes we can see that there are clear differences between each cancer type, as captured by the UMAP.\n\n\n\n\n\nUMAP RNAseq\n\n\n\n\nThe UMAP show us that we can clearly clusters cancer types in distinct groups, and that we can identify clusters with related cancers (i.e.: colon-adenocarcinoma COAD and rectum-adenocarcinoma READ).",
     "crumbs": [
       "Gather Datasets and QC"
+    ]
+  },
+  {
+    "objectID": "dataset-exploration.html",
+    "href": "dataset-exploration.html",
+    "title": "1  Data Exploration - Kidney Cancer",
+    "section": "",
+    "text": "1.1 Selection of Kidney samples\nFor the next sections, we will focus on kidney cancer. The choice is simply dictated by the abundance of samples which provide us a large playground to test different strategies for biomarker discovery, higher statistical power, and the existance of some Molecular Subtypes gene signatures that we can use as a benchmark and we can try to improve upon.\nLet’s select and explore the samples available for Kidney tissue.\ntable(metadata$gdc_cases.demographic.gender_1_1)\nfemale male 335 695\ntable(metadata$gdc_cases.demographic.race_1_1)\namerican indian or alaska native asian black or african american 2 17 131 not reported white 31 849\ntable(metadata$gdc_cases.project.project_id_1_1)\nTCGA-KICH TCGA-KIRC TCGA-KIRP 91 616 323\ntable(metadata$gdc_cases.samples.sample_type_1_1)\nAdditional - New Primary Primary Tumor Solid Tissue Normal 2 899 129\nable(metadata$cgc_case_pathologic_n_1_1 + )\nN0 N1 N2 NX 391 55 8 573\nNX = Regional lymph nodes cannot be assessed. N0 = No regional lymph node metastasis. N1 = Regional lymph node metastasis &lt;12 nodes. N2 = Large mesenteric masses (&gt;2 cm) and/or extensive nodal deposits (≥12), especially those that encase the superior mesenteric vessels.\ntable(metadata$cgc_case_pathologic_stage_1_1)\nStage I Stage II Stage III Stage IV 517 129 221 133\ntable(metadata$cgc_case_pathologic_t_1_1 + )\nT1 T1a T1b T2 T2a T2b T3 T3a T3b T3c T4 TX 54 277 214 117 21 17 16 203 83 4 19 2\nTX = Primary tumor cannot be assessed. T0 = No evidence of primary tumor. T1 = Tumor ≤2 cm in greatest dimension. T2 = Tumor &gt;2 cm but ≤4 cm. T3 = Tumor &gt;4 cm or with subserosal invasion or involvement of the mesoappendix. T4 = Tumor perforates the peritoneum or directly invades other adjacent organs or structures (excluding direct mural extension to adjacent subserosa of adjacent bowel), e.g., abdominal wall and skeletal muscle.\ntable(metadata$cgc_follow_up_tumor_status_1_1)\nTUMOR FREE WITH TUMOR 645 229\ntable(metadata$gdc_cases.demographic.race_1_1)\namerican indian or alaska native asian black or african american 2 17 131 not reported white 31 849\ntable(metadata$histological_grade)\n417 15 267 235 91 5\nG1 (1) Well differentiated G2 (2) Moderately differentiated G3 (3) Poorly differentiated Undifferentiated Anaplastic G4: Undifferentiated (high grade) GX (9) Grade cannot be assessed\ntable(metadata$vital_status)\nAlive Dead 763 267",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Exploration - Kidney Cancer</span>"
+    ]
+  },
+  {
+    "objectID": "dataset-exploration.html#selection-of-kidney-samples",
+    "href": "dataset-exploration.html#selection-of-kidney-samples",
+    "title": "1  Data Exploration - Kidney Cancer",
+    "section": "",
+    "text": "G1  G2  G3  G4  GX",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Exploration - Kidney Cancer</span>"
+    ]
+  },
+  {
+    "objectID": "dataset-exploration.html#principal-component-analysis-pca",
+    "href": "dataset-exploration.html#principal-component-analysis-pca",
+    "title": "1  Data Exploration - Kidney Cancer",
+    "section": "1.2 Principal Component Analysis (PCA)",
+    "text": "1.2 Principal Component Analysis (PCA)\n\n1.2.1 Filtering of lowly abundant genes\nWe filter lowly expressed genes because…\n\n\n\n\n\nFiltering Lowly Expressed Genes\n\n\n\n\n\n\n1.2.2 UMAP\nUMAP is an algorithm for dimension reduction based on manifold learning techniques and ideas from topological data analysis. I\n-.-.-.-.-.-.-.-.- UMAP Explanation\n\n\n\n\n\nKidney UMAP\n\n\n\n\n\n\n1.2.3 PCA\nPCA explanation\nSee Appendix A for how to integrate and correct for batch effects",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Exploration - Kidney Cancer</span>"
+    ]
+  },
+  {
+    "objectID": "transcriptomics-analysis.html",
+    "href": "transcriptomics-analysis.html",
+    "title": "2  transcriptomics analysis",
+    "section": "",
+    "text": "2.1 ORA vs GSEA",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>transcriptomics analysis</span>"
+    ]
+  },
+  {
+    "objectID": "transcriptomics-analysis.html#ora-vs-gsea",
+    "href": "transcriptomics-analysis.html#ora-vs-gsea",
+    "title": "2  transcriptomics analysis",
+    "section": "",
+    "text": "Over-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments\nGene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>transcriptomics analysis</span>"
+    ]
+  },
+  {
+    "objectID": "transcriptomics-analysis.html#immune-cell-deconvolution",
+    "href": "transcriptomics-analysis.html#immune-cell-deconvolution",
+    "title": "2  transcriptomics analysis",
+    "section": "2.2 immune cell deconvolution",
+    "text": "2.2 immune cell deconvolution",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>transcriptomics analysis</span>"
+    ]
+  },
+  {
+    "objectID": "compile-resources.html",
+    "href": "compile-resources.html",
+    "title": "16  Compile resourced for targets annotation",
+    "section": "",
+    "text": "16.1 Gene Expression Atlas\nWe can gather cancer multi-omics datasets from large public data resources such as TCGA (The Cancer Genome Atlas) and the GDC (Genomic Data Commons), as well as smaller-scale datasets generated by individual labs from the USDC Xena platform. From the Xena platform, we can find the data",
+    "crumbs": [
+      "_in silico_ Target Annotaion and Validation",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Compile resourced for targets annotation</span>"
+    ]
+  },
+  {
+    "objectID": "compile-resources.html#human-protein-atlas",
+    "href": "compile-resources.html#human-protein-atlas",
+    "title": "16  Compile resourced for targets annotation",
+    "section": "16.2 Human Protein Atlas",
+    "text": "16.2 Human Protein Atlas\n\n16.2.1 protein quantification\n\n\n16.2.2 subcellular localization",
+    "crumbs": [
+      "_in silico_ Target Annotaion and Validation",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Compile resourced for targets annotation</span>"
+    ]
+  },
+  {
+    "objectID": "compile-resources.html#disgennet",
+    "href": "compile-resources.html#disgennet",
+    "title": "16  Compile resourced for targets annotation",
+    "section": "16.3 DisGenNet",
+    "text": "16.3 DisGenNet",
+    "crumbs": [
+      "_in silico_ Target Annotaion and Validation",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Compile resourced for targets annotation</span>"
+    ]
+  },
+  {
+    "objectID": "compile-resources.html#opentargets",
+    "href": "compile-resources.html#opentargets",
+    "title": "16  Compile resourced for targets annotation",
+    "section": "16.4 OpenTargets",
+    "text": "16.4 OpenTargets",
+    "crumbs": [
+      "_in silico_ Target Annotaion and Validation",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Compile resourced for targets annotation</span>"
+    ]
+  },
+  {
+    "objectID": "compile-resources.html#dgidb",
+    "href": "compile-resources.html#dgidb",
+    "title": "16  Compile resourced for targets annotation",
+    "section": "16.5 DGIdb",
+    "text": "16.5 DGIdb\ntarget categories\ncut -f 4 categories_table.goo-goo-gaa-gaa.tsv | tr “;” “” | sort | uniq -c 43 ABC TRANSPORTER 68 B30_2 SPRY DOMAIN 592 CELL SURFACE 967 CLINICALLY ACTIONABLE 47 CYTOCHROME P450 2 DNA DIRECTED RNA POLYMERASE 221 DNA REPAIR 5409 DRUGGABLE GENOME 134 DRUG RESISTANCE 2126 ENZYME 14 EXCHANGER 402 EXTERNAL SIDE OF PLASMA MEMBRANE 28 FIBRINOGEN 1 Gene_categories 927 G PROTEIN COUPLED RECEPTOR 141 GROWTH FACTOR 91 HORMONE ACTIVITY 551 ION CHANNEL 1784 KINASE 9 LIPASE 3 LIPID KINASE 10 MYOTUBULARIN RELATED PROTEIN PHOSPHATASE 54 NEUTRAL ZINC METALLOPEPTIDASE 248 NUCLEAR HORMONE RECEPTOR 32 PHOSPHATIDYLINOSITOL 3 KINASE 38 PHOSPHOLIPASE 605 PROTEASE 131 PROTEASE INHIBITOR 139 PROTEIN PHOSPHATASE 6 PTEN FAMILY 13 RNA DIRECTED DNA POLYMERASE 448 SERINE THREONINE KINASE 46 SHORT CHAIN DEHYDROGENASE REDUCTASE 29 THIOREDOXIN 917 TRANSCRIPTION FACTOR 51 TRANSCRIPTION FACTOR BINDING 180 TRANSCRIPTION FACTOR COMPLEX 840 TRANSPORTER 222 TUMOR SUPPRESSOR 133 TYROSINE KINASE\ndrug id source\ncut -f 3 drugs.tsv | cut -f 1 -d “:” | sort | uniq -c 5002 chembl 6 chemidplus 1 concept_id 6043 drugbank 10 drugsatfda.nda 73 hemonc 7677 iuphar.ligand 14824 ncit 7947 NULL 39883 rxcui 107 wikidata\ncut -f 6 interactions.tsv | sort | uniq -c 578 activator 5849 agonist 295 antibody 4 antisense oligonucleotide 259 binder 1819 blocker 82 cleavage 11 immunotherapy 23237 inhibitor 1 interaction_type 36 inverse agonist 1239 modulator 142 negative modulator 63336 NULL 219 other/unknown 1039 positive modulator 51 potentiator 43 vaccine\nfor # unique targets cut -f 3 interactions.tsv | sort | uniq -c | wc -l 5013",
+    "crumbs": [
+      "_in silico_ Target Annotaion and Validation",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Compile resourced for targets annotation</span>"
+    ]
+  },
+  {
+    "objectID": "dealing-with-batch-effects.html",
+    "href": "dealing-with-batch-effects.html",
+    "title": "Appendix A — Dealing with batch effects",
+    "section": "",
+    "text": "Add GTEx to datasets\nrun combat-seq",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Dealing with batch effects</span>"
     ]
   },
   {

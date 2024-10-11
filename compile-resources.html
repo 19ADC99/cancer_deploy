@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>compile-resources – Multi-omics integration for target discovery in cancer</title>
+<title>16&nbsp; Compile resourced for targets annotation – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./compile-resources.html"><em>in silico</em> Target Annotaion and Validation</a></li><li class="breadcrumb-item"><a href="./compile-resources.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">compile-resources.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./compile-resources.html"><em>in silico</em> Target Annotaion and Validation</a></li><li class="breadcrumb-item"><a href="./compile-resources.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -129,13 +129,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset-exploration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">dataset-exploration.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transcriptomics-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics-analysis.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./compile-resources.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">compile-resources.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dealing-with-batch-effects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">dealing-with-batch-effects.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Dealing with batch effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,15 +297,75 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gene-expression-atlas" id="toc-gene-expression-atlas" class="nav-link active" data-scroll-target="#gene-expression-atlas"><span class="header-section-number">16.1</span> Gene Expression Atlas</a></li>
+  <li><a href="#human-protein-atlas" id="toc-human-protein-atlas" class="nav-link" data-scroll-target="#human-protein-atlas"><span class="header-section-number">16.2</span> Human Protein Atlas</a>
+  <ul class="collapse">
+  <li><a href="#protein-quantification" id="toc-protein-quantification" class="nav-link" data-scroll-target="#protein-quantification"><span class="header-section-number">16.2.1</span> protein quantification</a></li>
+  <li><a href="#subcellular-localization" id="toc-subcellular-localization" class="nav-link" data-scroll-target="#subcellular-localization"><span class="header-section-number">16.2.2</span> subcellular localization</a></li>
+  </ul></li>
+  <li><a href="#disgennet" id="toc-disgennet" class="nav-link" data-scroll-target="#disgennet"><span class="header-section-number">16.3</span> DisGenNet</a></li>
+  <li><a href="#opentargets" id="toc-opentargets" class="nav-link" data-scroll-target="#opentargets"><span class="header-section-number">16.4</span> OpenTargets</a></li>
+  <li><a href="#dgidb" id="toc-dgidb" class="nav-link" data-scroll-target="#dgidb"><span class="header-section-number">16.5</span> DGIdb</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./compile-resources.html"><em>in silico</em> Target Annotaion and Validation</a></li><li class="breadcrumb-item"><a href="./compile-resources.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="gene-expression-atlas" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="gene-expression-atlas"><span class="header-section-number">16.1</span> Gene Expression Atlas</h2>
+<p>We can gather cancer multi-omics datasets from large public data resources such as TCGA (<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga">The Cancer Genome Atlas</a>) and the GDC (<a href="https://gdc.cancer.gov/">Genomic Data Commons</a>), as well as smaller-scale datasets generated by individual labs from the <a href="https://xena.ucsc.edu/">USDC Xena platform</a>. From the Xena platform, we can find the data</p>
+</section>
+<section id="human-protein-atlas" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="human-protein-atlas"><span class="header-section-number">16.2</span> Human Protein Atlas</h2>
+<section id="protein-quantification" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="protein-quantification"><span class="header-section-number">16.2.1</span> protein quantification</h3>
+</section>
+<section id="subcellular-localization" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="subcellular-localization"><span class="header-section-number">16.2.2</span> subcellular localization</h3>
+</section>
+</section>
+<section id="disgennet" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="disgennet"><span class="header-section-number">16.3</span> DisGenNet</h2>
+</section>
+<section id="opentargets" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="opentargets"><span class="header-section-number">16.4</span> OpenTargets</h2>
+</section>
+<section id="dgidb" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="dgidb"><span class="header-section-number">16.5</span> DGIdb</h2>
+<p>target categories</p>
+<p>cut -f 4 categories_table.goo-goo-gaa-gaa.tsv | tr “;” “” | sort | uniq -c 43 ABC TRANSPORTER 68 B30_2 SPRY DOMAIN 592 CELL SURFACE 967 CLINICALLY ACTIONABLE 47 CYTOCHROME P450 2 DNA DIRECTED RNA POLYMERASE 221 DNA REPAIR 5409 DRUGGABLE GENOME 134 DRUG RESISTANCE 2126 ENZYME 14 EXCHANGER 402 EXTERNAL SIDE OF PLASMA MEMBRANE 28 FIBRINOGEN 1 Gene_categories 927 G PROTEIN COUPLED RECEPTOR 141 GROWTH FACTOR 91 HORMONE ACTIVITY 551 ION CHANNEL 1784 KINASE 9 LIPASE 3 LIPID KINASE 10 MYOTUBULARIN RELATED PROTEIN PHOSPHATASE 54 NEUTRAL ZINC METALLOPEPTIDASE 248 NUCLEAR HORMONE RECEPTOR 32 PHOSPHATIDYLINOSITOL 3 KINASE 38 PHOSPHOLIPASE 605 PROTEASE 131 PROTEASE INHIBITOR 139 PROTEIN PHOSPHATASE 6 PTEN FAMILY 13 RNA DIRECTED DNA POLYMERASE 448 SERINE THREONINE KINASE 46 SHORT CHAIN DEHYDROGENASE REDUCTASE 29 THIOREDOXIN 917 TRANSCRIPTION FACTOR 51 TRANSCRIPTION FACTOR BINDING 180 TRANSCRIPTION FACTOR COMPLEX 840 TRANSPORTER 222 TUMOR SUPPRESSOR 133 TYROSINE KINASE</p>
+<p>drug id source</p>
+<p>cut -f 3 drugs.tsv | cut -f 1 -d “:” | sort | uniq -c 5002 chembl 6 chemidplus 1 concept_id 6043 drugbank 10 drugsatfda.nda 73 hemonc 7677 iuphar.ligand 14824 ncit 7947 NULL 39883 rxcui 107 wikidata</p>
+<p>cut -f 6 interactions.tsv | sort | uniq -c 578 activator 5849 agonist 295 antibody 4 antisense oligonucleotide 259 binder 1819 blocker 82 cleavage 11 immunotherapy 23237 inhibitor 1 interaction_type 36 inverse agonist 1239 modulator 142 negative modulator 63336 NULL 219 other/unknown 1039 positive modulator 51 potentiator 43 vaccine</p>
+<p>for # unique targets cut -f 3 interactions.tsv | sort | uniq -c | wc -l 5013</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

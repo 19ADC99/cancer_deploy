@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>dataset-exploration – Multi-omics integration for target discovery in cancer</title>
+<title>1&nbsp; Data Exploration - Kidney Cancer – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./dataset-exploration.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">dataset-exploration.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./dataset-exploration.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -129,13 +129,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset-exploration.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">dataset-exploration.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transcriptomics-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics-analysis.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./compile-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">compile-resources.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dealing-with-batch-effects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">dealing-with-batch-effects.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Dealing with batch effects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,15 +297,120 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#selection-of-kidney-samples" id="toc-selection-of-kidney-samples" class="nav-link active" data-scroll-target="#selection-of-kidney-samples"><span class="header-section-number">1.1</span> Selection of Kidney samples</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">1.2</span> Principal Component Analysis (PCA)</a>
+  <ul class="collapse">
+  <li><a href="#filtering-of-lowly-abundant-genes" id="toc-filtering-of-lowly-abundant-genes" class="nav-link" data-scroll-target="#filtering-of-lowly-abundant-genes"><span class="header-section-number">1.2.1</span> Filtering of lowly abundant genes</a></li>
+  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">1.2.2</span> UMAP</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">1.2.3</span> PCA</a></li>
+  </ul></li>
+  <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">2</span> Notes :: Kidney subtype</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./dataset-exploration.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="selection-of-kidney-samples" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="selection-of-kidney-samples"><span class="header-section-number">1.1</span> Selection of Kidney samples</h2>
+<p>For the next sections, we will focus on kidney cancer. The choice is simply dictated by the abundance of samples which provide us a large playground to test different strategies for biomarker discovery, higher statistical power, and the existance of some <a href="https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y">Molecular Subtypes gene signatures</a> that we can use as a benchmark and we can try to improve upon.</p>
+<p>Let’s select and explore the samples available for Kidney tissue.</p>
+<p>table(metadata$gdc_cases.demographic.gender_1_1)</p>
+<p>female male 335 695</p>
+<p>table(metadata$gdc_cases.demographic.race_1_1)</p>
+<p>american indian or alaska native asian black or african american 2 17 131 not reported white 31 849</p>
+<p>table(metadata$gdc_cases.project.project_id_1_1)</p>
+<p>TCGA-KICH TCGA-KIRC TCGA-KIRP 91 616 323</p>
+<p>table(metadata$gdc_cases.samples.sample_type_1_1)</p>
+<p>Additional - New Primary Primary Tumor Solid Tissue Normal 2 899 129</p>
+<p>able(metadata$cgc_case_pathologic_n_1_1 + )</p>
+<p>N0 N1 N2 NX 391 55 8 573</p>
+<p>NX = Regional lymph nodes cannot be assessed. N0 = No regional lymph node metastasis. N1 = Regional lymph node metastasis &lt;12 nodes. N2 = Large mesenteric masses (&gt;2 cm) and/or extensive nodal deposits (≥12), especially those that encase the superior mesenteric vessels.</p>
+<p>table(metadata$cgc_case_pathologic_stage_1_1)</p>
+<p>Stage I Stage II Stage III Stage IV 517 129 221 133</p>
+<p>table(metadata$cgc_case_pathologic_t_1_1 + )</p>
+<p>T1 T1a T1b T2 T2a T2b T3 T3a T3b T3c T4 TX 54 277 214 117 21 17 16 203 83 4 19 2</p>
+<p>TX = Primary tumor cannot be assessed. T0 = No evidence of primary tumor. T1 = Tumor ≤2 cm in greatest dimension. T2 = Tumor &gt;2 cm but ≤4 cm. T3 = Tumor &gt;4 cm or with subserosal invasion or involvement of the mesoappendix. T4 = Tumor perforates the peritoneum or directly invades other adjacent organs or structures (excluding direct mural extension to adjacent subserosa of adjacent bowel), e.g., abdominal wall and skeletal muscle.</p>
+<p>table(metadata$cgc_follow_up_tumor_status_1_1)</p>
+<p>TUMOR FREE WITH TUMOR 645 229</p>
+<p>table(metadata$gdc_cases.demographic.race_1_1)</p>
+<p>american indian or alaska native asian black or african american 2 17 131 not reported white 31 849</p>
+<p>table(metadata$histological_grade)</p>
+<pre><code> G1  G2  G3  G4  GX </code></pre>
+<p>417 15 267 235 91 5</p>
+<p>G1 (1) Well differentiated G2 (2) Moderately differentiated G3 (3) Poorly differentiated Undifferentiated Anaplastic G4: Undifferentiated (high grade) GX (9) Grade cannot be assessed</p>
+<p>table(metadata$vital_status)</p>
+<p>Alive Dead 763 267</p>
+</section>
+<section id="principal-component-analysis-pca" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">1.2</span> Principal Component Analysis (PCA)</h2>
+<section id="filtering-of-lowly-abundant-genes" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="filtering-of-lowly-abundant-genes"><span class="header-section-number">1.2.1</span> Filtering of lowly abundant genes</h3>
+<p>We filter lowly expressed genes because…</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="umap" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="umap"><span class="header-section-number">1.2.2</span> UMAP</h3>
+<p><a href="https://umap-learn.readthedocs.io/en/latest/how_umap_works.html">UMAP</a> is an algorithm for dimension reduction based on manifold learning techniques and ideas from topological data analysis. I</p>
+<p>-.-.-.-.-.-.-.-.- UMAP Explanation</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Kidney UMAP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pca" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="pca"><span class="header-section-number">1.2.3</span> PCA</h3>
+<p>PCA explanation</p>
+<p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
+</section>
+</section>
+<section id="notes-kidney-subtype" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Notes :: Kidney subtype</h1>
+<p>https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-022-01105-y/MediaObjects/13073_2022_1105_MOESM6_ESM.pdf https://patents.google.com/patent/EP3722444A1/en</p>
+<p>CMScalles (CRC) https://www.nature.com/articles/s41598-017-16747-x</p>
+<p>adapt for RCC</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -735,8 +840,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./transcriptomics-analysis.html" class="pagination-link" aria-label="transcriptomics-analysis.html">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics-analysis.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transcriptomics-analysis.html" class="pagination-link" aria-label="transcriptomics analysis">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
