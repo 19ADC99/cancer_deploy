@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; transcriptomics analysis – Multi-omics integration for target discovery in cancer</title>
+<title>2&nbsp; Transcriptomics Analysis – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./transcriptomics-analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./transcriptomics-analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -135,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transcriptomics-analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -302,17 +302,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ora-vs-gsea" id="toc-ora-vs-gsea" class="nav-link active" data-scroll-target="#ora-vs-gsea"><span class="header-section-number">2.1</span> ORA vs GSEA</a></li>
-  <li><a href="#immune-cell-deconvolution" id="toc-immune-cell-deconvolution" class="nav-link" data-scroll-target="#immune-cell-deconvolution"><span class="header-section-number">2.2</span> immune cell deconvolution</a></li>
+  <li><a href="#filtering-of-lowly-abundant-genes" id="toc-filtering-of-lowly-abundant-genes" class="nav-link active" data-scroll-target="#filtering-of-lowly-abundant-genes"><span class="header-section-number">2.1</span> Filtering of lowly abundant genes</a></li>
+  <li><a href="#dimesionality-reduction-and-dataset-exploration" id="toc-dimesionality-reduction-and-dataset-exploration" class="nav-link" data-scroll-target="#dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">2.2</span> Dimesionality Reduction and Dataset Exploration</a>
+  <ul class="collapse">
+  <li><a href="#umap-on-filtered-transcriptomics-data" id="toc-umap-on-filtered-transcriptomics-data" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data"><span class="header-section-number">2.2.1</span> UMAP on filtered transcriptomics data</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</a></li>
+  </ul></li>
+  <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">3</span> Notes :: Kidney subtype</a>
+  <ul class="collapse">
+  <li><a href="#ora-vs-gsea" id="toc-ora-vs-gsea" class="nav-link" data-scroll-target="#ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</a></li>
+  <li><a href="#immune-cell-deconvolution" id="toc-immune-cell-deconvolution" class="nav-link" data-scroll-target="#immune-cell-deconvolution"><span class="header-section-number">3.2</span> immune cell deconvolution</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./transcriptomics-analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./transcriptomics-analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></h1>
 </div>
 
 
@@ -329,17 +338,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="ora-vs-gsea" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="ora-vs-gsea"><span class="header-section-number">2.1</span> ORA vs GSEA</h2>
+<section id="filtering-of-lowly-abundant-genes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="filtering-of-lowly-abundant-genes"><span class="header-section-number">2.1</span> Filtering of lowly abundant genes</h2>
+<p>The first step for transcriptomics analysis is to filter genes that are lowly expressed across all samples because they just inflate the data matrix and they do not contribute to the detection of the <a href="https://www.nature.com/articles/nmeth.3885">biological signal</a>.</p>
+<p>The filtering step results in the removal of 6,472 genes. The graph below reports the density curves of gene expressions (logCPM) before and after filtering of lowly expressed genes. Each line represent a sample. Before filtering, all samples showed a left-hand side shoulder, with a peak below 0 logCPM higher than a second peak centered around 5 logCPM. The peak below 0 logCPM represent all the lowly to non-expressed genes. After filtering, only expressed genes are retained.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dimesionality-reduction-and-dataset-exploration" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">2.2</span> Dimesionality Reduction and Dataset Exploration</h2>
+<section id="umap-on-filtered-transcriptomics-data" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data"><span class="header-section-number">2.2.1</span> UMAP on filtered transcriptomics data</h3>
+<p>After we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in <a href="dataset-exploration.html#sec-UMAP-unfiltered" class="quarto-xref"><span>Section 1.1.1</span></a>, and that roughly correspondes with three different kidney cancer subtypes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Kidney UMAP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="principal-component-analysis-pca" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</h3>
+<p>PCA explanation</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>PCA - exploration</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>PCA - biplot PC1 x PC2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
+</section>
+</section>
+<section id="notes-kidney-subtype" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Notes :: Kidney subtype</h1>
+<p>https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-022-01105-y/MediaObjects/13073_2022_1105_MOESM6_ESM.pdf https://patents.google.com/patent/EP3722444A1/en</p>
+<p>CMScalles (CRC) https://www.nature.com/articles/s41598-017-16747-x</p>
+<p>adapt for RCC</p>
+<section id="ora-vs-gsea" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</h2>
 <ul>
 <li>Over-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments</li>
 <li>Gene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments</li>
 </ul>
 </section>
-<section id="immune-cell-deconvolution" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="immune-cell-deconvolution"><span class="header-section-number">2.2</span> immune cell deconvolution</h2>
+<section id="immune-cell-deconvolution" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="immune-cell-deconvolution"><span class="header-section-number">3.2</span> immune cell deconvolution</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

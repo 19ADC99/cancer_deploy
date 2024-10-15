@@ -149,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transcriptomics-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -318,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#selection-of-kidney-samples" id="toc-selection-of-kidney-samples" class="nav-link active" data-scroll-target="#selection-of-kidney-samples"><span class="header-section-number">1.1</span> Selection of Kidney samples</a>
   <ul class="collapse">
-  <li><a href="#general-overview-of-the-dataset" id="toc-general-overview-of-the-dataset" class="nav-link" data-scroll-target="#general-overview-of-the-dataset"><span class="header-section-number">1.1.1</span> General Overview of the Dataset</a></li>
+  <li><a href="#sec-UMAP-unfiltered" id="toc-sec-UMAP-unfiltered" class="nav-link" data-scroll-target="#sec-UMAP-unfiltered"><span class="header-section-number">1.1.1</span> General Overview of the Dataset</a></li>
   <li><a href="#cohort-filtering" id="toc-cohort-filtering" class="nav-link" data-scroll-target="#cohort-filtering"><span class="header-section-number">1.1.2</span> Cohort filtering</a></li>
   </ul></li>
   <li><a href="#contingency-tables" id="toc-contingency-tables" class="nav-link" data-scroll-target="#contingency-tables"><span class="header-section-number">1.2</span> Contingency tables</a>
@@ -331,13 +331,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tmn-n-lymph-nodes-metastatis" id="toc-tmn-n-lymph-nodes-metastatis" class="nav-link" data-scroll-target="#tmn-n-lymph-nodes-metastatis"><span class="header-section-number">1.2.6</span> TMN, N: Lymph Nodes metastatis</a></li>
   <li><a href="#prognosis-outcome" id="toc-prognosis-outcome" class="nav-link" data-scroll-target="#prognosis-outcome"><span class="header-section-number">1.2.7</span> Prognosis Outcome</a></li>
   </ul></li>
-  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">1.3</span> Principal Component Analysis (PCA)</a>
-  <ul class="collapse">
-  <li><a href="#filtering-of-lowly-abundant-genes" id="toc-filtering-of-lowly-abundant-genes" class="nav-link" data-scroll-target="#filtering-of-lowly-abundant-genes"><span class="header-section-number">1.3.1</span> Filtering of lowly abundant genes</a></li>
-  <li><a href="#umap" id="toc-umap" class="nav-link" data-scroll-target="#umap"><span class="header-section-number">1.3.2</span> UMAP</a></li>
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">1.3.3</span> PCA</a></li>
-  </ul></li>
-  <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">2</span> Notes :: Kidney subtype</a></li>
+  <li><a href="#export-kidney-metadata-and-count-tables" id="toc-export-kidney-metadata-and-count-tables" class="nav-link" data-scroll-target="#export-kidney-metadata-and-count-tables"><span class="header-section-number">1.3</span> Export Kidney metadata and count tables</a></li>
   </ul>
 </nav>
     </div>
@@ -367,8 +361,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="1.1" class="anchored" data-anchor-id="selection-of-kidney-samples"><span class="header-section-number">1.1</span> Selection of Kidney samples</h2>
 <p>For the next sections, we will focus on kidney cancer. The choice is simply dictated by the abundance of samples which provide us a large playground to test different strategies for biomarker discovery, higher statistical power, and the existance of some <a href="https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y">Molecular Subtypes gene signatures</a> that we can use as a benchmark and we can try to improve upon.</p>
 <p>Let’s select and explore the samples available for Kidney tissue.</p>
-<section id="general-overview-of-the-dataset" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="general-overview-of-the-dataset"><span class="header-section-number">1.1.1</span> General Overview of the Dataset</h3>
+<section id="sec-UMAP-unfiltered" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="sec-UMAP-unfiltered"><span class="header-section-number">1.1.1</span> General Overview of the Dataset</h3>
 <p>To have a first overview of all the Kidney samples, we will plot a UMAP based on the gene expression of all the biopsys. A <a href="https://umap-learn.readthedocs.io/en/latest/how_umap_works.html">UMAP</a> is an algorithm for dimension reduction based on manifold learning techniques and ideas from topological data analysis. I</p>
 <p>-.-.-.-.-.-.-.-.- UMAP Explanation</p>
 <p>To build the UMAP, we focus on the 1,000 top most variable genes between the transcriptomics samples. This allows us to maximize similarities and differences between sample groups (if any).</p>
@@ -405,21 +399,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="contingency-tables" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="contingency-tables"><span class="header-section-number">1.2</span> Contingency tables</h2>
 <p>As we saw previously TCGA provides rich clinical metadata for each patient. We can run some simple demographic statistics (chi-squared and Fisher exact tests) to see if any clinical covariate is significantly overrepresented in any of the three cancer types.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-13ff9cd4a2f7aed30998" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-13ff9cd4a2f7aed30998">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Overview of clinical covariates for Kidney Cancer cohorts<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33"],["","gdc_cases.demographic.gender_1_1","gdc_cases.demographic.gender_1_1","cgc_follow_up_tumor_status_1_1","cgc_follow_up_tumor_status_1_1","cgc_case_pathologic_stage_1_1","cgc_case_pathologic_stage_1_1","cgc_case_pathologic_stage_1_1","cgc_case_pathologic_stage_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","cgc_case_pathologic_t_1_1","histological_grade","histological_grade","histological_grade","histological_grade","histological_grade","histological_grade","cgc_case_pathologic_n_1_1","cgc_case_pathologic_n_1_1","cgc_case_pathologic_n_1_1","cgc_case_pathologic_n_1_1","vital_status","vital_status"],["","female","male","TUMOR FREE","WITH TUMOR","Stage I","Stage II","Stage III","Stage IV","T1","T1a","T1b","T2","T2a","T2b","T3","T3a","T3b","T3c","T4","TX","","G1","G2","G3","G4","GX","N0","N1","N2","NX","Alive","Dead"],["","27","39","37","8","21","25","14","6","5","5","11","19","0","6","1","14","3","0","2","0","66","0","0","0","0","0","40","3","2","21","56","10"],["","188","343","327","148","266","57","123","84","21","139","111","55","10","4","5","120","52","2","11","0","3","14","229","204","76","5","239","16","0","275","357","174"],["","76","214","199","34","171","23","52","15","23","107","62","18","9","5","9","39","11","1","2","2","290","0","0","0","0","0","49","24","5","210","246","44"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>covariate<\/th>\n      <th>covariate_val<\/th>\n      <th>KICH<\/th>\n      <th>KIRC<\/th>\n      <th>KIRP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"covariate","targets":1},{"name":"covariate_val","targets":2},{"name":"KICH","targets":3},{"name":"KIRC","targets":4},{"name":"KIRP","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
 <p>We can test if there is a significant difference of each observed clinical covariate across the three kidney cancer types. The null hypothesis here is that the distribution of each covariate in the the three cancer subtypes is the same.</p>
 <section id="sex" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="sex"><span class="header-section-number">1.2.1</span> Sex</h3>
 <p>There are 596 males and 291 females in the three kidney cancer cohorts after filtering. Despite the imbalance, the difference across cancer types is not significant.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-81f92e2ac683418b8284" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-81f92e2ac683418b8284">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Sex<\/caption>","data":[["KICH","KIRC","KIRP"],[27,188,76],[39,343,214]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>female<\/th>\n      <th>male<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"female","targets":1},{"name":"male","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: Sex</figcaption>
 </figure>
 </div>
@@ -431,9 +425,15 @@ ul.task-list li input[type="checkbox"] {
 <p>After filtering, the three kidney cancer types contains 563 subject that are now tumor free, and 190 subject that still have tumor. It seems that KIRP have significantly more patients that are now tumor free, while there are still significantly more patients with tumor for KIRC. The small sample size of KICH patients may skew these results, so this outcome should be interpreted with a pinch of salt.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3a12a16b40039cd70dd0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3a12a16b40039cd70dd0">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Disease Status<\/caption>","data":[["KICH","KIRC","KIRP"],[37,327,199],[8,148,34]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>TUMOR FREE<\/th>\n      <th>WITH TUMOR<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"TUMOR FREE","targets":1},{"name":"WITH TUMOR","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: Disease Status</figcaption>
 </figure>
 </div>
@@ -453,9 +453,15 @@ ul.task-list li input[type="checkbox"] {
 <p>KIRC patients seem to have a higher number of Stage IV cancer, while KIRP patients have more STage I cancers. This can either be bias in the sampling of the cohort, or it could really indicate that KIRC cancer is more aggressive and fast progressing than KIRP.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-5a511586296e7cf391b1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5a511586296e7cf391b1">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Tumor Stage<\/caption>","data":[["KICH","KIRC","KIRP"],[21,266,171],[25,57,23],[14,123,52],[6,84,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stage I<\/th>\n      <th>Stage II<\/th>\n      <th>Stage III<\/th>\n      <th>Stage IV<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stage I","targets":1},{"name":"Stage II","targets":2},{"name":"Stage III","targets":3},{"name":"Stage IV","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: Tumor Stage</figcaption>
 </figure>
 </div>
@@ -477,9 +483,15 @@ ul.task-list li input[type="checkbox"] {
 <p>For the KIRC tumors, 14 biopsys had G1 grade, 229 G2 grade, 204 had G3 grade, 76 G4 and 5 biopsys could not be graded (GX).</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9f9de9b0a2038942fe2f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9f9de9b0a2038942fe2f">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Tumor Histology<\/caption>","data":[["","G1","G2","G3","G4","GX"],["66","0","0","0","0","0"],["3","14","229","204","76","5"],["290","0","0","0","0","0"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>KICH<\/th>\n      <th>KIRC<\/th>\n      <th>KIRP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"KICH","targets":1},{"name":"KIRC","targets":2},{"name":"KIRP","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: Tumor Histology</figcaption>
 </figure>
 </div>
@@ -500,9 +512,15 @@ ul.task-list li input[type="checkbox"] {
 <p>The presence of 12 distinct substaging for TMN, and the relative small sample size across the cohort makes the outcome of this comparison difficult to judge. We could claim that KIRP seems to be enriched in lower tumor stages (T1a) and depleted in higher tumor stages (T2, T3a, T3b) than KIRC.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d9b9f742ec7b045bcd51" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d9b9f742ec7b045bcd51">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Contigency table: TMN Main Tumor<\/caption>","data":[["KICH","KIRC","KIRP"],[5,21,23],[5,139,107],[11,111,62],[19,55,18],[0,10,9],[6,4,5],[1,5,9],[14,120,39],[3,52,11],[0,2,1],[2,11,2],[0,0,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>T1<\/th>\n      <th>T1a<\/th>\n      <th>T1b<\/th>\n      <th>T2<\/th>\n      <th>T2a<\/th>\n      <th>T2b<\/th>\n      <th>T3<\/th>\n      <th>T3a<\/th>\n      <th>T3b<\/th>\n      <th>T3c<\/th>\n      <th>T4<\/th>\n      <th>TX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"T1","targets":1},{"name":"T1a","targets":2},{"name":"T1b","targets":3},{"name":"T2","targets":4},{"name":"T2a","targets":5},{"name":"T2b","targets":6},{"name":"T3","targets":7},{"name":"T3a","targets":8},{"name":"T3b","targets":9},{"name":"T3c","targets":10},{"name":"T4","targets":11},{"name":"TX","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: TMN Main Tumor</figcaption>
 </figure>
 </div>
@@ -521,9 +539,15 @@ ul.task-list li input[type="checkbox"] {
 <p>In the kidney cohort, lymph nodes of 506 patiens could not be scored (NX), 328 patients had a N0 score, 43 N1 and 7 had a N2 score. Lymph nodes of most patients with KIRP tumors could not be scored, they they were depleted in No and enriched in N1 if compared with patients with KIRC tumor.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e2c734c03f71d28153b8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e2c734c03f71d28153b8">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Contigency table: TMN Lymph nodes<\/caption>","data":[["KICH","KIRC","KIRP"],[40,239,49],[3,16,24],[2,0,5],[21,275,210]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N0<\/th>\n      <th>N1<\/th>\n      <th>N2<\/th>\n      <th>NX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N0","targets":1},{"name":"N1","targets":2},{"name":"N2","targets":3},{"name":"NX","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: TMN Lymph nodes</figcaption>
 </figure>
 </div>
@@ -535,9 +559,15 @@ ul.task-list li input[type="checkbox"] {
 <p>Of the 887 petients with kidney tumor, 659 were alive at the time of the last check up, while 228 died. It appears that KIRC patients (48.7% dead) have worse prognosis than KIRP patients (17.9% dead), as observed in the previous comparisons. However, before drawing a formal conclusion, we should validate this observation at least in another independent cohort.</p>
 <div class="cell">
 <div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f1b091c966b12e7bcf79" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f1b091c966b12e7bcf79">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Contigency table: Sex<\/caption>","data":[["KICH","KIRC","KIRP"],[56,357,246],[10,174,44]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Alive<\/th>\n      <th>Dead<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Alive","targets":1},{"name":"Dead","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Contigency table: Sex</figcaption>
 </figure>
 </div>
@@ -545,48 +575,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="principal-component-analysis-pca" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">1.3</span> Principal Component Analysis (PCA)</h2>
-<section id="filtering-of-lowly-abundant-genes" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="filtering-of-lowly-abundant-genes"><span class="header-section-number">1.3.1</span> Filtering of lowly abundant genes</h3>
-<p>We filter lowly expressed genes because…</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="umap" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="umap"><span class="header-section-number">1.3.2</span> UMAP</h3>
-<p><a href="https://umap-learn.readthedocs.io/en/latest/how_umap_works.html">UMAP</a> is an algorithm for dimension reduction based on manifold learning techniques and ideas from topological data analysis. I</p>
-<p>-.-.-.-.-.-.-.-.- UMAP Explanation</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="dataset-exploration_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Kidney UMAP</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="pca" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="pca"><span class="header-section-number">1.3.3</span> PCA</h3>
-<p>PCA explanation</p>
-<p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
-</section>
-</section>
-<section id="notes-kidney-subtype" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Notes :: Kidney subtype</h1>
-<p>https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-022-01105-y/MediaObjects/13073_2022_1105_MOESM6_ESM.pdf https://patents.google.com/patent/EP3722444A1/en</p>
-<p>CMScalles (CRC) https://www.nature.com/articles/s41598-017-16747-x</p>
-<p>adapt for RCC</p>
+<section id="export-kidney-metadata-and-count-tables" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="export-kidney-metadata-and-count-tables"><span class="header-section-number">1.3</span> Export Kidney metadata and count tables</h2>
+<p>Finally, we export the Kidney metadata and transcritpomics tables for downstream analyses.</p>
 
 
 </section>
@@ -1019,8 +1010,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./transcriptomics-analysis.html" class="pagination-link" aria-label="transcriptomics analysis">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">transcriptomics analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transcriptomics-analysis.html" class="pagination-link" aria-label="Transcriptomics Analysis">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
