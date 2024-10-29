@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -304,17 +304,22 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#filtering-of-lowly-abundant-genes" id="toc-filtering-of-lowly-abundant-genes" class="nav-link active" data-scroll-target="#filtering-of-lowly-abundant-genes"><span class="header-section-number">2.1</span> Filtering of lowly abundant genes</a></li>
   <li><a href="#dimesionality-reduction-and-dataset-exploration" id="toc-dimesionality-reduction-and-dataset-exploration" class="nav-link" data-scroll-target="#dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">2.2</span> Dimesionality Reduction and Dataset Exploration</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#umap-on-filtered-transcriptomics-data" id="toc-umap-on-filtered-transcriptomics-data" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data"><span class="header-section-number">2.2.1</span> UMAP on filtered transcriptomics data</a></li>
   <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</a></li>
   </ul></li>
   <li><a href="#differential-gene-expression-analysis" id="toc-differential-gene-expression-analysis" class="nav-link" data-scroll-target="#differential-gene-expression-analysis"><span class="header-section-number">2.3</span> Differential gene expression analysis</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#identification-of-differentially-expressed-genes" id="toc-identification-of-differentially-expressed-genes" class="nav-link" data-scroll-target="#identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</a></li>
-  <li><a href="#comparative-enrichment-analyses-across-cancer-types" id="toc-comparative-enrichment-analyses-across-cancer-types" class="nav-link" data-scroll-target="#comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</a></li>
+  <li><a href="#comparative-enrichment-analyses-across-cancer-types" id="toc-comparative-enrichment-analyses-across-cancer-types" class="nav-link" data-scroll-target="#comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</a>
+  <ul>
+  <li><a href="#go-terms" id="toc-go-terms" class="nav-link" data-scroll-target="#go-terms"><span class="header-section-number">2.3.2.1</span> GO terms</a></li>
+  <li><a href="#kegg-pathways" id="toc-kegg-pathways" class="nav-link" data-scroll-target="#kegg-pathways"><span class="header-section-number">2.3.2.2</span> KEGG pathways</a></li>
+  <li><a href="#reactome-pathways" id="toc-reactome-pathways" class="nav-link" data-scroll-target="#reactome-pathways"><span class="header-section-number">2.3.2.3</span> Reactome pathways</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">3</span> Notes :: Kidney subtype</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#ora-vs-gsea" id="toc-ora-vs-gsea" class="nav-link" data-scroll-target="#ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</a></li>
   <li><a href="#immune-cell-deconvolution" id="toc-immune-cell-deconvolution" class="nav-link" data-scroll-target="#immune-cell-deconvolution"><span class="header-section-number">3.2</span> immune cell deconvolution</a></li>
   </ul></li>
@@ -322,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./transcriptomics-analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -343,80 +348,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="filtering-of-lowly-abundant-genes" class="level2" data-number="2.1">
+<section id="filtering-of-lowly-abundant-genes" class="level2 page-columns page-full" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="filtering-of-lowly-abundant-genes"><span class="header-section-number">2.1</span> Filtering of lowly abundant genes</h2>
 <p>The first step for transcriptomics analysis is to filter genes that are lowly expressed across all samples because they just inflate the data matrix and they do not contribute to the detection of the <a href="https://www.nature.com/articles/nmeth.3885">biological signal</a>.</p>
 <p>The filtering step results in the removal of 6,472 genes. The graph below reports the density curves of gene expressions (logCPM) before and after filtering of lowly expressed genes. Each line represent a sample. Before filtering, all samples showed a left-hand side shoulder, with a peak below 0 logCPM higher than a second peak centered around 5 logCPM. The peak below 0 logCPM represent all the lowly to non-expressed genes. After filtering, only expressed genes are retained.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Filtering Lowly Expressed Genes</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="dimesionality-reduction-and-dataset-exploration" class="level2" data-number="2.2">
+<section id="dimesionality-reduction-and-dataset-exploration" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">2.2</span> Dimesionality Reduction and Dataset Exploration</h2>
-<section id="umap-on-filtered-transcriptomics-data" class="level3" data-number="2.2.1">
+<section id="umap-on-filtered-transcriptomics-data" class="level3 page-columns page-full" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data"><span class="header-section-number">2.2.1</span> UMAP on filtered transcriptomics data</h3>
 <p>After we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in <a href="dataset-exploration.html#sec-UMAP-unfiltered" class="quarto-xref"><span>Section 1.1.1</span></a>, and that roughly correspondes with three different kidney cancer subtypes.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Kidney UMAP</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 2: Kidney UMAP</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="principal-component-analysis-pca" class="level3" data-number="2.2.2">
+<section id="principal-component-analysis-pca" class="level3 page-columns page-full" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</h3>
 <p>PCA explanation</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>PCA - exploration</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 3: PCA, exploration</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>PCA - biplot PC1 x PC2</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 4: PCA, biplot PC1 x PC2</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>We can investigate other dimensions</p>
 <p>PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>PCA - pairs plots</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 5: PCA, pairs plots</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Let’s check the loadings</p>
-<p>– variables retained: 1. <a href="https://doi.org/10.1080/21645515.2024.2350101">SPP1</a> 2. <a href="https://onlinelibrary.wiley.com/doi/10.1155/2019/7259691">VIM</a> 3. <a href="https://www.mdpi.com/2072-6694/14/6/1495">FTL</a> 4. <a href="https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/cjp2.232">RGS5</a> 5. <a href="https://www.nature.com/articles/s41598-020-71997-6">LOC96610</a></p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>PCA - loadings</figcaption>
+<p>– variables retained:</p>
+<ol type="1">
+<li><a href="https://doi.org/10.1080/21645515.2024.2350101">SPP1</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/10.1155/2019/7259691">VIM</a></li>
+<li><a href="https://www.mdpi.com/2072-6694/14/6/1495">FTL</a></li>
+<li><a href="https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/cjp2.232">RGS5</a></li>
+<li><a href="https://www.nature.com/articles/s41598-020-71997-6">LOC96610</a></li>
+</ol>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 5: PCA, loadings</figcaption>
 </figure>
 </div>
 </div>
@@ -424,48 +436,48 @@ ul.task-list li input[type="checkbox"] {
 <p>Let’s check the Pearson correlation with other clinical covariates</p>
 <p>Certain histological and molecular subtyping correlates perfectly with PC4 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients</p>
 <p>sadly, no correlation between the top 5 components and the outcome of therapeutic care.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>PCA - correlations</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="differential-gene-expression-analysis" class="level2" data-number="2.3">
+<section id="differential-gene-expression-analysis" class="level2 page-columns page-full" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="differential-gene-expression-analysis"><span class="header-section-number">2.3</span> Differential gene expression analysis</h2>
 <p>In addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.</p>
 <p>We may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.</p>
 <p>recalculate properly based on logFC &amp; adj.pvalues couse this estimates are off</p>
 <p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 331 273 107 NotSig 12772 12991 13553 Up 955 794 398</p>
-<section id="identification-of-differentially-expressed-genes" class="level3" data-number="2.3.1">
+<section id="identification-of-differentially-expressed-genes" class="level3 page-columns page-full" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Volcano plots</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 6: Volcano plots of each contrats reporting the genes differentially expressed</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>UpSet plots</figcaption>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 7: UpSet reporting the genes differentially expressed upregulated and downregulated in common across all contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="comparative-enrichment-analyses-across-cancer-types" class="level3" data-number="2.3.2">
+<section id="comparative-enrichment-analyses-across-cancer-types" class="level3 page-columns page-full" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</h3>
 <p>prep gene lists</p>
 <div class="cell">
@@ -477,69 +489,123 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="go-terms" class="level4" data-number="2.3.2.1">
 <h4 data-number="2.3.2.1" class="anchored" data-anchor-id="go-terms"><span class="header-section-number">2.3.2.1</span> GO terms</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">BP: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">BP: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">BP: gene map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">CC: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">CC: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">CC: gene map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">MF: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">MF: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">MF: gene map</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+
+</div>
+</div>
+</div>
 </section>
-<section id="kegg-pathways" class="level4" data-number="2.3.2.2">
+<section id="kegg-pathways" class="level4 page-columns page-full" data-number="2.3.2.2">
 <h4 data-number="2.3.2.2" class="anchored" data-anchor-id="kegg-pathways"><span class="header-section-number">2.3.2.2</span> KEGG pathways</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched KEGGs - dotplot</figcaption>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">gene map</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-2-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 17: dotplot of enriched KEGG pathways</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched KEGGs - terms map</figcaption>
+</div>
+<div id="tabset-2-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched KEGGs - gene map</figcaption>
+</div>
+<div id="tabset-2-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="reactome-pathways" class="level4" data-number="2.3.2.3">
+<section id="reactome-pathways" class="level4 page-columns page-full" data-number="2.3.2.3">
 <h4 data-number="2.3.2.3" class="anchored" data-anchor-id="reactome-pathways"><span class="header-section-number">2.3.2.3</span> Reactome pathways</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched Reactome - dotplot</figcaption>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">gene map</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-3-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 20: dotplot of enriched Reactome pathways</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched KEGGs - terms map</figcaption>
+</div>
+<div id="tabset-3-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Enriched KEGGs - gene map</figcaption>
+</div>
+<div id="tabset-3-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
