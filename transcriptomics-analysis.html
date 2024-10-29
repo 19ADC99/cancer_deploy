@@ -308,6 +308,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#umap-on-filtered-transcriptomics-data" id="toc-umap-on-filtered-transcriptomics-data" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data"><span class="header-section-number">2.2.1</span> UMAP on filtered transcriptomics data</a></li>
   <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</a></li>
   </ul></li>
+  <li><a href="#differential-gene-expression-analysis" id="toc-differential-gene-expression-analysis" class="nav-link" data-scroll-target="#differential-gene-expression-analysis"><span class="header-section-number">2.3</span> Differential gene expression analysis</a>
+  <ul class="collapse">
+  <li><a href="#identification-of-differentially-expressed-genes" id="toc-identification-of-differentially-expressed-genes" class="nav-link" data-scroll-target="#identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</a></li>
+  <li><a href="#comparative-enrichment-analyses-across-cancer-types" id="toc-comparative-enrichment-analyses-across-cancer-types" class="nav-link" data-scroll-target="#comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</a></li>
+  </ul></li>
   <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">3</span> Notes :: Kidney subtype</a>
   <ul class="collapse">
   <li><a href="#ora-vs-gsea" id="toc-ora-vs-gsea" class="nav-link" data-scroll-target="#ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</a></li>
@@ -392,7 +397,154 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>We can investigate other dimensions</p>
+<p>PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>PCA - pairs plots</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s check the loadings</p>
+<p>– variables retained: 1. <a href="https://doi.org/10.1080/21645515.2024.2350101">SPP1</a> 2. <a href="https://onlinelibrary.wiley.com/doi/10.1155/2019/7259691">VIM</a> 3. <a href="https://www.mdpi.com/2072-6694/14/6/1495">FTL</a> 4. <a href="https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/cjp2.232">RGS5</a> 5. <a href="https://www.nature.com/articles/s41598-020-71997-6">LOC96610</a></p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>PCA - loadings</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s check the Pearson correlation with other clinical covariates</p>
+<p>Certain histological and molecular subtyping correlates perfectly with PC4 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients</p>
+<p>sadly, no correlation between the top 5 components and the outcome of therapeutic care.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>PCA - correlations</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="differential-gene-expression-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="differential-gene-expression-analysis"><span class="header-section-number">2.3</span> Differential gene expression analysis</h2>
+<p>In addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.</p>
+<p>We may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.</p>
+<p>recalculate properly based on logFC &amp; adj.pvalues couse this estimates are off</p>
+<p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 331 273 107 NotSig 12772 12991 13553 Up 955 794 398</p>
+<section id="identification-of-differentially-expressed-genes" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Volcano plots</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>UpSet plots</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparative-enrichment-analyses-across-cancer-types" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</h3>
+<p>prep gene lists</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns</code></pre>
+</div>
+</div>
+<section id="go-terms" class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="go-terms"><span class="header-section-number">2.3.2.1</span> GO terms</h4>
+</section>
+<section id="kegg-pathways" class="level4" data-number="2.3.2.2">
+<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="kegg-pathways"><span class="header-section-number">2.3.2.2</span> KEGG pathways</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched KEGGs - dotplot</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched KEGGs - terms map</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched KEGGs - gene map</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reactome-pathways" class="level4" data-number="2.3.2.3">
+<h4 data-number="2.3.2.3" class="anchored" data-anchor-id="reactome-pathways"><span class="header-section-number">2.3.2.3</span> Reactome pathways</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched Reactome - dotplot</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched KEGGs - terms map</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Enriched KEGGs - gene map</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
+</section>
 </section>
 </section>
 <section id="notes-kidney-subtype" class="level1" data-number="3">
