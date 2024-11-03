@@ -99,7 +99,7 @@
     "href": "transcriptomics-analysis.html#dimesionality-reduction-and-dataset-exploration",
     "title": "2  Transcriptomics Analysis",
     "section": "2.2 Dimesionality Reduction and Dataset Exploration",
-    "text": "2.2 Dimesionality Reduction and Dataset Exploration\n\n2.2.1 UMAP on filtered transcriptomics data\nAfter we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in Section 1.1.1, and that roughly correspondes with three different kidney cancer subtypes.\n\n\n\n\n\nFigure 2: Kidney UMAP\n\n\n\n\n\n\n2.2.2 Principal Component Analysis (PCA)\nPCA explanation\n\n\n\n\n\nFigure 3: PCA, exploration\n\n\n\n\n\n\n\n\n\nFigure 4: PCA, biplot PC1 x PC2\n\n\n\n\nWe can investigate other dimensions\nPC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.\n\n\n\n\n\nFigure 5: PCA, pairs plots\n\n\n\n\nLet’s check the loadings\n– variables retained:\n\nSPP1\nVIM\nFTL\nRGS5\nLOC96610\n\n\n\n\n\n\nFigure 5: PCA, loadings\n\n\n\n\nLet’s check the Pearson correlation with other clinical covariates\nCertain histological and molecular subtyping correlates perfectly with PC4 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients\nsadly, no correlation between the top 5 components and the outcome of therapeutic care.\n\n\n\n\n\nFigure 5: PCA, correlations between clinical covariates and Principal Components",
+    "text": "2.2 Dimesionality Reduction and Dataset Exploration\n\n2.2.1 UMAP on filtered transcriptomics data\nAfter we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in Section 1.1.1, and that roughly correspondes with three different kidney cancer subtypes.\n\n\n\n\n\nFigure 2: Kidney UMAP\n\n\n\n\n\n\n2.2.2 Principal Component Analysis (PCA)\nPCA explanation\n\n\n\n\n\nFigure 3: PCA, exploration\n\n\n\n\n\n\n\n\n\nFigure 4: PCA, biplot PC1 x PC2\n\n\n\n\nWe can investigate other dimensions\nPC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.\n\n\n\n\n\nFigure 5: PCA, pairs plots\n\n\n\n\nLet’s check the loadings\n– variables retained:\n\nSPP1\nVIM\nFTL\nRGS5\nLOC96610\n\nLet’s now check the expression of the five top loading identified with the PCA across the cancer types\n\n\n\n\n\nFigure 5: PCA, loadings\n\n\n\n\nLet’s check the Pearson correlation with other clinical covariates\nCertain histological and molecular subtyping correlates perfectly with PC4 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients\nsadly, no correlation between the top 5 components and the outcome of therapeutic care.\n\n\n\n\n\nFigure 5: PCA, correlations between clinical covariates and Principal Components",
     "crumbs": [
       "Single-Omics Analysis",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
@@ -110,32 +110,54 @@
     "href": "transcriptomics-analysis.html#differential-gene-expression-analysis",
     "title": "2  Transcriptomics Analysis",
     "section": "2.3 Differential gene expression analysis",
-    "text": "2.3 Differential gene expression analysis\nIn addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.\nWe may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.\nrecalculate properly based on logFC & adj.pvalues couse this estimates are off\nprint(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 331 273 107 NotSig 12772 12991 13553 Up 955 794 398\n\n2.3.1 Identification of differentially expressed genes\n\n\n\n\n\nFigure 6: Volcano plots of each contrats reporting the genes differentially expressed\n\n\n\n\n\n\n\n\n\nFigure 7: UpSet reporting the genes differentially expressed upregulated and downregulated in common across all contrasts\n\n\n\n\n\n\n2.3.2 Comparative enrichment analyses across cancer types\nprep gene lists\n\n\n'select()' returned 1:1 mapping between keys and columns\n'select()' returned 1:1 mapping between keys and columns\n'select()' returned 1:1 mapping between keys and columns\n\n\n\n2.3.2.1 GO terms\n\nBP: dotplotBP: terms mapBP: gene mapCC: dotplotCC: terms mapCC: gene mapMF: dotplotMF: terms mapMF: gene map\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2.3.2.2 KEGG pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 17: dotplot of enriched KEGG pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n2.3.2.3 Reactome pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 20: dotplot of enriched Reactome pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts\n\n\n\n\n\n\n\nSee Appendix A for how to integrate and correct for batch effects",
+    "text": "2.3 Differential gene expression analysis\nIn addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.\nWe may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.\nbased on abs(logFC) &gt;= 2 and p.adj =&lt; 0.05\nprint(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 331 273 107 NotSig 12772 12991 13553 Up 955 794 398\n\n2.3.1 Identification of differentially expressed genes\n\n\n\n\n\nFigure 6: Volcano plots of each contrats reporting the genes differentially expressed\n\n\n\n\n\n\n\n\n\nFigure 7: UpSet reporting the genes differentially expressed upregulated and downregulated in common across all contrasts\n\n\n\n\n\n\n2.3.2 Comparative enrichment analyses across cancer types\nORA vs GSEA:\n\nOver-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments\nGene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments\n\nprep gene lists\n\n2.3.2.1 GO Biological Process terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 8: dotplot of enriched GO Biological Process terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 9: Term maps reporting relationships between GO Biological Process across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 10: gene maps reporting relationships between GO Biological Process enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n2.3.2.2 GO Cellular Compartments terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 11: dotplot of enriched GO Cellular Compartments terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 12: Term maps reporting relationships between GO Cellular Compartments across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 13: gene maps reporting relationships between GO Cellular Compartments enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n2.3.2.3 GO Molecular Function terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 14: dotplot of enriched GO Molecular Functions terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 15: Term maps reporting relationships between GO Molecular Functions across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 16: gene maps reporting relationships between GO Molecular Functions enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n2.3.2.4 KEGG pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 17: dotplot of enriched KEGG pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n2.3.2.5 Reactome pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 20: dotplot of enriched Reactome pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts",
     "crumbs": [
       "Single-Omics Analysis",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
     ]
   },
   {
-    "objectID": "transcriptomics-analysis.html#ora-vs-gsea",
-    "href": "transcriptomics-analysis.html#ora-vs-gsea",
-    "title": "2  Transcriptomics Analysis",
-    "section": "3.1 ORA vs GSEA",
-    "text": "3.1 ORA vs GSEA\n\nOver-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments\nGene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments",
+    "objectID": "cellular-deconvolution.html",
+    "href": "cellular-deconvolution.html",
+    "title": "3  Cellular Deconvolution from Bulk RNA-seq",
+    "section": "",
+    "text": "3.1 Infiltrating immune cells\nThe first step for transcriptomics ana",
     "crumbs": [
       "Single-Omics Analysis",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cellular Deconvolution from Bulk RNA-seq</span>"
     ]
   },
   {
-    "objectID": "transcriptomics-analysis.html#immune-cell-deconvolution",
-    "href": "transcriptomics-analysis.html#immune-cell-deconvolution",
-    "title": "2  Transcriptomics Analysis",
-    "section": "3.2 immune cell deconvolution",
-    "text": "3.2 immune cell deconvolution",
+    "objectID": "cellular-deconvolution.html#infiltrating-immune-cells",
+    "href": "cellular-deconvolution.html#infiltrating-immune-cells",
+    "title": "3  Cellular Deconvolution from Bulk RNA-seq",
+    "section": "",
+    "text": "3.1.1 CIBERSORT\nSupport vector machine\nLM 22 signature matrix:\n\nB.cells.naive\nB.cells.memory\nPlasma.cells\nT.cells.CD8\nT.cells.CD4.naive\nT.cells.CD4.memory.resting\nT.cells.CD4.memory.activated\nT.cells.follicular.helper\nT.cells.regulatory..Tregs.\nT.cells.gamma.delta\nNK.cells.resting\nNK.cells.activated\nMonocytes\nMacrophages.M0\nMacrophages.M1\nMacrophages.M2\nDendritic.cells.resting\nDendritic.cells.activated\nMast.cells.resting\nMast.cells.activated\nEosinophils\nNeutrophils\n\n\n\n3.1.2 MCP-Counter\nMCP-counter\nit helps more characterize the amount of fibloblast and endothelial cells:\n\nB lineage\nCD8 T cells\nCell population\nCytotoxic lymphocytes\nEndothelial cells\nFibroblasts\nMonocytic lineage\nMyeloid dendritic cells\nNeutrophils\nNK cells\nT cells\n\n\n\n3.1.3 Quantiseq\nQuantiseq comes in a handy R package.\nQuantiseq is based on (which algorithm)?????\nThe TIL10 signature can quantify cell fractions for:\n\nB cells\nClassically-activated (M1) macrophages\nAlternatively-activated (M2) macrophages\nMonocytes\nNeutrophils\nNatural killer (NK) cells\nNon-regulatory (helper) CD4+ T cells\nCytotoxic CD8+ T cells\nRegulatory CD4+ T (Treg) cells\nMyeloid dendritic cells\nOther uncharacterized cells.\n\nCAN WE COMPARE QUANTISEQ AND CIBERSORT ACROSS SAMPLES??\nCOMPARE QUANTISEQ VS CIBERSORT",
     "crumbs": [
       "Single-Omics Analysis",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cellular Deconvolution from Bulk RNA-seq</span>"
+    ]
+  },
+  {
+    "objectID": "cellular-deconvolution.html#characterization-of-cancer-molecular-subtype",
+    "href": "cellular-deconvolution.html#characterization-of-cancer-molecular-subtype",
+    "title": "3  Cellular Deconvolution from Bulk RNA-seq",
+    "section": "3.2 Characterization of Cancer Molecular Subtype",
+    "text": "3.2 Characterization of Cancer Molecular Subtype",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cellular Deconvolution from Bulk RNA-seq</span>"
+    ]
+  },
+  {
+    "objectID": "cellular-deconvolution.html#immune-cell-deconvolution",
+    "href": "cellular-deconvolution.html#immune-cell-deconvolution",
+    "title": "3  Cellular Deconvolution from Bulk RNA-seq",
+    "section": "4.1 immune cell deconvolution",
+    "text": "4.1 immune cell deconvolution",
+    "crumbs": [
+      "Single-Omics Analysis",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cellular Deconvolution from Bulk RNA-seq</span>"
     ]
   },
   {

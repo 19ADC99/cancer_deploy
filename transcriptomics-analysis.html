@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cellular-deconvolution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">cellular-deconvolution.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,16 +313,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#identification-of-differentially-expressed-genes" id="toc-identification-of-differentially-expressed-genes" class="nav-link" data-scroll-target="#identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</a></li>
   <li><a href="#comparative-enrichment-analyses-across-cancer-types" id="toc-comparative-enrichment-analyses-across-cancer-types" class="nav-link" data-scroll-target="#comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</a>
   <ul>
-  <li><a href="#go-terms" id="toc-go-terms" class="nav-link" data-scroll-target="#go-terms"><span class="header-section-number">2.3.2.1</span> GO terms</a></li>
-  <li><a href="#kegg-pathways" id="toc-kegg-pathways" class="nav-link" data-scroll-target="#kegg-pathways"><span class="header-section-number">2.3.2.2</span> KEGG pathways</a></li>
-  <li><a href="#reactome-pathways" id="toc-reactome-pathways" class="nav-link" data-scroll-target="#reactome-pathways"><span class="header-section-number">2.3.2.3</span> Reactome pathways</a></li>
+  <li><a href="#go-biological-process-terms" id="toc-go-biological-process-terms" class="nav-link" data-scroll-target="#go-biological-process-terms"><span class="header-section-number">2.3.2.1</span> GO Biological Process terms</a></li>
+  <li><a href="#go-cellular-compartments-terms" id="toc-go-cellular-compartments-terms" class="nav-link" data-scroll-target="#go-cellular-compartments-terms"><span class="header-section-number">2.3.2.2</span> GO Cellular Compartments terms</a></li>
+  <li><a href="#go-molecular-function-terms" id="toc-go-molecular-function-terms" class="nav-link" data-scroll-target="#go-molecular-function-terms"><span class="header-section-number">2.3.2.3</span> GO Molecular Function terms</a></li>
+  <li><a href="#kegg-pathways" id="toc-kegg-pathways" class="nav-link" data-scroll-target="#kegg-pathways"><span class="header-section-number">2.3.2.4</span> KEGG pathways</a></li>
+  <li><a href="#reactome-pathways" id="toc-reactome-pathways" class="nav-link" data-scroll-target="#reactome-pathways"><span class="header-section-number">2.3.2.5</span> Reactome pathways</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">3</span> Notes :: Kidney subtype</a>
-  <ul>
-  <li><a href="#ora-vs-gsea" id="toc-ora-vs-gsea" class="nav-link" data-scroll-target="#ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</a></li>
-  <li><a href="#immune-cell-deconvolution" id="toc-immune-cell-deconvolution" class="nav-link" data-scroll-target="#immune-cell-deconvolution"><span class="header-section-number">3.2</span> immune cell deconvolution</a></li>
-  </ul></li>
+  <li><a href="#take-home-message" id="toc-take-home-message" class="nav-link" data-scroll-target="#take-home-message"><span class="header-section-number">3</span> Take Home Message</a></li>
   </ul>
 </nav>
     </div>
@@ -423,6 +421,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/cjp2.232">RGS5</a></li>
 <li><a href="https://www.nature.com/articles/s41598-020-71997-6">LOC96610</a></li>
 </ol>
+<p>Let’s now check the expression of the five top loading identified with the PCA across the cancer types</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -452,7 +451,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2.3" class="anchored" data-anchor-id="differential-gene-expression-analysis"><span class="header-section-number">2.3</span> Differential gene expression analysis</h2>
 <p>In addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.</p>
 <p>We may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.</p>
-<p>recalculate properly based on logFC &amp; adj.pvalues couse this estimates are off</p>
+<p>based on abs(logFC) &gt;= 2 and p.adj =&lt; 0.05</p>
 <p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 331 273 107 NotSig 12772 12991 13553 Up 955 794 398</p>
 <section id="identification-of-differentially-expressed-genes" class="level3 page-columns page-full" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="identification-of-differentially-expressed-genes"><span class="header-section-number">2.3.1</span> Identification of differentially expressed genes</h3>
@@ -479,51 +478,58 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="comparative-enrichment-analyses-across-cancer-types" class="level3 page-columns page-full" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">2.3.2</span> Comparative enrichment analyses across cancer types</h3>
+<p>ORA vs GSEA:</p>
+<ul>
+<li>Over-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments</li>
+<li>Gene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments</li>
+</ul>
 <p>prep gene lists</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>'select()' returned 1:1 mapping between keys and columns
-'select()' returned 1:1 mapping between keys and columns
-'select()' returned 1:1 mapping between keys and columns</code></pre>
+<section id="go-biological-process-terms" class="level4 page-columns page-full" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="go-biological-process-terms"><span class="header-section-number">2.3.2.1</span> GO Biological Process terms</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">gene map</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+</figure>
 </div>
 </div>
-<section id="go-terms" class="level4" data-number="2.3.2.1">
-<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="go-terms"><span class="header-section-number">2.3.2.1</span> GO terms</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">BP: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">BP: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">BP: gene map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">CC: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">CC: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">CC: gene map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">MF: dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">MF: terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">MF: gene map</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-
+<div id="tabset-1-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
+</figure>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-
 </div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
-
 </div>
-<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
-
 </div>
-<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
-
+<div id="tabset-1-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 10: gene maps reporting relationships between GO Biological Process enriched across the different contrasts</figcaption>
+</figure>
 </div>
-<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
-
 </div>
-<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
-
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="kegg-pathways" class="level4 page-columns page-full" data-number="2.3.2.2">
-<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="kegg-pathways"><span class="header-section-number">2.3.2.2</span> KEGG pathways</h4>
+<section id="go-cellular-compartments-terms" class="level4 page-columns page-full" data-number="2.3.2.2">
+<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="go-cellular-compartments-terms"><span class="header-section-number">2.3.2.2</span> GO Cellular Compartments terms</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">gene map</a></li></ul>
 <div class="tab-content page-columns page-full">
@@ -532,8 +538,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 17: dotplot of enriched KEGG pathways</figcaption>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
 </figure>
 </div>
 </div>
@@ -544,8 +550,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 12: Term maps reporting relationships between GO Cellular Compartments across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -556,8 +562,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 13: gene maps reporting relationships between GO Cellular Compartments enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -566,8 +572,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="reactome-pathways" class="level4 page-columns page-full" data-number="2.3.2.3">
-<h4 data-number="2.3.2.3" class="anchored" data-anchor-id="reactome-pathways"><span class="header-section-number">2.3.2.3</span> Reactome pathways</h4>
+<section id="go-molecular-function-terms" class="level4 page-columns page-full" data-number="2.3.2.3">
+<h4 data-number="2.3.2.3" class="anchored" data-anchor-id="go-molecular-function-terms"><span class="header-section-number">2.3.2.3</span> GO Molecular Function terms</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">gene map</a></li></ul>
 <div class="tab-content page-columns page-full">
@@ -576,8 +582,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 20: dotplot of enriched Reactome pathways</figcaption>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
 </figure>
 </div>
 </div>
@@ -588,8 +594,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 15: Term maps reporting relationships between GO Molecular Functions across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -600,7 +606,95 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 16: gene maps reporting relationships between GO Molecular Functions enriched across the different contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="kegg-pathways" class="level4 page-columns page-full" data-number="2.3.2.4">
+<h4 data-number="2.3.2.4" class="anchored" data-anchor-id="kegg-pathways"><span class="header-section-number">2.3.2.4</span> KEGG pathways</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">gene map</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-4-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 17: dotplot of enriched KEGG pathways</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="reactome-pathways" class="level4 page-columns page-full" data-number="2.3.2.5">
+<h4 data-number="2.3.2.5" class="anchored" data-anchor-id="reactome-pathways"><span class="header-section-number">2.3.2.5</span> Reactome pathways</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">gene map</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-5-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 20: dotplot of enriched Reactome pathways</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="transcriptomics-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="864"></p>
 <figcaption class="margin-caption">Figure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
@@ -609,27 +703,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+</section>
+</section>
+</section>
+<section id="take-home-message" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Take Home Message</h1>
 <p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
-</section>
-</section>
-</section>
-<section id="notes-kidney-subtype" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Notes :: Kidney subtype</h1>
-<p>https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-022-01105-y/MediaObjects/13073_2022_1105_MOESM6_ESM.pdf https://patents.google.com/patent/EP3722444A1/en</p>
-<p>CMScalles (CRC) https://www.nature.com/articles/s41598-017-16747-x</p>
-<p>adapt for RCC</p>
-<section id="ora-vs-gsea" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="ora-vs-gsea"><span class="header-section-number">3.1</span> ORA vs GSEA</h2>
-<ul>
-<li>Over-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments</li>
-<li>Gene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments</li>
-</ul>
-</section>
-<section id="immune-cell-deconvolution" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="immune-cell-deconvolution"><span class="header-section-number">3.2</span> immune cell deconvolution</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1060,8 +1141,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cellular-deconvolution.html" class="pagination-link" aria-label="cellular-deconvolution.html">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">cellular-deconvolution.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cellular-deconvolution.html" class="pagination-link" aria-label="Cellular Deconvolution from Bulk RNA-seq">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

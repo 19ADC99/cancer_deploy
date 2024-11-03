@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>cellular-deconvolution – Multi-omics integration for target discovery in cancer</title>
+<title>3&nbsp; Cellular Deconvolution from Bulk RNA-seq – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./cellular-deconvolution.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">cellular-deconvolution.html</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./cellular-deconvolution.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cellular-deconvolution.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">cellular-deconvolution.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -297,17 +297,133 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#infiltrating-immune-cells" id="toc-infiltrating-immune-cells" class="nav-link active" data-scroll-target="#infiltrating-immune-cells"><span class="header-section-number">3.1</span> Infiltrating immune cells</a>
+  <ul>
+  <li><a href="#cibersort" id="toc-cibersort" class="nav-link" data-scroll-target="#cibersort"><span class="header-section-number">3.1.1</span> CIBERSORT</a></li>
+  <li><a href="#mcp-counter" id="toc-mcp-counter" class="nav-link" data-scroll-target="#mcp-counter"><span class="header-section-number">3.1.2</span> MCP-Counter</a></li>
+  <li><a href="#quantiseq" id="toc-quantiseq" class="nav-link" data-scroll-target="#quantiseq"><span class="header-section-number">3.1.3</span> Quantiseq</a></li>
+  </ul></li>
+  <li><a href="#characterization-of-cancer-molecular-subtype" id="toc-characterization-of-cancer-molecular-subtype" class="nav-link" data-scroll-target="#characterization-of-cancer-molecular-subtype"><span class="header-section-number">3.2</span> Characterization of Cancer Molecular Subtype</a></li>
+  <li><a href="#notes-kidney-subtype" id="toc-notes-kidney-subtype" class="nav-link" data-scroll-target="#notes-kidney-subtype"><span class="header-section-number">4</span> Notes :: Kidney subtype</a>
+  <ul>
+  <li><a href="#immune-cell-deconvolution" id="toc-immune-cell-deconvolution" class="nav-link" data-scroll-target="#immune-cell-deconvolution"><span class="header-section-number">4.1</span> immune cell deconvolution</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./cellular-deconvolution.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="infiltrating-immune-cells" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="infiltrating-immune-cells"><span class="header-section-number">3.1</span> Infiltrating immune cells</h2>
+<p>The first step for transcriptomics ana</p>
+<section id="cibersort" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="cibersort"><span class="header-section-number">3.1.1</span> CIBERSORT</h3>
+<p>Support vector machine</p>
+<p>LM 22 signature matrix:</p>
+<ul>
+<li>B.cells.naive</li>
+<li>B.cells.memory</li>
+<li>Plasma.cells</li>
+<li>T.cells.CD8</li>
+<li>T.cells.CD4.naive</li>
+<li>T.cells.CD4.memory.resting</li>
+<li>T.cells.CD4.memory.activated</li>
+<li>T.cells.follicular.helper</li>
+<li>T.cells.regulatory..Tregs.</li>
+<li>T.cells.gamma.delta</li>
+<li>NK.cells.resting</li>
+<li>NK.cells.activated</li>
+<li>Monocytes</li>
+<li>Macrophages.M0</li>
+<li>Macrophages.M1</li>
+<li>Macrophages.M2</li>
+<li>Dendritic.cells.resting</li>
+<li>Dendritic.cells.activated</li>
+<li>Mast.cells.resting</li>
+<li>Mast.cells.activated</li>
+<li>Eosinophils</li>
+<li>Neutrophils</li>
+</ul>
+</section>
+<section id="mcp-counter" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="mcp-counter"><span class="header-section-number">3.1.2</span> MCP-Counter</h3>
+<p><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1070-5">MCP-counter</a></p>
+<p>it helps more characterize the amount of fibloblast and endothelial cells:</p>
+<ul>
+<li>B lineage</li>
+<li>CD8 T cells</li>
+<li>Cell population</li>
+<li>Cytotoxic lymphocytes</li>
+<li>Endothelial cells</li>
+<li>Fibroblasts</li>
+<li>Monocytic lineage</li>
+<li>Myeloid dendritic cells</li>
+<li>Neutrophils</li>
+<li>NK cells</li>
+<li>T cells</li>
+</ul>
+</section>
+<section id="quantiseq" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="quantiseq"><span class="header-section-number">3.1.3</span> Quantiseq</h3>
+<p>Quantiseq comes in a handy <a href="https://www.bioconductor.org/packages/release/bioc/html/quantiseqr.html">R package</a>.</p>
+<p>Quantiseq is based on (which algorithm)?????</p>
+<p>The TIL10 signature can quantify cell fractions for:</p>
+<ul>
+<li>B cells</li>
+<li>Classically-activated (M1) macrophages</li>
+<li>Alternatively-activated (M2) macrophages</li>
+<li>Monocytes</li>
+<li>Neutrophils</li>
+<li>Natural killer (NK) cells</li>
+<li>Non-regulatory (helper) CD4+ T cells</li>
+<li>Cytotoxic CD8+ T cells</li>
+<li>Regulatory CD4+ T (Treg) cells</li>
+<li>Myeloid dendritic cells</li>
+<li>Other uncharacterized cells.</li>
+</ul>
+<p>CAN WE COMPARE QUANTISEQ AND CIBERSORT ACROSS SAMPLES??</p>
+<p>COMPARE QUANTISEQ VS CIBERSORT</p>
+</section>
+</section>
+<section id="characterization-of-cancer-molecular-subtype" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="characterization-of-cancer-molecular-subtype"><span class="header-section-number">3.2</span> Characterization of Cancer Molecular Subtype</h2>
+</section>
+<section id="notes-kidney-subtype" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Notes :: Kidney subtype</h1>
+<p>https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-022-01105-y https://static-content.springer.com/esm/art%3A10.1186%2Fs13073-022-01105-y/MediaObjects/13073_2022_1105_MOESM6_ESM.pdf https://patents.google.com/patent/EP3722444A1/en</p>
+<p>CMScalles (CRC) https://www.nature.com/articles/s41598-017-16747-x</p>
+<p>adapt for RCC</p>
+<section id="immune-cell-deconvolution" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="immune-cell-deconvolution"><span class="header-section-number">4.1</span> immune cell deconvolution</h2>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
