@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -320,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Single-Omics Analysis</a></li><li class="breadcrumb-item"><a href="./cellular-deconvolution.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -341,9 +341,43 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="infiltrating-immune-cells" class="level2" data-number="3.1">
+<section id="infiltrating-immune-cells" class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="infiltrating-immune-cells"><span class="header-section-number">3.1</span> Infiltrating immune cells</h2>
 <p>The first step for transcriptomics ana</p>
+<p>For this, I will use <a href="https://github.com/19ADC99/infiltR">infiltR</a>, which runs</p>
+<p>It includes three common bulk RNA-seq deconvolution tools for quantification of tumor-infiltrating immune cells: <a href="https://doi.org/10.1038/nmeth.3337">CIBERSORT</a>, <a href="https://doi.org/10.1186/s13059-016-1070-5">MCP-counter</a> and <a href="https://doi.org/10.1186/s13073-019-0638-6">quanTIseq</a>. MCP-counter is used to obtain absolute quantification of infiltrating immune cells, while a more detailed profiling of relative immune cells subtypes is performed with CIBERSORT and quanTIseq.</p>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Infiltraing immune cells estimates</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>CIBERSORT</p>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 2: CIBESORT QC</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Now let’s check the concordance between different estimates</p>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 3: CIBESORT QC</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <section id="cibersort" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="cibersort"><span class="header-section-number">3.1.1</span> CIBERSORT</h3>
 <p>Support vector machine</p>
@@ -376,7 +410,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -403,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -413,14 +447,14 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -456,7 +490,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -466,14 +500,14 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="cellular-deconvolution_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
