@@ -359,7 +359,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#reactome-pathways" id="toc-reactome-pathways" class="nav-link" data-scroll-target="#reactome-pathways"><span class="header-section-number">2.3.2.5</span> Reactome pathways</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#take-home-message" id="toc-take-home-message" class="nav-link" data-scroll-target="#take-home-message"><span class="header-section-number">3</span> Take Home Message</a></li>
+  <li><a href="#lessons-learnt" id="toc-lessons-learnt" class="nav-link" data-scroll-target="#lessons-learnt"><span class="header-section-number">2.4</span> Lessons Learnt</a></li>
   </ul>
 </nav>
     </div>
@@ -418,7 +418,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="principal-component-analysis-pca" class="level3 page-columns page-full" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">2.2.2</span> Principal Component Analysis (PCA)</h3>
-<p>PCA explanation</p>
+<p>The Principal Component Analysis (PCA) is an unsupervised linear dimensionality reduction technique that summarizes large amount of information (as the one in a transcriptomics count table) into a smaller set of summarized variables (Principal Components) that capture the linear relationships between the data. In a transcriptomics dataset, the number of Principal Components equals the number of samples.</p>
+<p>The PCA algorithm is run in an iterative manner: the first Principal Component is calculated by finding the line that maximizes the variance between the samples. The second Principal Component is calculated in the same way, with the condition that it is uncorrelated with (i.e., perpendicular to) the first principal component and that it accounts for the next highest variance. The third Principal Component is calculated in the same way, down to the last Principal Component.</p>
+<p>To run PCA analyses on transcriptomics data, I recommend the <a href="https://github.com/kevinblighe/PCAtools">PCAtools package</a> by Kevin Blighe and Aaron Lun.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -429,6 +431,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>The first 24 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 25% of the variance.</p>
+<p>When we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH adn KIRP, which instead cluster together. The second component PC2, instead, seems to partially separate KICH and KIRP samples.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -439,8 +443,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>We can investigate other dimensions</p>
-<p>PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
+<p>We can also investigate other dimensions Principal Components, to see if there is a component that manages to fully resove the three cancer types. PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -451,8 +454,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Let’s check the loadings</p>
-<p>– variables retained:</p>
+<p>Let’s check the loadings (i.e.: 24 Principal Components capture more than 80% of the variance in the) for the top 4 Principal Components. These indicate which genes are the more responsible to explain the position of the samples along the components, and the direction of this separation.</p>
+<p>Looking at the top 1% most variable genes (~ 140 genes), the following 5 genes are the top loadings for the first 4 Principal Components:</p>
 <ol type="1">
 <li><a href="https://doi.org/10.1080/21645515.2024.2350101">SPP1</a></li>
 <li><a href="https://onlinelibrary.wiley.com/doi/10.1155/2019/7259691">VIM</a></li>
@@ -460,7 +463,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://pathsocjournals.onlinelibrary.wiley.com/doi/full/10.1002/cjp2.232">RGS5</a></li>
 <li><a href="https://www.nature.com/articles/s41598-020-71997-6">LOC96610</a></li>
 </ol>
-<p>Let’s now check the expression of the five top loading identified with the PCA across the cancer types</p>
+<p>Let’s now check the expression of the five top genes identified with the PCA across the cancer types:</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -471,8 +474,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Let’s check the Pearson correlation with other clinical covariates</p>
+<p>Let’s check the Pearson correlation with other clinical covariates.</p>
 <p>Certain histological and molecular subtyping correlates perfectly with PC4 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients</p>
+<p>As we have learnt before (<span class="quarto-unresolved-ref">?sec-dataset-exploration</span>), KIRC patients seems to had a worse outcome than KIRP and to have tumors in more advanced stages. PC1 (computed from transcriptomics data) clearly separates KIRC and KIRP samples, and it correlates with tumor histological grade and stage, as well as clinical outcome. This show that we have good correlation between clinical observations and gene espression in Kidney cancers.</p>
 <p>sadly, no correlation between the top 5 components and the outcome of therapeutic care.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
@@ -748,9 +752,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 </section>
-<section id="take-home-message" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Take Home Message</h1>
-<p>See <a href="dealing-with-batch-effects.html" class="quarto-xref"><span>Appendix A</span></a> for how to integrate and correct for batch effects</p>
+<section id="lessons-learnt" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="lessons-learnt"><span class="header-section-number">2.4</span> Lessons Learnt</h2>
+<p>So far, we have learnt:</p>
+<ul>
+<li>A</li>
+</ul>
 
 
 </section>
