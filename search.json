@@ -131,7 +131,7 @@
     "href": "transcriptomics-analysis.html#lessons-learnt",
     "title": "2  Transcriptomics Analysis",
     "section": "2.4 Lessons Learnt",
-    "text": "2.4 Lessons Learnt\nSo far, we have learnt:\n\nA",
+    "text": "2.4 Lessons Learnt\n[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]\nSo far, we have learnt:\n\nA",
     "crumbs": [
       "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
@@ -179,6 +179,61 @@
     "crumbs": [
       "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cellular Deconvolution from Bulk RNA-seq</span>"
+    ]
+  },
+  {
+    "objectID": "proteomics-analysis.html",
+    "href": "proteomics-analysis.html",
+    "title": "4  Transcriptomics Analysis",
+    "section": "",
+    "text": "4.1 Proteomics data overview and QC",
+    "crumbs": [
+      "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "proteomics-analysis.html#proteomics-data-overview-and-qc",
+    "href": "proteomics-analysis.html#proteomics-data-overview-and-qc",
+    "title": "4  Transcriptomics Analysis",
+    "section": "",
+    "text": "4.1.1 Spectral counts overview\nLet’s check the spectral counts distributions across samples, and the protein completeness across samples.\n\n\n\n\n\nFigure 1: Proteomics spectral counts missing values\n\n\n\n\nLooking at the distributions, we can conclude that the spectral intensities were already normalized and scaled, since the spectral values are centered around 0 and have a normal distribution.\nWe have 258 proteins in total, across 709 samples (79.9% of samples had proteomics data).\n\n24 proteins were missing in all samples (100% of patients with proteomics data available)\n1 protein was missing in 440 samples (62.1% of patients with proteomics data available)\n16 proteins were missing in 269 samples (37.9% of patients with proteomics data available)\n6 protein were missing in only 1 sample 211 proteins were detected for all patients with proteomics data available)\n\nWe can obviously drop the 24 proteins for which we have not spectral counts for none of the samples. For the remaining proteins for which we do not have full occupancy, we will apply a standard imputation strategy.\n\n\n4.1.2 Data imputation\nMissing values imputation for label-free proteomics is a large and complex field of study.\nIn our Kidney cancer proteomics samples the number of proteins detected is small and the distribution of missing values is oddly discrete. This suggests that some kind of filtering was already applied during the preprocessing steps, together with scaling and normalization of the proteins spectral counts. The absence can therefore as well be ascribed to biological reasons as well, and not only to technical problems with its detection.\nTo preserve this putative biological signal, I replace in each sample the missing values with the minimum spectral count available in that sample.\nLet’s check how the spectral distributions changed.\n\n\n\n\n\nFigure 2: Proteomics spectral counts after imputation",
+    "crumbs": [
+      "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "proteomics-analysis.html#dimesionality-reduction-and-dataset-exploration",
+    "href": "proteomics-analysis.html#dimesionality-reduction-and-dataset-exploration",
+    "title": "4  Transcriptomics Analysis",
+    "section": "4.2 Dimesionality Reduction and Dataset Exploration",
+    "text": "4.2 Dimesionality Reduction and Dataset Exploration\n\n4.2.1 UMAP on filtered transcriptomics data\nLet’s check the samples clustering on a UMAP. We have almost a perfect clustering of the samples in their corresponding cancer subtypes, with just 2 KICH samples clusting with KIRC samples.\n\n\n\n\n\nFigure 3: Kidney proteomics UMAP\n\n\n\n\n\n\n4.2.2 Principal Component Analysis (PCA)\nAs we did for the transcriptomics data (see ?sec-transcriptomics-analysis)., the next step in the Dataset exploration is to perform the Principal Component Analysis.\n\n\n\n\n\nFigure 4: PCA, exploration\n\n\n\n\nThe first 21 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 40% of the variance.\nWhen we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH and KIRP, which instead cluster together. The second component PC2, instead, seems to separate KICH and KIRP samples. The separation between KICH and KIRP samples along component PC2 is clearer in the proteomics data than in the transcriptomics data.\n\n\n\n\n\nFigure 5: PCA, biplot PC1 x PC2\n\n\n\n\n\n\n\n\n\nFigure 6: PCA, pairs plots\n\n\n\n\nLet’s check the loadings (i.e.: 21 Principal Components capture more than 80% of the variance in the) for the top 4 Principal Components. These indicate which genes are the more responsible to explain the position of the samples along the components, and the direction of this separation.\n[[[[ADAPT TO PROTEOMICS RESULTS]]]]\nLooking at the top 1% most variable genes (~ 140 genes), the following 5 genes are the top loadings for the first 4 Principal Components:\n\nSPP1\nVIM\nFTL\nRGS5\nLOC96610\n\n[[[[ADAPT TO PROTEOMICS RESULTS]]]]\nLet’s now check the expression of the five top genes identified with the PCA across the cancer types:\n\n\n\n\n\nFigure 6: PCA, loadings\n\n\n\n\nClaudin-7 is a known diagnostic himmunohistochemical marker for classifing chromophobe renal carcinoma (KICH), and indeed seems overexpressed in KICH when compared to KIRC and KIRP.\nLet’s check the Pearson correlation with other clinical covariates.\n[[[[ADAPT TO PROTEOMICS RESULTS]]]]\nCertain histological and molecular subtyping correlates perfectly with PC1 and PC2 (which discriminates KICH) immune infiltrating cells also correlates with PC1 and PC2, and may help to further characterize the subtypes and stratify patients\nAs we have learnt before (?sec-dataset-exploration), KIRC patients seems to had a worse outcome than KIRP and to have tumors in more advanced stages. PC1 (computed from transcriptomics data) clearly separates KIRC and KIRP samples, and it correlates with tumor histological grade and stage, as well as clinical outcome. This show that we have good correlation between clinical observations and gene espression in Kidney cancers.\nsadly, no correlation between the top 5 components and the outcome of therapeutic care.\n[[[[ADAPT TO PROTEOMICS RESULTS]]]]\n\n\n\n\n\nFigure 6: PCA, correlations between clinical covariates and Principal Components",
+    "crumbs": [
+      "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "proteomics-analysis.html#differential-gene-expression-analysis",
+    "href": "proteomics-analysis.html#differential-gene-expression-analysis",
+    "title": "4  Transcriptomics Analysis",
+    "section": "4.3 Differential gene expression analysis",
+    "text": "4.3 Differential gene expression analysis\nIn addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.\nWe may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.\nprint(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 92 89 105 NotSig 37 48 27 Up 105 97 102\n\n4.3.1 Identification of differentially expressed proteins\n\n\n\n\n\nFigure 6: Volcano plots of each contrats reporting the proteins differentially expressed\n\n\n\n\n\n\n\n\n\nFigure 7: UpSet reporting the proteins differentially expressed upregulated and downregulated in common across all contrasts\n\n\n\n\n\n\n4.3.2 Comparative enrichment analyses across cancer types\nORA vs GSEA:\n\nOver-Representation Analysis (ORA): It assesses whether the number of genes from a specific pathway in our list of DEGs is greater than expected by chance –&gt; To identify pathways that are significantly over-represented in a given list of DEGs, providing insights into the most affected biological processes by our treatments\nGene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments\n\nprep gene lists\n\n4.3.2.1 GO Biological Process terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 8: dotplot of enriched GO Biological Process terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 9: Term maps reporting relationships between GO Biological Process across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 10: gene maps reporting relationships between GO Biological Process enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n4.3.2.2 GO Cellular Compartments terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 11: dotplot of enriched GO Cellular Compartments terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 12: Term maps reporting relationships between GO Cellular Compartments across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 13: gene maps reporting relationships between GO Cellular Compartments enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n4.3.2.3 GO Molecular Function terms\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 14: dotplot of enriched GO Molecular Functions terms\n\n\n\n\n\n\n\n\n\n\n\nFigure 15: Term maps reporting relationships between GO Molecular Functions across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 16: gene maps reporting relationships between GO Molecular Functions enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n4.3.2.4 KEGG pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 17: dotplot of enriched KEGG pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n4.3.2.5 Reactome pathways\n\ndotplotterms mapgene map\n\n\n\n\n\n\n\nFigure 20: dotplot of enriched Reactome pathways\n\n\n\n\n\n\n\n\n\n\n\nFigure 21: Term maps reporting relationships between Reactome pathways enriched across the different contrasts\n\n\n\n\n\n\n\n\n\n\n\nFigure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts",
+    "crumbs": [
+      "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "proteomics-analysis.html#lessons-learnt",
+    "href": "proteomics-analysis.html#lessons-learnt",
+    "title": "4  Transcriptomics Analysis",
+    "section": "4.4 Lessons Learnt",
+    "text": "4.4 Lessons Learnt\n[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]\nSo far, we have learnt:\n\nA",
+    "crumbs": [
+      "Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transcriptomics Analysis</span>"
     ]
   },
   {
