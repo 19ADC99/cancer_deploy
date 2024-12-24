@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Factor Analysis – Multi-omics integration for target discovery in cancer</title>
+<title>5&nbsp; Factor Analysis – Multi-omics integration for target discovery in cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./surivival-analysis.html" rel="next">
-<link href="./genomics-and-epigenomics-analysis.html" rel="prev">
+<link href="./micro-RNAs-analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./factor-analysis.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./factor-analysis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -163,20 +163,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./genomics-and-epigenomics-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Genomics and Epigenomics Analysis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./factor-analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./surivival-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">surivival-analysis.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">surivival-analysis.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -193,19 +187,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cancer-signatures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">cancer-signatures.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">cancer-signatures.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./autoencoder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">autoencoder.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">autoencoder.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cellular-deconvolution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
   </div>
 </li>
       </ul>
@@ -222,43 +216,43 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction-to-multiomics-integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">introduction-to-multiomics-integration.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">introduction-to-multiomics-integration.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./late-integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">late-integration.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">late-integration.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./early-integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">early-integration.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">early-integration.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./discriminant-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">discriminant-analysis.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">discriminant-analysis.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./machine-learning-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">machine-learning-methods.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">machine-learning-methods.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deep-learning-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">deep-learning-methods.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">deep-learning-methods.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./results-comparisons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">results-comparisons.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">results-comparisons.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -275,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./compile-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Compile resourced for targets annotation</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,13 +286,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./biological-insights.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">biological-insights.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">biological-insights.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./take-home-messages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">take-home-messages.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">take-home-messages.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -336,18 +330,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#in-this-page" id="toc-in-this-page" class="nav-link active" data-scroll-target="#in-this-page"><span class="header-section-number">6.1</span> In this page</a></li>
-  <li><a href="#multi-omics-factor-analysis" id="toc-multi-omics-factor-analysis" class="nav-link" data-scroll-target="#multi-omics-factor-analysis"><span class="header-section-number">6.2</span> Multi-Omics Factor Analysis</a></li>
-  <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
+  <li><a href="#on-this-page" id="toc-on-this-page" class="nav-link active" data-scroll-target="#on-this-page"><span class="header-section-number">5.1</span> On this page</a></li>
+  <li><a href="#multi-omics-factor-analysis" id="toc-multi-omics-factor-analysis" class="nav-link" data-scroll-target="#multi-omics-factor-analysis"><span class="header-section-number">5.2</span> Multi-Omics Factor Analysis</a>
+  <ul>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep"><span class="header-section-number">5.2.1</span> data prep</a></li>
+  <li><a href="#run-prediction" id="toc-run-prediction" class="nav-link" data-scroll-target="#run-prediction"><span class="header-section-number">5.2.2</span> run prediction</a></li>
+  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore"><span class="header-section-number">5.2.3</span> explore</a>
+  <ul class="collapse">
+  <li><a href="#factor-1-kirc" id="toc-factor-1-kirc" class="nav-link" data-scroll-target="#factor-1-kirc"><span class="header-section-number">5.2.3.1</span> Factor 1: KIRC</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./factor-analysis.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./factor-analysis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Factor Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Factor Analysis</span></h1>
 </div>
 
 
@@ -364,18 +365,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="in-this-page" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="in-this-page"><span class="header-section-number">6.1</span> In this page</h2>
-<p>Biological insights and take-home messages are at the bottom of the page at section <a href="#sec-lesson-learnt-factor-analysis" class="quarto-xref"><span>Section 6.3</span></a></p>
+<section id="on-this-page" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="on-this-page"><span class="header-section-number">5.1</span> On this page</h2>
+<p>Biological insights and take-home messages are at the bottom of the page at section <a href="#sec-lesson-learnt-factor-analysis" class="quarto-xref"><span>Section 5.4</span></a></p>
 <ul>
 <li>Here…</li>
 </ul>
 </section>
-<section id="multi-omics-factor-analysis" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="multi-omics-factor-analysis"><span class="header-section-number">6.2</span> Multi-Omics Factor Analysis</h2>
+<section id="multi-omics-factor-analysis" class="level2 page-columns page-full" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="multi-omics-factor-analysis"><span class="header-section-number">5.2</span> Multi-Omics Factor Analysis</h2>
+<section id="data-prep" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="data-prep"><span class="header-section-number">5.2.1</span> data prep</h3>
+<p>Here we leverage and integrate all the omics layers that we have analysed independently in the previous chapters, including:</p>
+<ul>
+<li>transcriptomics</li>
+<li>estimated infiltrating immune cells</li>
+<li>proteomics</li>
+<li>micro-RNAs</li>
+<li>Copy Number Variants</li>
+</ul>
+<p>Despite the preprocessing, to compare this multiomics readouts on different scales we need to rescale and normalize each table</p>
+<section id="in-other-places-infiltrating-immune-cells-where-added-at-the-metadata-level" class="level6">
+<h6 class="anchored" data-anchor-id="in-other-places-infiltrating-immune-cells-where-added-at-the-metadata-level">in other places infiltrating immune cells where added at the metadata level</h6>
 </section>
-<section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</h2>
+</section>
+<section id="run-prediction" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="run-prediction"><span class="header-section-number">5.2.2</span> run prediction</h3>
+</section>
+<section id="explore" class="level3 page-columns page-full" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored"><span class="header-section-number">5.2.3</span> explore</h3>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Multiomics data overview</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 2: Multiomics data overview</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 2:</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 2:</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="factor-1-kirc" class="level4 page-columns page-full" data-number="5.2.3.1">
+<h4 data-number="5.2.3.1" class="anchored"><span class="header-section-number">5.2.3.1</span> Factor 1: KIRC</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">mRNA</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell page-columns page-full">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="margin-caption">Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="factor-2-kich" class="level4" data-number="5.2.3.2">
+<h4 data-number="5.2.3.2" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">5.2.3.2</span> Factor 2: KICH</h4>
+</section>
+<section id="plot-everything-on-a-ppi" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="plot-everything-on-a-ppi"><span class="header-section-number">5.3</span> plot everything on a PPI</h2>
+</section>
+<section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-lesson-learnt-factor-analysis"><span class="header-section-number">5.4</span> Lessons Learnt</h2>
 <p>[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]</p>
 <p>So far, we have learnt:</p>
 <ul>
@@ -383,6 +483,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -808,13 +914,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./genomics-and-epigenomics-analysis.html" class="pagination-link" aria-label="Genomics and Epigenomics Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Genomics and Epigenomics Analysis</span></span>
+      <a href="./micro-RNAs-analysis.html" class="pagination-link" aria-label="micro-RNAs Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">micro-RNAs Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./surivival-analysis.html" class="pagination-link" aria-label="surivival-analysis.html">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">surivival-analysis.html</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">surivival-analysis.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
