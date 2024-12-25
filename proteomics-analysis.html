@@ -78,12 +78,15 @@ ul.task-list li input[type="checkbox"] {
 #quarto-sidebar .chapter-title {
   font-weight: normal
 }
+#.nav-tabs .nav-link.active {
+  background-color: rgba(239, 236, 255, 0.5);
+}
 </style>
 
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed slimcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -358,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./proteomics-analysis.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Proteomics Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -381,7 +384,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="on-this-page" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="on-this-page"><span class="header-section-number">3.1</span> On this page</h2>
-<p>Biological insights and take-home messages are at the bottom of the page at <a href="@sec-lesson-learnt-transcriptomics">Lesson learnt</a>.</p>
+<p>Biological insights and take-home messages are at the bottom of the page at Lesson Learnt: <a href="transcriptomics-analysis.html#sec-lesson-learnt-transcriptomics" class="quarto-xref"><span>Section 2.6</span></a>.</p>
 <ul>
 <li>Here we investigate the transcriptomics data across the three Kidney Cancers.</li>
 <li>First we filter lowly expressed genes and we do some exploratory analyses on samples, gene expression and clinical covariates.</li>
@@ -391,17 +394,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>For TCGA Kidney cancer proteomics data, we will perform analyses similar to the ones performed for the transcriptomics one (see <a href="transcriptomics-analysis.html" class="quarto-xref"><span>Chapter 2</span></a>). We first start with an overview of the datasets and QC.</p>
 </section>
-<section id="proteomics-data-overview-and-qc" class="level2 page-columns page-full" data-number="3.2">
+<section id="proteomics-data-overview-and-qc" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="proteomics-data-overview-and-qc"><span class="header-section-number">3.2</span> Proteomics data overview and QC</h2>
-<section id="spectral-counts-overview" class="level3 page-columns page-full" data-number="3.2.1">
+<section id="spectral-counts-overview" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="spectral-counts-overview"><span class="header-section-number">3.2.1</span> Spectral counts overview</h3>
 <p>Let’s check the spectral counts distributions across samples, and the protein completeness across samples.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 1: Proteomics spectral counts missing values</figcaption>
+<figcaption>Figure 1: Proteomics spectral counts missing values</figcaption>
 </figure>
 </div>
 </div>
@@ -416,71 +419,71 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>We can obviously drop the 24 proteins for which we have not spectral counts for none of the samples. For the remaining proteins for which we do not have full occupancy, we will apply a standard imputation strategy.</p>
 </section>
-<section id="data-imputation" class="level3 page-columns page-full" data-number="3.2.2">
+<section id="data-imputation" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="data-imputation"><span class="header-section-number">3.2.2</span> Data imputation</h3>
 <p>Missing values imputation for label-free proteomics is a large and complex <a href="https://pubs.acs.org/doi/10.1021/pr501138h">field of study</a>.</p>
 <p>In our Kidney cancer proteomics samples the number of proteins detected is small and the distribution of missing values is oddly discrete. This suggests that some kind of filtering was already applied during the preprocessing steps, together with scaling and normalization of the proteins spectral counts. The absence can therefore as well be ascribed to biological reasons as well, and not only to technical problems with its detection.</p>
 <p>To preserve this putative biological signal, I replace in each sample the missing values with the minimum spectral count available in that sample.</p>
 <p>Let’s check how the spectral distributions changed.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 2: Proteomics spectral counts after imputation</figcaption>
+<figcaption>Figure 2: Proteomics spectral counts after imputation</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="dimesionality-reduction-and-dataset-exploration" class="level2 page-columns page-full" data-number="3.3">
+<section id="dimesionality-reduction-and-dataset-exploration" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">3.3</span> Dimesionality Reduction and Dataset Exploration</h2>
-<section id="umap-on-filtered-transcriptomics-data" class="level3 page-columns page-full" data-number="3.3.1">
+<section id="umap-on-filtered-transcriptomics-data" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data"><span class="header-section-number">3.3.1</span> UMAP on filtered transcriptomics data</h3>
 <p>Let’s check the samples clustering on a UMAP. We have almost a perfect clustering of the samples in their corresponding cancer subtypes, with just 2 KICH samples clusting with KIRC samples.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 3: Kidney proteomics UMAP</figcaption>
+<figcaption>Figure 3: Kidney proteomics UMAP</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="principal-component-analysis-pca" class="level3 page-columns page-full" data-number="3.3.2">
+<section id="principal-component-analysis-pca" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">3.3.2</span> Principal Component Analysis (PCA)</h3>
 <p>As we did for the transcriptomics data (see <a href="transcriptomics-analysis.html" class="quarto-xref"><span>Chapter 2</span></a>)., the next step in the Dataset exploration is to perform the Principal Component Analysis.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 4: PCA, exploration</figcaption>
+<figcaption>Figure 4: PCA, exploration</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The first 21 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 40% of the variance.</p>
 <p>When we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH and KIRP, which instead cluster together. The second component PC2, instead, seems to separate KICH and KIRP samples. The separation between KICH and KIRP samples along component PC2 is clearer in the proteomics data than in the transcriptomics data.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 5: PCA, biplot PC1 x PC2</figcaption>
+<figcaption>Figure 5: PCA, biplot PC1 x PC2</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 6: PCA, pairs plots</figcaption>
+<figcaption>Figure 6: PCA, pairs plots</figcaption>
 </figure>
 </div>
 </div>
@@ -497,12 +500,12 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>[[[[ADAPT TO PROTEOMICS RESULTS]]]]</p>
 <p>Let’s now check the expression of the five top genes identified with the PCA across the cancer types:</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 6: PCA, loadings</figcaption>
+<figcaption>Figure 6: PCA, loadings</figcaption>
 </figure>
 </div>
 </div>
@@ -514,48 +517,48 @@ ul.task-list li input[type="checkbox"] {
 <p>As we have learnt before (<a href="dataset-exploration.html#sec-dataset-exploration" class="quarto-xref"><span>Section 1.3.7</span></a>), KIRC patients seems to had a worse outcome than KIRP and to have tumors in more advanced stages. PC1 (computed from transcriptomics data) clearly separates KIRC and KIRP samples, and it correlates with tumor histological grade and stage, as well as clinical outcome. This show that we have good correlation between clinical observations and gene espression in Kidney cancers.</p>
 <p>sadly, no correlation between the top 5 components and the outcome of therapeutic care.</p>
 <p>[[[[ADAPT TO PROTEOMICS RESULTS]]]]</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 6: PCA, correlations between clinical covariates and Principal Components</figcaption>
+<figcaption>Figure 6: PCA, correlations between clinical covariates and Principal Components</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="differential-gene-expression-analysis" class="level2 page-columns page-full" data-number="3.4">
+<section id="differential-gene-expression-analysis" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="differential-gene-expression-analysis"><span class="header-section-number">3.4</span> Differential gene expression analysis</h2>
 <p>In addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.</p>
 <p>We may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.</p>
 <p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 92 89 105 NotSig 37 48 27 Up 105 97 102</p>
 <p>[[[[[[[[[[[[[ARE THE GENES/PROTEINS IN THE PCA dge??????]]]]]]]]]]</p>
-<section id="identification-of-differentially-expressed-proteins" class="level3 page-columns page-full" data-number="3.4.1">
+<section id="identification-of-differentially-expressed-proteins" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="identification-of-differentially-expressed-proteins"><span class="header-section-number">3.4.1</span> Identification of differentially expressed proteins</h3>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 6: Volcano plots of each contrats reporting the proteins differentially expressed</figcaption>
+<figcaption>Figure 6: Volcano plots of each contrats reporting the proteins differentially expressed</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 7: UpSet reporting the proteins differentially expressed upregulated and downregulated in common across all contrasts</figcaption>
+<figcaption>Figure 7: UpSet reporting the proteins differentially expressed upregulated and downregulated in common across all contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="comparative-enrichment-analyses-across-cancer-types" class="level3 page-columns page-full" data-number="3.4.2">
+<section id="comparative-enrichment-analyses-across-cancer-types" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="comparative-enrichment-analyses-across-cancer-types"><span class="header-section-number">3.4.2</span> Comparative enrichment analyses across cancer types</h3>
 <p>ORA vs GSEA:</p>
 <ul>
@@ -563,42 +566,42 @@ ul.task-list li input[type="checkbox"] {
 <li>Gene Set Enrichment Analysis (GSEA): It assesses whether the members of a pathway are randomly distributed throughout the ranked list or primarily found at the top or bottom, indicating upregulation or downregulation –&gt; To identify whether specific pathways are upregulated or downregulated across the entire list of genes, providing insight into the global effects of the treatments</li>
 </ul>
 <p>prep gene lists</p>
-<section id="go-biological-process-terms" class="level4 page-columns page-full" data-number="3.4.2.1">
+<section id="go-biological-process-terms" class="level4" data-number="3.4.2.1">
 <h4 data-number="3.4.2.1" class="anchored" data-anchor-id="go-biological-process-terms"><span class="header-section-number">3.4.2.1</span> GO Biological Process terms</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">gene map</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
+<figcaption>Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-1-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 10: gene maps reporting relationships between GO Biological Process enriched across the different contrasts</figcaption>
+<figcaption>Figure 10: gene maps reporting relationships between GO Biological Process enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -607,42 +610,42 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="go-cellular-compartments-terms" class="level4 page-columns page-full" data-number="3.4.2.2">
+<section id="go-cellular-compartments-terms" class="level4" data-number="3.4.2.2">
 <h4 data-number="3.4.2.2" class="anchored" data-anchor-id="go-cellular-compartments-terms"><span class="header-section-number">3.4.2.2</span> GO Cellular Compartments terms</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">gene map</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-2-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
+<figcaption>Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 12: Term maps reporting relationships between GO Cellular Compartments across the different contrasts</figcaption>
+<figcaption>Figure 12: Term maps reporting relationships between GO Cellular Compartments across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-2-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 13: gene maps reporting relationships between GO Cellular Compartments enriched across the different contrasts</figcaption>
+<figcaption>Figure 13: gene maps reporting relationships between GO Cellular Compartments enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -651,42 +654,42 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="go-molecular-function-terms" class="level4 page-columns page-full" data-number="3.4.2.3">
+<section id="go-molecular-function-terms" class="level4" data-number="3.4.2.3">
 <h4 data-number="3.4.2.3" class="anchored" data-anchor-id="go-molecular-function-terms"><span class="header-section-number">3.4.2.3</span> GO Molecular Function terms</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">gene map</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-3-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
+<figcaption>Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-3-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 15: Term maps reporting relationships between GO Molecular Functions across the different contrasts</figcaption>
+<figcaption>Figure 15: Term maps reporting relationships between GO Molecular Functions across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-3-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 16: gene maps reporting relationships between GO Molecular Functions enriched across the different contrasts</figcaption>
+<figcaption>Figure 16: gene maps reporting relationships between GO Molecular Functions enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -695,42 +698,42 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="kegg-pathways" class="level4 page-columns page-full" data-number="3.4.2.4">
+<section id="kegg-pathways" class="level4" data-number="3.4.2.4">
 <h4 data-number="3.4.2.4" class="anchored" data-anchor-id="kegg-pathways"><span class="header-section-number">3.4.2.4</span> KEGG pathways</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">terms map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">gene map</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-4-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 17: dotplot of enriched KEGG pathways</figcaption>
+<figcaption>Figure 17: dotplot of enriched KEGG pathways</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-4-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+<figcaption>Figure 18: Term maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-4-3" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
+<figcaption>Figure 19: gene maps reporting relationships between KEGG pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>
@@ -739,30 +742,30 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="reactome-pathways" class="level4 page-columns page-full" data-number="3.4.2.5">
+<section id="reactome-pathways" class="level4" data-number="3.4.2.5">
 <h4 data-number="3.4.2.5" class="anchored" data-anchor-id="reactome-pathways"><span class="header-section-number">3.4.2.5</span> Reactome pathways</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">gene map</a></li></ul>
-<div class="tab-content page-columns page-full">
-<div id="tabset-5-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 20: dotplot of enriched Reactome pathways</figcaption>
+<figcaption>Figure 20: dotplot of enriched Reactome pathways</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-5-2" class="tab-pane page-columns page-full" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="proteomics-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
+<figcaption>Figure 22: gene maps reporting relationships between Reactome pathways enriched across the different contrasts</figcaption>
 </figure>
 </div>
 </div>

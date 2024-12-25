@@ -78,6 +78,9 @@ ul.task-list li input[type="checkbox"] {
 #quarto-sidebar .chapter-title {
   font-weight: normal
 }
+#.nav-tabs .nav-link.active {
+  background-color: rgba(239, 236, 255, 0.5);
+}
 </style>
 
 
@@ -341,6 +344,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#disgennet" id="toc-disgennet" class="nav-link" data-scroll-target="#disgennet"><span class="header-section-number">18.3</span> DisGenNet</a></li>
   <li><a href="#opentargets" id="toc-opentargets" class="nav-link" data-scroll-target="#opentargets"><span class="header-section-number">18.4</span> OpenTargets</a></li>
   <li><a href="#dgidb" id="toc-dgidb" class="nav-link" data-scroll-target="#dgidb"><span class="header-section-number">18.5</span> DGIdb</a></li>
+  <li><a href="#wgcna" id="toc-wgcna" class="nav-link" data-scroll-target="#wgcna"><span class="header-section-number">18.6</span> WGCNA</a>
+  <ul class="collapse">
+  <li><a href="#old-tutorial" id="toc-old-tutorial" class="nav-link" data-scroll-target="#old-tutorial"><span class="header-section-number">18.6.1</span> old tutorial</a></li>
+  <li><a href="#additional-material" id="toc-additional-material" class="nav-link" data-scroll-target="#additional-material"><span class="header-section-number">18.6.2</span> additional material</a>
+  <ul class="collapse">
+  <li><a href="#actually-reconsider-the-whole-strategy-altogether" id="toc-actually-reconsider-the-whole-strategy-altogether" class="nav-link" data-scroll-target="#actually-reconsider-the-whole-strategy-altogether"><span class="header-section-number">18.6.2.1</span> actually, reconsider the whole strategy altogether</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -397,8 +408,54 @@ ul.task-list li input[type="checkbox"] {
 <p>cut -f 3 drugs.tsv | cut -f 1 -d “:” | sort | uniq -c 5002 chembl 6 chemidplus 1 concept_id 6043 drugbank 10 drugsatfda.nda 73 hemonc 7677 iuphar.ligand 14824 ncit 7947 NULL 39883 rxcui 107 wikidata</p>
 <p>cut -f 6 interactions.tsv | sort | uniq -c 578 activator 5849 agonist 295 antibody 4 antisense oligonucleotide 259 binder 1819 blocker 82 cleavage 11 immunotherapy 23237 inhibitor 1 interaction_type 36 inverse agonist 1239 modulator 142 negative modulator 63336 NULL 219 other/unknown 1039 positive modulator 51 potentiator 43 vaccine</p>
 <p>for # unique targets cut -f 3 interactions.tsv | sort | uniq -c | wc -l 5013</p>
+</section>
+<section id="wgcna" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="wgcna"><span class="header-section-number">18.6</span> WGCNA</h2>
+<p>CHECK ALMAOMICS WORK AS WELL</p>
+<section id="old-tutorial" class="level3" data-number="18.6.1">
+<h3 data-number="18.6.1" class="anchored" data-anchor-id="old-tutorial"><span class="header-section-number">18.6.1</span> old tutorial</h3>
+<p>backed up from the internet archive. it deserveds a local backup as well</p>
+<p>https://web.archive.org/web/20230323144343/horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/</p>
+</section>
+<section id="additional-material" class="level3" data-number="18.6.2">
+<h3 data-number="18.6.2" class="anchored" data-anchor-id="additional-material"><span class="header-section-number">18.6.2</span> additional material</h3>
+<p>https://bioinformaticsworkbook.org/dataAnalysis/RNA-Seq/RNA-SeqIntro/wgcna.html#gsc.tab=0</p>
+<p>https://alexslemonade.github.io/refinebio-examples/04-advanced-topics/network-analysis_rnaseq_01_wgcna.html</p>
+<section id="actually-reconsider-the-whole-strategy-altogether" class="level4" data-number="18.6.2.1">
+<h4 data-number="18.6.2.1" class="anchored" data-anchor-id="actually-reconsider-the-whole-strategy-altogether"><span class="header-section-number">18.6.2.1</span> actually, reconsider the whole strategy altogether</h4>
+<p>https://www.reddit.com/r/bioinformatics/comments/1cr7m9j/what_happened_to_the_wgcna_tutorial/</p>
+<pre><code>WGCNA was an influential concept but the default method is wildly dated and full of fallacies. Even the use of biweight midcorrelation doesn’t address the issues. You simply can’t use correlation on compositional data. Use compositionally valid methods instead like Rho proportionality instead. You can still use the hierarchical clustering but don’t use absolute value or signed transformation. The former makes it difficult to interpret and the latter is even less interpretable. If anything use correlation distance on the proportionality by just doing 1 - rho.
+
+This describes why you can’t use correlation for compositional data:
+
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004075
+
+This is an adaptation to basically function as a drop in replacement for correlation: https://pubmed.ncbi.nlm.nih.gov/26762323/
+
+There’s an R package called Propr that implements rho proportionality:
+
+https://github.com/tpq/propr
+
+I reimplemented these methods in Python:
+
+https://github.com/jolespin/compositional
+
+What I recommend, use Rho proportionality then just use the positive associations, then do your clustering with Leiden. If you really want to use hierarchical clustering then do 1 - rho for your distance matrix and use that as input into hclust.
+</code></pre>
+<pre><code>Doesn't normalization account for compositionality of gene count data? Really interested in learning more about this though. Why hasn't this gained more traction? This paper is from 2015, yet I know many research groups applying WGCNA without accounting for proportionality. </code></pre>
+<pre><code>
+It’s because a lot of researchers don’t want to adapt their methods because what they have “works for them”.
+
+I would read the 2015 proportionality paper. It explains everything much better than I can. I’m not expert in this but I’ve written a review on network analysis. I got my ass handed to me by the reviewers because I was discussing correlation based network analysis. It was one of the toughest review sessions but hands down the most useful learning process for me because I had no idea how bad the issue really was for the field and how many researchers ignore it.
+
+Thomas Quinn has some very good reviews too. Between the 2015 paper and the Quinn papers you should be able to get the idea. In a nutshell, compositional data is “parts” data and you don’t have three full abundance therefore ratios between components/genes/otus (whatever feature you have) are what need to be compared between samples. Simple normalization methods don’t address this however there are some transformations that can be helpful but none are a silver bullet as they each have their caveats. Isometric log ratio is probably the most full proof but you end up with d-1 features since you’re looking at ratios between features.
+
+</code></pre>
+<p>THIS IS A POSSIBILITY FOR CREATINH ANOTHER PACKAGE BY MYSELF AS WELL</p>
 
 
+</section>
+</section>
 </section>
 </section>
 

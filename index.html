@@ -79,6 +79,9 @@ ul.task-list li input[type="checkbox"] {
 #quarto-sidebar .chapter-title {
   font-weight: normal
 }
+#.nav-tabs .nav-link.active {
+  background-color: rgba(239, 236, 255, 0.5);
+}
 </style>
 
 
@@ -372,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="abstract" class="level1 unnumbered">
 <h1 class="unnumbered">Abstract</h1>
 <p>[[draft to improve]]</p>
-<p>The complex and heterogeneous nature of cancer necessitates innovative approaches for effective target discovery and therapeutic development. Multiomics integration—combining genomic, transcriptomic, proteomic, metabolomic, and epigenomic data—has emerged as a transformative strategy in cancer research, significantly accelerating the identification of novel therapeutic targets. By leveraging the wealth of biological information from multiple layers of molecular data, researchers can gain comprehensive insights into tumor biology, elucidate underlying mechanisms of disease progression, and uncover potential vulnerabilities in cancer cells.</p>
+<p>Cancer is a complex heterogeneous disease and challenges the identification of novel therapeutic targets. The complex relationships between DNA, transcripts and proteins captured by different single-omics approaches often fail to capture cancer complexity. Moreover, the non-linear relationships between DNA mutation, transcripts expression and protein abundances challenges the linear regression models often used in target discovery. Multi-omics integration can provide a better understanding of the heterogeneous nature of cancer and provide novel therapeutic targets.</p>
 <p>Here, I leverage public datasets from The Cancer Genome Atlas program, <a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga">TCGA</a>. I will focus my efforts on Kidney Cancers: kidney chromophobe (<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga/studied-cancers/chromophobe-renal-cell-carcinoma-study">KICH</a>), kidney renal papillary cell carcinoma (<a href="https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-kidney-tumors/papillary-renal-cell-carcinoma">KIRP</a>), and kidney renal clear cell carcinoma (<a href="https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-kidney-tumors/clear-cell-renal-cell-carcinoma">KIRC</a>).</p>
 <p>First, we gonna explore how molecular differences between these three kidney cancers are captured and reflected in different single-omics layers (i.e.: transcriptomics, proteomics), and how linear multi-omics integration strategies deepen the biological insights.</p>
 <p>I will then dig into kidney renal clear cell carcinoma (KIRC) and develop a Deep Learning classifier to discriminate between the different KIRC consensus molecular subtypes. I will compare my method with existing molecular signatures based on transcriptomics data, and test if the new classifier can better classify samples from another cohort and best predict the clinical outcome of the patients.</p>
