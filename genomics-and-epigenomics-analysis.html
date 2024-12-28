@@ -68,6 +68,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-fixedcolumns-1.13.6/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedcolumns-1.13.6/js/dataTables.fixedColumns.min.js"></script>
+<link href="site_libs/dt-ext-fixedheader-1.13.6/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedheader-1.13.6/js/dataTables.fixedHeader.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <style>
 #quarto-sidebar .sidebar-item-text {
   font-weight: bold;
@@ -78,12 +92,15 @@ ul.task-list li input[type="checkbox"] {
 #quarto-sidebar .chapter-title {
   font-weight: normal
 }
+#.nav-tabs .nav-link.active {
+  background-color: rgba(239, 236, 255, 0.5);
+}
 </style>
 
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed slimcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -338,27 +355,42 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#cnvs" id="toc-cnvs" class="nav-link active" data-scroll-target="#cnvs"><span class="header-section-number">5.1</span> CNVs</a>
   <ul>
-  <li><a href="#filtering-qc" id="toc-filtering-qc" class="nav-link" data-scroll-target="#filtering-qc"><span class="header-section-number">5.1.1</span> filtering &amp; QC</a>
+  <li><a href="#filtering-qc" id="toc-filtering-qc" class="nav-link" data-scroll-target="#filtering-qc"><span class="header-section-number">5.1.1</span> Filtering &amp; QC</a></li>
+  <li><a href="#cnvs-signatures-across-kidney-cancers" id="toc-cnvs-signatures-across-kidney-cancers" class="nav-link" data-scroll-target="#cnvs-signatures-across-kidney-cancers"><span class="header-section-number">5.1.2</span> CNVs signatures across Kidney cancers</a></li>
+  <li><a href="#dimesionality-reduction-and-dataset-exploration" id="toc-dimesionality-reduction-and-dataset-exploration" class="nav-link" data-scroll-target="#dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">5.1.3</span> Dimesionality Reduction and Dataset Exploration</a>
   <ul class="collapse">
-  <li><a href="#cnvs-signatures-across-kidney-cancers" id="toc-cnvs-signatures-across-kidney-cancers" class="nav-link" data-scroll-target="#cnvs-signatures-across-kidney-cancers"><span class="header-section-number">5.1.1.1</span> CNVs signatures across Kidney cancers</a></li>
-  </ul></li>
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">5.1.2</span> PCA</a></li>
-  <li><a href="#differential-cnvs-analysis" id="toc-differential-cnvs-analysis" class="nav-link" data-scroll-target="#differential-cnvs-analysis"><span class="header-section-number">5.1.3</span> Differential CNVs analysis</a></li>
-  <li><a href="#identification-of-differentially-expressed-genes" id="toc-identification-of-differentially-expressed-genes" class="nav-link" data-scroll-target="#identification-of-differentially-expressed-genes"><span class="header-section-number">5.1.4</span> Identification of differentially expressed genes</a>
-  <ul class="collapse">
-  <li><a href="#enrichment-genes-for-kich-cnvs" id="toc-enrichment-genes-for-kich-cnvs" class="nav-link" data-scroll-target="#enrichment-genes-for-kich-cnvs"><span class="header-section-number">5.1.4.1</span> ENRICHMENT GENES FOR KICH CNVs</a></li>
+  <li><a href="#umap-on-filtered-transcriptomics-data" id="toc-umap-on-filtered-transcriptomics-data" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data"><span class="header-section-number">5.1.3.1</span> UMAP on filtered transcriptomics data</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">5.1.3.2</span> PCA</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">5.2</span> variants</a></li>
-  <li><a href="#epigenomics" id="toc-epigenomics" class="nav-link" data-scroll-target="#epigenomics"><span class="header-section-number">5.3</span> epigenomics</a>
+  <li><a href="#variants" id="toc-variants" class="nav-link" data-scroll-target="#variants"><span class="header-section-number">5.2</span> Variants</a>
   <ul>
-  <li><a href="#circos" id="toc-circos" class="nav-link" data-scroll-target="#circos"><span class="header-section-number">5.3.1</span> CIRCOS</a></li>
+  <li><a href="#mutational-signatures-across-kidney-cancers" id="toc-mutational-signatures-across-kidney-cancers" class="nav-link" data-scroll-target="#mutational-signatures-across-kidney-cancers"><span class="header-section-number">5.2.1</span> Mutational signatures across Kidney cancers</a></li>
+  <li><a href="#dimesionality-reduction-and-dataset-exploration-1" id="toc-dimesionality-reduction-and-dataset-exploration-1" class="nav-link" data-scroll-target="#dimesionality-reduction-and-dataset-exploration-1"><span class="header-section-number">5.2.2</span> Dimesionality Reduction and Dataset Exploration</a>
+  <ul class="collapse">
+  <li><a href="#umap-on-filtered-transcriptomics-data-1" id="toc-umap-on-filtered-transcriptomics-data-1" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data-1"><span class="header-section-number">5.2.2.1</span> UMAP on filtered transcriptomics data</a></li>
+  <li><a href="#pca-1" id="toc-pca-1" class="nav-link" data-scroll-target="#pca-1"><span class="header-section-number">5.2.2.2</span> PCA</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#epigenomics" id="toc-epigenomics" class="nav-link" data-scroll-target="#epigenomics"><span class="header-section-number">5.3</span> Epigenomics</a>
+  <ul>
+  <li><a href="#filtering-qc-1" id="toc-filtering-qc-1" class="nav-link" data-scroll-target="#filtering-qc-1"><span class="header-section-number">5.3.1</span> Filtering &amp; QC</a></li>
+  <li><a href="#dimesionality-reduction-and-dataset-exploration-2" id="toc-dimesionality-reduction-and-dataset-exploration-2" class="nav-link" data-scroll-target="#dimesionality-reduction-and-dataset-exploration-2"><span class="header-section-number">5.3.2</span> Dimesionality Reduction and Dataset Exploration</a>
+  <ul class="collapse">
+  <li><a href="#umap-on-filtered-transcriptomics-data-2" id="toc-umap-on-filtered-transcriptomics-data-2" class="nav-link" data-scroll-target="#umap-on-filtered-transcriptomics-data-2"><span class="header-section-number">5.3.2.1</span> UMAP on filtered transcriptomics data</a></li>
+  <li><a href="#pca-2" id="toc-pca-2" class="nav-link" data-scroll-target="#pca-2"><span class="header-section-number">5.3.2.2</span> PCA</a></li>
+  </ul></li>
+  <li><a href="#probe-wise-differential-methylation" id="toc-probe-wise-differential-methylation" class="nav-link" data-scroll-target="#probe-wise-differential-methylation"><span class="header-section-number">5.3.3</span> Probe-Wise Differential Methylation</a>
+  <ul class="collapse">
+  <li><a href="#aggreagte-probes-into-functional-regions" id="toc-aggreagte-probes-into-functional-regions" class="nav-link" data-scroll-target="#aggreagte-probes-into-functional-regions"><span class="header-section-number">5.3.3.1</span> aggreagte probes into functional regions</a></li>
+  <li><a href="#functional-regions" id="toc-functional-regions" class="nav-link" data-scroll-target="#functional-regions"><span class="header-section-number">5.3.3.2</span> Functional Regions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./genomics-and-epigenomics-analysis.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Genomics and Epigenomics Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -379,149 +411,1249 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="cnvs" class="level2 page-columns page-full" data-number="5.1">
+<section id="cnvs" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="cnvs"><span class="header-section-number">5.1</span> CNVs</h2>
 <p>Import CNVs</p>
-<section id="filtering-qc" class="level3 page-columns page-full" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="filtering-qc"><span class="header-section-number">5.1.1</span> filtering &amp; QC</h3>
+<section id="filtering-qc" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="filtering-qc"><span class="header-section-number">5.1.1</span> Filtering &amp; QC</h3>
 <p>CNVs collapsed at the gene level available for 24776 genes</p>
 <p>How many are all zeros??</p>
 <p>not a single one with all zeros :/</p>
 <p>cutoff density = 5 because overwelming abundances of 0s</p>
 <p>There is obviously erinchment in CNVs in KICH when compared to KIRC and KIRP. KIRP has as well an higher number of CNVs than KIRP.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 1: CNVs distributions</figcaption>
+<figcaption>Figure 1: CNVs distributions</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="cnvs-signatures-across-kidney-cancers" class="level4" data-number="5.1.1.1">
-<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="cnvs-signatures-across-kidney-cancers"><span class="header-section-number">5.1.1.1</span> CNVs signatures across Kidney cancers</h4>
+</section>
+<section id="cnvs-signatures-across-kidney-cancers" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="cnvs-signatures-across-kidney-cancers"><span class="header-section-number">5.1.2</span> CNVs signatures across Kidney cancers</h3>
 <p>Followed guidelines and methodlogies explored by <a href="https://www.nature.com/articles/s41586-020-1943-3">Alexandrov et al., 2022</a> and <a href="https://www.nature.com/articles/s41586-022-04738-6">Steele et al., 2022</a></p>
 <p>We generates novel signatures with <a href="https://linkinghub.elsevier.com/retrieve/pii/S2666979X22001240">SigProfiler</a></p>
 <p>Need to reformat as::</p>
 <p>The CNV signatures you have will be binned based on copy number and segment size. It looks like the data you have is in the format:</p>
-<pre><code>&lt;Copy Number&gt;:&lt;Label&gt;:&lt;Segment Size&gt;
-
-Copy number = The number of alleles in the CNV
-    Label = Name for the copy number event:
-    Homdel = Homozygous deletion. This is CNA=0
-    LOH = Loss of heterozygousity. One of the parental alleles has been lost.
-    Het = Heterzygous. Both parental alleles are present.
-Segment size = Size of the CNA segment.</code></pre>
+<p>Copy Number&gt;:<label>:<segment size=""></segment></label></p>
+<p>Copy number = The number of alleles in the CNV Label = Name for the copy number event: Homdel = Homozygous deletion. This is CNA=0 LOH = Loss of heterozygousity. One of the parental alleles has been lost. Het = Heterzygous. Both parental alleles are present. Segment size = Size of the CNA segment.</p>
 <p>Hope that helps!</p>
-<section id="map-cnvs-on-the-genome" class="level5">
-<h5 class="anchored" data-anchor-id="map-cnvs-on-the-genome">map CNVs on the genome</h5>
 <p>TODO:</p>
 <ul>
 <li>add genomic ranges to genes</li>
 <li>merge consecutive genes spans with same CNV</li>
 <li>plot them on CIRCOs</li>
 </ul>
-<pre><code>&lt;Copy Number&gt;:&lt;Label&gt;:&lt;Segment Size&gt;
-
-Copy number = The number of alleles in the CNV
-    Label = Name for the copy number event:
-    Homdel = Homozygous deletion. This is CNA=0
-    LOH = Loss of heterozygousity. One of the parental alleles has been lost.
-    Het = Heterzygous. Both parental alleles are present.
-Segment size = Size of the CNA segment.</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: CNVs distributions</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-</section>
-</section>
-<section id="pca" class="level3 page-columns page-full" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="pca"><span class="header-section-number">5.1.2</span> PCA</h3>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<section id="dimesionality-reduction-and-dataset-exploration" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration"><span class="header-section-number">5.1.3</span> Dimesionality Reduction and Dataset Exploration</h3>
+<section id="umap-on-filtered-transcriptomics-data" class="level4" data-number="5.1.3.1">
+<h4 data-number="5.1.3.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data"><span class="header-section-number">5.1.3.1</span> UMAP on filtered transcriptomics data</h4>
+<p>After we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in <a href="dataset-exploration.html#sec-UMAP-unfiltered" class="quarto-xref"><span>Section 1.2.1</span></a>, and that roughly correspondes with three different kidney cancer subtypes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 3: PCA, exploration</figcaption>
+<figcaption>Figure 2: Kidney UMAP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pca" class="level4" data-number="5.1.3.2">
+<h4 data-number="5.1.3.2" class="anchored" data-anchor-id="pca"><span class="header-section-number">5.1.3.2</span> PCA</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 3: PCA, exploration</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The first 24 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 25% of the variance.</p>
 <p>When we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH adn KIRP, which instead cluster together. The second component PC2, instead, seems to partially separate KICH and KIRP samples.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 4: PCA, biplot PC1 x PC2</figcaption>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 4: PCA, biplot PC1 x PC2</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>We can also investigate other dimensions Principal Components, to see if there is a component that manages to fully resove the three cancer types. PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 5: PCA, pairs plots</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+<figcaption>Figure 5: PCA, pairs plots</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="differential-cnvs-analysis" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="differential-cnvs-analysis"><span class="header-section-number">5.1.3</span> Differential CNVs analysis</h3>
-<p>In addition to cancer type, we saw that age, ethnicity (and race) and age had somewhat a correlation with the cancer types.</p>
-<p>We may want to include this covariates in the differential gene expression analysis in order to include their contribution into the model.</p>
-<p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 8469 6549 13460 NotSig 5606 4912 6268 Up 10701 13315 5048</p>
-</section>
-<section id="identification-of-differentially-expressed-genes" class="level3 page-columns page-full" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="identification-of-differentially-expressed-genes"><span class="header-section-number">5.1.4</span> Identification of differentially expressed genes</h3>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 6: Volcano plots of each contrats reporting the genes differentially expressed</figcaption>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell page-columns page-full">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption class="margin-caption">Figure 7: UpSet reporting the genes differentially expressed upregulated and downregulated in common across all contrasts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="enrichment-genes-for-kich-cnvs" class="level4" data-number="5.1.4.1">
-<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="enrichment-genes-for-kich-cnvs"><span class="header-section-number">5.1.4.1</span> ENRICHMENT GENES FOR KICH CNVs</h4>
 </section>
 </section>
 </section>
 <section id="variants" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="variants"><span class="header-section-number">5.2</span> variants</h2>
+<h2 data-number="5.2" class="anchored" data-anchor-id="variants"><span class="header-section-number">5.2</span> Variants</h2>
+<p>SOMATIC MUTATIONS</p>
+<p>(https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/mc3.v0.2.8.PUBLIC.nonsilentGene.xena.gz)</p>
+<p>711 samples with somatic mutation info available for 40542 genes, 26958 without mutations, 13584 with mutation</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: CNVs distributions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="mutational-signatures-across-kidney-cancers" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="mutational-signatures-across-kidney-cancers"><span class="header-section-number">5.2.1</span> Mutational signatures across Kidney cancers</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: CNVs distributions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dimesionality-reduction-and-dataset-exploration-1" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration-1"><span class="header-section-number">5.2.2</span> Dimesionality Reduction and Dataset Exploration</h3>
+<section id="umap-on-filtered-transcriptomics-data-1" class="level4" data-number="5.2.2.1">
+<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data-1"><span class="header-section-number">5.2.2.1</span> UMAP on filtered transcriptomics data</h4>
+<p>After we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in <a href="dataset-exploration.html#sec-UMAP-unfiltered" class="quarto-xref"><span>Section 1.2.1</span></a>, and that roughly correspondes with three different kidney cancer subtypes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 2: Kidney UMAP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-1" class="level4" data-number="5.2.2.2">
+<h4 data-number="5.2.2.2" class="anchored" data-anchor-id="pca-1"><span class="header-section-number">5.2.2.2</span> PCA</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 3: PCA, exploration</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The first 24 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 25% of the variance.</p>
+<p>When we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH adn KIRP, which instead cluster together. The second component PC2, instead, seems to partially separate KICH and KIRP samples.</p>
+<p>We can also investigate other dimensions Principal Components, to see if there is a component that manages to fully resove the three cancer types. PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, pairs plots</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="epigenomics" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="epigenomics"><span class="header-section-number">5.3</span> epigenomics</h2>
-<p>646 samples with methylation info</p>
-<section id="circos" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="circos"><span class="header-section-number">5.3.1</span> CIRCOS</h3>
+<h2 data-number="5.3" class="anchored" data-anchor-id="epigenomics"><span class="header-section-number">5.3</span> Epigenomics</h2>
+<p>646 samples with methylation info 148068 whitelisted probes</p>
+<p>Regardless of array type, both the 450k and EPIC record two measurements for each CpG: a methylated intensity (M) and an unmethylated intensity (U). Using these values, the proportion of methylation at each site CpG locus can be determined. The level of methylation at a locus is commonly reported as the Beta-value, i.e.&nbsp;the ratio of the methylated probe intensity and the overall intensity:</p>
+<p>beta = M/(M/U)</p>
+<p>Illumina recommends adding a constant offset α (by default, α = 100) to the denominator to regularize Beta value when both methylated and unmethylated probe intensities are low. The Beta-value statistic results in a number between 0 and 1, or 0 and 100%. Under ideal conditions, a value of zero indicates that all copies of the CpG site in the sample were completely unmethylated (no methylated molecules were measured) and a value of one indicates that every copy of the site was methylated.</p>
+<section id="filtering-qc-1" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="filtering-qc-1"><span class="header-section-number">5.3.1</span> Filtering &amp; QC</h3>
+<p>removed 6364 probes with missing values</p>
+<p>148068-141704 [1] 6364</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: CNVs distributions</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dimesionality-reduction-and-dataset-exploration-2" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="dimesionality-reduction-and-dataset-exploration-2"><span class="header-section-number">5.3.2</span> Dimesionality Reduction and Dataset Exploration</h3>
+<section id="umap-on-filtered-transcriptomics-data-2" class="level4" data-number="5.3.2.1">
+<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="umap-on-filtered-transcriptomics-data-2"><span class="header-section-number">5.3.2.1</span> UMAP on filtered transcriptomics data</h4>
+<p>After we excluded biopsys from normal tissues and other tumors and we filtered out the lowly expressed genes, the UMAP shows three clusters that are better refined than the ones depicted in <a href="dataset-exploration.html#sec-UMAP-unfiltered" class="quarto-xref"><span>Section 1.2.1</span></a>, and that roughly correspondes with three different kidney cancer subtypes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 2: Kidney UMAP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-2" class="level4" data-number="5.3.2.2">
+<h4 data-number="5.3.2.2" class="anchored" data-anchor-id="pca-2"><span class="header-section-number">5.3.2.2</span> PCA</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 3: PCA, exploration</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The first 24 Principal Components capture more than 80% of the variance in the Kidney cancers transcriptomics dataset, with the first two components (PC1 and PC2) capturing a bit more than 25% of the variance.</p>
+<p>When we project the samples in the PC1 and PC2, we can see that the PC1 separates KIRC from KICH adn KIRP, which instead cluster together. The second component PC2, instead, seems to partially separate KICH and KIRP samples.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 4: PCA, biplot PC1 x PC2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also investigate other dimensions Principal Components, to see if there is a component that manages to fully resove the three cancer types. PC4 seems to separates better the KICH from KIRP, while PC1 can discriminate between KIRC and KIRP.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, pairs plots</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, loadings</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>cg03830585 –&gt; <a href="ITPR1 protects renal cancer cells against natural killer cells by inducing autophagy">ITPR1 protects renal cancer cells against natural killer cells by inducing autophagy</a></p>
+<p>cg00868875 –&gt; KCTD1</p>
+<p>cg07037412 –&gt; CACNA1H <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5530219/">Voltage-gated calcium channels: Novel targets for cancer therapy</a> CACNA1H was downregulated in gastrointestinal stromal tumor, sarcoma and renal cancer Notably, compared with our previous research, CACNA1H was specifically overexpressed relative to normal tissue samples in renal cancer, sarcoma and gastrointestinal stromal tumors.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="probe-wise-differential-methylation" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="probe-wise-differential-methylation"><span class="header-section-number">5.3.3</span> Probe-Wise Differential Methylation</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: top 3 Differentially Methylated Probes per cancer type</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>print(summary(dt)) KIRC_vs_KICH KIRP_vs_KICH KIRC_vs_KIRP Down 56952 43222 69811 NotSig 45814 51748 42083 Up 45302 53098 36174</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 6: Volcano plots of each contrats reporting the genes differentially expressed</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 7: UpSet reporting the genes differentially methylated probes in common across all contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="aggreagte-probes-into-functional-regions" class="level4" data-number="5.3.3.1">
+<h4 data-number="5.3.3.1" class="anchored" data-anchor-id="aggreagte-probes-into-functional-regions"><span class="header-section-number">5.3.3.1</span> aggreagte probes into functional regions</h4>
+<p>Often, differential methylation of a single CpG is not so informative or can be hard to detect. Therefore, knowing whether several CpGs near to each other (or regions) are concordantly differentially methylated can be of greater interest.</p>
+<p>There are several Bioconductor packages that have functions for identifying differentially methylated regions from 450k data. Some of the most popular are the dmrFind function in the charm package, which has been somewhat superseded for 450k arrays by the bumphunter function in minfi, and, the dmrcate in the DMRcate package. They are each based on different statistical methods, but we will be using dmrcate here, as it is based on limma and thus we can use the design and contrast matrix we defined earlier.</p>
+<p>We will again start from our matrix of M-values. For this kind of analysis, this matrix has to be annotated with the chromosomal position of the CpGs and their gene annotations. Because in a first step the limma differential methylation analysis for single CpGs will be run again, we need to specify the design matrix, contrast matrix and contrast of interest.</p>
+<p>Once we have the relevant statistics for the individual CpGs, we can then use the dmrcate function to combine them to identify differentially methylated regions. Of particular interest here is the lambda parameter; this value is the number of nucleotides that is allowed between significant CpGs before splitting them up in different regions. So a smaller lambda will result in more but smaller regions. For array data, the authors of the dmrcate package currently recommend a lambda of 1000. The main output table DMRs contains all of the regions found, along with their genomic annotations and p-values. To inspect this object and further visualization, you can best use the extractRanges function to create a GRanges object.</p>
+<p>Differentially Methylated regions</p>
+<p>KIRC_vs_KICH: 20346 KIRP_vs_KICH: 19243 KIRC_vs_KIRP: 20773</p>
+<p>Just as for the single CpG analysis, it is a good idea to visually inspect the results to make sure they make sense. For this, use the DMR.plot function. By default, this plot draws the location of the DMR in the genome, the position of nearby genes, the positions of the CpG probes, the Beta value levels of each sample as a heatmap and the mean methylation levels for the various sample groups in the experiment.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="functional-regions" class="level4" data-number="5.3.3.2">
+<h4 data-number="5.3.3.2" class="anchored" data-anchor-id="functional-regions"><span class="header-section-number">5.3.3.2</span> Functional Regions</h4>
+<p>An alternative approach to detect DMRs is to predefine the regions to be tested; so, as opposed to the previous approach where the regions are defined according to heuristic distance rules we can define regions based on a shared function. For this, we will used the package mCSEA which contains three types of regions for 450K and EPIC arrays: promoter regions, gene body and CpG Islands. mCSEA is based on Gene Set Enrichment analysis (GSEA), a popular methodology for functional analysis that was specifically designed to avoid some drawbacks in the field of gene expression. Briefly, CpG sites are ranked according to a metric (logFC, t-statistic, …) and an enrichment score (ES) is calculated for each region. This is done by running through the entire ranked CpG list, increasing the score when a CpG in the region is encountered and decreasing the score when the gene encountered is not in the region. A high ES indicates these probes are found high up in the ranked list. In other words, a high (N)ES value means that for the CpG sites in this region there is - on average - a shift towards a higher methylation level. This approach has been shown to be more effective to detect smaller but consistent methylation differences.</p>
+<p>Here, we will apply this method to the output of the “naive-rTreg” comparison, ranking the CpGs by logFC differences. We specify “promoters” as the type of regions to be considered, but other options such as CpG Islands or gene bodies are possible.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">KIRC vs KICH</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">KIRP vs KICH</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">KIRC vs KIRP</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-3.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-4.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-5.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-6.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-7.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-36-8.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+</div>
+<p>85 DMRs found (padj &lt; 0.05)</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-2.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-3.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-4.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-5.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-6.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-7.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-42-8.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+</div>
+<p>85 DMRs found (padj &lt; 0.05)</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-2.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-3.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-4.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-5.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-6.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-7.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="genomics-and-epigenomics-analysis_files/figure-html/unnamed-chunk-48-8.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 5: PCA, correlations between clinical covariates and Principal Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div>
+</div>
+<p>85 DMRs found (padj &lt; 0.05)</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
@@ -968,7 +2100,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
     <a class="nav-link" href="https://quarto.org/">
-<p>This page is built with ❤️ and <em>Quarto</em>.</p>
+<p>Copyright © 2025 Andrea Del Cortona. This page is built with ❤️ and <em>Quarto</em>.</p>
 </a>
   </li>  
 </ul>
