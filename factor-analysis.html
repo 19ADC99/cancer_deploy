@@ -350,6 +350,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#factor-2-kich" id="toc-factor-2-kich" class="nav-link" data-scroll-target="#factor-2-kich"><span class="header-section-number">6.2.3.2</span> Factor 2: KICH</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
   </ul>
 </nav>
     </div>
@@ -403,7 +404,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="run-prediction"><span class="header-section-number">6.2.2</span> run prediction</h3>
 </section>
 <section id="explore" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored"><span class="header-section-number">6.2.3</span> explore</h3>
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="explore"><span class="header-section-number">6.2.3</span> explore</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -547,13 +548,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-<section id="factor-2-kich" class="level4" data-number="6.2.3.2">
-<h4 data-number="6.2.3.2" class="anchored"><span class="header-section-number">6.2.3.2</span> Factor 2: KICH</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">methyl</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<section id="multi-omics-interaction-network" class="level5">
+<h5 class="anchored" data-anchor-id="multi-omics-interaction-network">Multi-omics interaction network</h5>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -563,85 +559,49 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
+<div class="cell-output cell-output-stdout">
+<pre><code>TableGrob (20 x 32) "layout": 36 grobs
+    z         cells         name                                          grob
+1   0 ( 2-19, 2-16) background-1             rect[plot.background..rect.11507]
+2   5 ( 9- 9, 7- 7)     spacer-1                                zeroGrob[NULL]
+3   7 (11-11, 7- 7)     axis-l-1         absoluteGrob[GRID.absoluteGrob.11496]
+4   3 (13-13, 7- 7)     spacer-1                                zeroGrob[NULL]
+5   6 ( 9- 9, 9- 9)     axis-t-1                                zeroGrob[NULL]
+6   1 (11-11, 9- 9)      panel-1                    gTree[panel-1.gTree.11488]
+7   9 (13-13, 9- 9)     axis-b-1         absoluteGrob[GRID.absoluteGrob.11492]
+8   4 ( 9- 9,11-11)     spacer-1                                zeroGrob[NULL]
+9   8 (11-11,11-11)     axis-r-1                                zeroGrob[NULL]
+10  2 (13-13,11-11)     spacer-1                                zeroGrob[NULL]
+11 10 ( 8- 8, 9- 9)     xlab-t-1                                zeroGrob[NULL]
+12 11 (14-14, 9- 9)     xlab-b-1 zeroGrob[axis.title.x.bottom..zeroGrob.11497]
+13 12 (11-11, 6- 6)     ylab-l-1 titleGrob[axis.title.y.left..titleGrob.11500]
+14 13 (11-11,12-12)     ylab-r-1                                zeroGrob[NULL]
+15 19 ( 5- 5, 9- 9)   subtitle-1       zeroGrob[plot.subtitle..zeroGrob.11504]
+16 20 ( 4- 4, 9- 9)      title-1        titleGrob[plot.title..titleGrob.11503]
+17 21 (17-17, 9- 9)    caption-1        zeroGrob[plot.caption..zeroGrob.11505]
+18  0 ( 2-19,17-31) background-2             rect[plot.background..rect.11539]
+19 26 ( 9- 9,22-22)     spacer-2                                zeroGrob[NULL]
+20 28 (11-11,22-22)     axis-l-2         absoluteGrob[GRID.absoluteGrob.11532]
+21 24 (13-13,22-22)     spacer-2                                zeroGrob[NULL]
+22 27 ( 9- 9,24-24)     axis-t-2                                zeroGrob[NULL]
+23 22 (11-11,24-24)      panel-2                    gTree[panel-1.gTree.11529]
+24 30 (13-13,24-24)     axis-b-2         absoluteGrob[GRID.absoluteGrob.11531]
+25 25 ( 9- 9,26-26)     spacer-2                                zeroGrob[NULL]
+26 29 (11-11,26-26)     axis-r-2                                zeroGrob[NULL]
+27 23 (13-13,26-26)     spacer-2                                zeroGrob[NULL]
+28 31 ( 8- 8,24-24)     xlab-t-2                                zeroGrob[NULL]
+29 32 (14-14,24-24)     xlab-b-2 zeroGrob[axis.title.x.bottom..zeroGrob.11533]
+30 33 (11-11,21-21)     ylab-l-2   zeroGrob[axis.title.y.left..zeroGrob.11534]
+31 34 (11-11,27-27)     ylab-r-2                                zeroGrob[NULL]
+32 40 ( 5- 5,24-24)   subtitle-2       zeroGrob[plot.subtitle..zeroGrob.11536]
+33 41 ( 4- 4,24-24)      title-2          zeroGrob[plot.title..zeroGrob.11535]
+34 42 (17-17,24-24)    caption-2        zeroGrob[plot.caption..zeroGrob.11537]
+35 -1 (11-11, 9-24)   panel-area                                zeroGrob[NULL]
+36 -2 ( 1-20, 1-32)   background             rect[plot.background..rect.11551]</code></pre>
 </div>
 </div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<section id="multi-omics-interaction-network" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="multi-omics-interaction-network"><span class="header-section-number">6.2.4</span> Multi-omics interaction network</h3>
+<p>DOWNLOAD STRINGDB</p>
+<p>GET top molecules</p>
 <p>OmniPath can serve multiple kinds of interactions, based on the quality of the interactors or the interactions themselves:</p>
 <ul>
 <li>post_translational i.e.&nbsp;physical interactions of proteins, protein-protein interactions (or PPIs)</li>
@@ -665,6 +625,108 @@ ul.task-list li input[type="checkbox"] {
 ## [34] "UniProt_keyword"      "UniProt_location"     "UniProt_topology"    
 ## [37] "Zhong2015"</code></pre>
 </section>
+</section>
+<section id="factor-2-kich" class="level4" data-number="6.2.3.2">
+<h4 data-number="6.2.3.2" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.3.2</span> Factor 2: KICH</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">methyl</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="multi-omics-interaction-network-1" class="level5">
+<h5 class="anchored" data-anchor-id="multi-omics-interaction-network-1">Multi-omics interaction network</h5>
+</section>
+</section>
+</section>
+</section>
 <section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</h2>
 <p>[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]</p>
@@ -674,12 +736,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
-</section>
-</div>
-</div>
-</div>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1119,13 +1175,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2025 Andrea Del Cortona.
+  </li>  
+</ul>
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
     <a class="nav-link" href="https://quarto.org/">
-<p>Copyright © 2025 Andrea Del Cortona. This page is built with ❤️ and <em>Quarto</em>.</p>
+<p>This page is built with ❤️ and <em>Quarto</em>.</p>
 </a>
   </li>  
 </ul>
