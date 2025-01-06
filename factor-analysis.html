@@ -344,11 +344,18 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep"><span class="header-section-number">6.2.1</span> data prep</a></li>
   <li><a href="#run-prediction" id="toc-run-prediction" class="nav-link" data-scroll-target="#run-prediction"><span class="header-section-number">6.2.2</span> run prediction</a></li>
-  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore"><span class="header-section-number">6.2.3</span> explore</a>
-  <ul class="collapse">
-  <li><a href="#factor-1-kirc-vs-kirp" id="toc-factor-1-kirc-vs-kirp" class="nav-link" data-scroll-target="#factor-1-kirc-vs-kirp"><span class="header-section-number">6.2.3.1</span> Factor 1: KIRC vs KIRP</a></li>
-  <li><a href="#factor-2-kich" id="toc-factor-2-kich" class="nav-link" data-scroll-target="#factor-2-kich"><span class="header-section-number">6.2.3.2</span> Factor 2: KICH</a></li>
+  <li><a href="#factor-1-kirc-vs-kirp" id="toc-factor-1-kirc-vs-kirp" class="nav-link" data-scroll-target="#factor-1-kirc-vs-kirp"><span class="header-section-number">6.2.3</span> Factor 1: KIRC vs KIRP</a>
+  <ul>
+  <li><a href="#multi-omics-interaction-network" id="toc-multi-omics-interaction-network" class="nav-link" data-scroll-target="#multi-omics-interaction-network"><span class="header-section-number">6.2.3.1</span> Multi-omics interaction network</a></li>
+  <li><a href="#pathway-analysis" id="toc-pathway-analysis" class="nav-link" data-scroll-target="#pathway-analysis"><span class="header-section-number">6.2.3.2</span> Pathway analysis</a></li>
   </ul></li>
+  <li><a href="#factor-2-kich" id="toc-factor-2-kich" class="nav-link" data-scroll-target="#factor-2-kich"><span class="header-section-number">6.2.4</span> Factor 2: KICH</a>
+  <ul>
+  <li><a href="#multi-omics-interaction-network-1" id="toc-multi-omics-interaction-network-1" class="nav-link" data-scroll-target="#multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</a></li>
+  <li><a href="#pathway-analysis-1" id="toc-pathway-analysis-1" class="nav-link" data-scroll-target="#pathway-analysis-1"><span class="header-section-number">6.2.4.2</span> Pathway analysis</a></li>
+  </ul></li>
+  <li><a href="#enrichments-comparisons" id="toc-enrichments-comparisons" class="nav-link" data-scroll-target="#enrichments-comparisons"><span class="header-section-number">6.2.5</span> Enrichments comparisons</a></li>
+  <li><a href="#predictive-model-for-clinical-outcome" id="toc-predictive-model-for-clinical-outcome" class="nav-link" data-scroll-target="#predictive-model-for-clinical-outcome"><span class="header-section-number">6.2.6</span> Predictive model for clinical outcome</a></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
   </ul>
@@ -398,28 +405,26 @@ ul.task-list li input[type="checkbox"] {
 <p>Despite the preprocessing, to compare this multiomics readouts on different scales we need to rescale and normalize each table</p>
 <section id="in-other-places-infiltrating-immune-cells-where-added-at-the-metadata-level" class="level6">
 <h6 class="anchored" data-anchor-id="in-other-places-infiltrating-immune-cells-where-added-at-the-metadata-level">in other places infiltrating immune cells where added at the metadata level</h6>
-</section>
-</section>
-<section id="run-prediction" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="run-prediction"><span class="header-section-number">6.2.2</span> run prediction</h3>
-</section>
-<section id="explore" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="explore"><span class="header-section-number">6.2.3</span> explore</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Multiomics data overview</figcaption>
 </figure>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="run-prediction" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="run-prediction"><span class="header-section-number">6.2.2</span> run prediction</h3>
+<p>model prediction outcomes</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 2: Multiomics data overview</figcaption>
 </figure>
 </div>
@@ -429,7 +434,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 2:</figcaption>
 </figure>
 </div>
@@ -437,7 +442,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 2:</figcaption>
 </figure>
 </div>
@@ -447,14 +452,15 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="factor-1-kirc-vs-kirp" class="level4" data-number="6.2.3.1">
-<h4 data-number="6.2.3.1" class="anchored" data-anchor-id="factor-1-kirc-vs-kirp"><span class="header-section-number">6.2.3.1</span> Factor 1: KIRC vs KIRP</h4>
+</section>
+<section id="factor-1-kirc-vs-kirp" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="factor-1-kirc-vs-kirp"><span class="header-section-number">6.2.3</span> Factor 1: KIRC vs KIRP</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">methyl</a></li></ul>
 <div class="tab-content">
@@ -463,7 +469,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -473,7 +479,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -485,7 +491,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -495,7 +501,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -507,7 +513,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -517,7 +523,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -529,7 +535,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -539,7 +545,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -548,21 +554,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="multi-omics-interaction-network" class="level5">
-<h5 class="anchored" data-anchor-id="multi-omics-interaction-network">Multi-omics interaction network</h5>
+<p>dd</p>
+<section id="multi-omics-interaction-network" class="level4" data-number="6.2.3.1">
+<h4 data-number="6.2.3.1" class="anchored" data-anchor-id="multi-omics-interaction-network"><span class="header-section-number">6.2.3.1</span> Multi-omics interaction network</h4>
 <p>GET top molecules</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Gather OmniPath and STRINGdb</p>
-<p>DOWNLOAD STRINGDB</p>
 <p>OmniPath can serve multiple kinds of interactions, based on the quality of the interactors or the interactions themselves:</p>
 <ul>
 <li>post_translational i.e.&nbsp;physical interactions of proteins, protein-protein interactions (or PPIs)</li>
@@ -585,10 +591,50 @@ ul.task-list li input[type="checkbox"] {
 ## [31] "SignaLink_function"   "Surfaceome"           "TopDB"               
 ## [34] "UniProt_keyword"      "UniProt_location"     "UniProt_topology"    
 ## [37] "Zhong2015"</code></pre>
+<p>Let’s build the network now</p>
+<p>plot my network</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 99: KIRC vs KIRP model</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 99: KIRC vs KIRP model</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s build a wider network</p>
+<p>MUST FIND A WAY TO SIMPLIFY NETWORK IF NO INTERACTION BETWEEN SIGNIFICANT IN MORE THAN 1 STEP</p>
+</section>
+<section id="pathway-analysis" class="level4" data-number="6.2.3.2">
+<h4 data-number="6.2.3.2" class="anchored" data-anchor-id="pathway-analysis"><span class="header-section-number">6.2.3.2</span> Pathway analysis</h4>
+<p>prep gene list</p>
+<p>Little GO relevant terms</p>
+<p>Some KEGG pathways, with very low gene coverage (false positive)</p>
+<p>some Reactome pathways, but with low coverage (max 10% of genes covered)</p>
+<p>The network we have built may reflect new interactions.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="factor-2-kich" class="level4" data-number="6.2.3.2">
-<h4 data-number="6.2.3.2" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.3.2</span> Factor 2: KICH</h4>
+<section id="factor-2-kich" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.4</span> Factor 2: KICH</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">methyl</a></li></ul>
 <div class="tab-content">
@@ -597,7 +643,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -607,7 +653,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -619,7 +665,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -629,7 +675,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -641,7 +687,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -651,7 +697,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -663,7 +709,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -673,7 +719,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -682,10 +728,191 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="multi-omics-interaction-network-1" class="level5">
-<h5 class="anchored" data-anchor-id="multi-omics-interaction-network-1">Multi-omics interaction network</h5>
+<p>daadadad</p>
+<section id="multi-omics-interaction-network-1" class="level4" data-number="6.2.4.1">
+<h4 data-number="6.2.4.1" class="anchored" data-anchor-id="multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</h4>
+<p>GET top molecules</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s build the network now</p>
+<p>plot my network</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 99: KICH model</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-36-2.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 99: KICH model</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>ss</p>
+</section>
+<section id="pathway-analysis-1" class="level4" data-number="6.2.4.2">
+<h4 data-number="6.2.4.2" class="anchored" data-anchor-id="pathway-analysis-1"><span class="header-section-number">6.2.4.2</span> Pathway analysis</h4>
+<p>prep gene list</p>
+<p>Some relevant biological processes</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>No KEGG pathways</p>
+<p>No reactome (generatio &lt;= 10%)</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>saassaas</p>
 </section>
 </section>
+<section id="enrichments-comparisons" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="enrichments-comparisons"><span class="header-section-number">6.2.5</span> Enrichments comparisons</h3>
+<p>lets compare the KIRC vs KIRP and KICH gene lists</p>
+<p>prep gene lists</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">GO Biological Process terms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">GO Cellular Compartments terms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">GO Molecular Function terms</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">KEGG pathways</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">Reactome pathways</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 17: dotplot of enriched KEGG pathways</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 20: dotplot of enriched Reactome pathways</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="predictive-model-for-clinical-outcome" class="level3" data-number="6.2.6">
+<h3 data-number="6.2.6" class="anchored" data-anchor-id="predictive-model-for-clinical-outcome"><span class="header-section-number">6.2.6</span> Predictive model for clinical outcome</h3>
+<p>full model: KICH, KIRC and KIRP doesn’t correctly capture it I think due to survival::Surv accepting only binary factors, must dig into it</p>
+<p>Plot Hazard-Ratio</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Plot Kaplan-Meier</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 1: Pltoi hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>I must do it triple: TCGA-KICH vs TCGA-KIRC TCGA-KICH vs TCGA-KIRP TCGA-KIRC vs TCGA-KIRP</p>
+<p>Plot Hazard-Ratio</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Plot Kaplan-Meier</p>
+<p>FACTOR 1 FACTOR 2 FACTOR 3</p>
+<p>3x3 grid</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Figure 1: Pltoi hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
