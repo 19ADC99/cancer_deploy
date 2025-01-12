@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Survival Analysis – Multi-omics integration for target discovery in cancer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./kidney-carcinomas-lessons-learnt.html" rel="next">
+<link href="./factor-analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-fixedcolumns-1.13.6/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedcolumns-1.13.6/js/dataTables.fixedColumns.min.js"></script>
+<link href="site_libs/dt-ext-fixedheader-1.13.6/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedheader-1.13.6/js/dataTables.fixedHeader.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<style>
+#quarto-sidebar .sidebar-item-text {
+  font-weight: bold;
+}
+#quarto-sidebar .chapter-number {
+  font-weight: normal
+}
+#quarto-sidebar .chapter-title {
+  font-weight: normal
+}
+#.nav-tabs .nav-link.active {
+  background-color: rgba(239, 236, 255, 0.5);
+}
+</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Multi-omics integration for target discovery in cancer</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./survival-analysis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Survival Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abstract</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gather-datasets-and-QC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gather Datasets and QC</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataset-exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Exploration - Kidney Cancer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transcriptomics-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Transcriptomics Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./proteomics-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Proteomics Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./micro-RNAs-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">micro-RNAs Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genomics-and-epigenomics-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Genomics and Epigenomics Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factor-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survival-analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Survival Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kidney-carcinomas-lessons-learnt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">kidney-carcinomas-lessons-learnt.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Characterization of Kidney Clear Cell Cancer molecular subtypes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cancer-signatures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">cancer-signatures.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./autoencoder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">autoencoder.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cellular-deconvolution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#on-this-page" id="toc-on-this-page" class="nav-link active" data-scroll-target="#on-this-page"><span class="header-section-number">7.1</span> On this page</a></li>
+  <li><a href="#survival-analysis-overall-survival" id="toc-survival-analysis-overall-survival" class="nav-link" data-scroll-target="#survival-analysis-overall-survival"><span class="header-section-number">7.2</span> Survival Analysis: Overall Survival</a>
+  <ul>
+  <li><a href="#metadata-only" id="toc-metadata-only" class="nav-link" data-scroll-target="#metadata-only"><span class="header-section-number">7.2.1</span> Metadata only</a>
+  <ul class="collapse">
+  <li><a href="#kaplan-meier" id="toc-kaplan-meier" class="nav-link" data-scroll-target="#kaplan-meier"><span class="header-section-number">7.2.1.1</span> Kaplan Meier</a></li>
+  <li><a href="#cox-regression-model" id="toc-cox-regression-model" class="nav-link" data-scroll-target="#cox-regression-model"><span class="header-section-number">7.2.1.2</span> Cox regression model</a></li>
+  <li><a href="#more-modeling" id="toc-more-modeling" class="nav-link" data-scroll-target="#more-modeling"><span class="header-section-number">7.2.1.3</span> more modeling</a></li>
+  </ul></li>
+  <li><a href="#multi-omics-predictive-model-for-clinical-outcome" id="toc-multi-omics-predictive-model-for-clinical-outcome" class="nav-link" data-scroll-target="#multi-omics-predictive-model-for-clinical-outcome"><span class="header-section-number">7.2.2</span> Multi-omics predictive model for clinical outcome</a></li>
+  </ul></li>
+  <li><a href="#survival-analysis-progression-free-interval-pfi" id="toc-survival-analysis-progression-free-interval-pfi" class="nav-link" data-scroll-target="#survival-analysis-progression-free-interval-pfi"><span class="header-section-number">7.3</span> Survival Analysis: Progression-Free Interval (PFI)</a>
+  <ul>
+  <li><a href="#metadata-only---progression-free-interval-pfi" id="toc-metadata-only---progression-free-interval-pfi" class="nav-link" data-scroll-target="#metadata-only---progression-free-interval-pfi"><span class="header-section-number">7.3.1</span> Metadata only - progression-free interval (PFI)</a>
+  <ul class="collapse">
+  <li><a href="#kaplan-meier-1" id="toc-kaplan-meier-1" class="nav-link" data-scroll-target="#kaplan-meier-1"><span class="header-section-number">7.3.1.1</span> Kaplan Meier</a></li>
+  <li><a href="#cox-regression-model-1" id="toc-cox-regression-model-1" class="nav-link" data-scroll-target="#cox-regression-model-1"><span class="header-section-number">7.3.1.2</span> Cox regression model</a></li>
+  <li><a href="#more-modeling-1" id="toc-more-modeling-1" class="nav-link" data-scroll-target="#more-modeling-1"><span class="header-section-number">7.3.1.3</span> more modeling</a></li>
+  </ul></li>
+  <li><a href="#multi-omics-predictive-model-for-clinical-outcome-1" id="toc-multi-omics-predictive-model-for-clinical-outcome-1" class="nav-link" data-scroll-target="#multi-omics-predictive-model-for-clinical-outcome-1"><span class="header-section-number">7.3.2</span> Multi-omics predictive model for clinical outcome</a></li>
+  </ul></li>
+  <li><a href="#sec-lesson-learnt-survival-analysis" id="toc-sec-lesson-learnt-survival-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-survival-analysis"><span class="header-section-number">7.4</span> Lessons Learnt</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset-exploration.html">Characterization of Kidney Clear Cell, Papillary Cell and Chromophobe cancers</a></li><li class="breadcrumb-item"><a href="./survival-analysis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Survival Analysis</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Survival Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="on-this-page" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="on-this-page"><span class="header-section-number">7.1</span> On this page</h2>
+<p>Biological insights and take-home messages are at the bottom of the page at section Lesson Learnt: <a href="#sec-lesson-learnt-survival-analysis" class="quarto-xref"><span>Section 7.4</span></a>.</p>
+<ul>
+<li>Here…</li>
+</ul>
+</section>
+<section id="survival-analysis-overall-survival" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="survival-analysis-overall-survival"><span class="header-section-number">7.2</span> Survival Analysis: Overall Survival</h2>
+<p>Intro</p>
+<p>Load data</p>
+<p>we have these timepoints:</p>
+<ul>
+<li>overall survival (OS)</li>
+<li>disease-specific survival (DSS)</li>
+<li>disease-free interval (DFI)</li>
+<li>progression-free interval (PFI)</li>
+</ul>
+<p>to that, we add info:</p>
+<ul>
+<li>vital status</li>
+<li>days to death</li>
+<li>cancer type</li>
+</ul>
+<p>we will measure a Kaplan Meier curve and fit a Cox Proportional Hazards Model for each kidney cancer subtype only based on the observations and classification available in the metadata. Then, we will add the weights for Factors 1, 2 and 3 that we have calculated with the Factor Analysis (<a href="factor-analysis.html" class="quarto-xref"><span>Chapter 6</span></a>) on the integrated multi-omics datasets (transcriptomics, miRNAs, proteomics and epigenomics). We compare the results and we see if adding info from the multi-omics lead to a model that predicts better the clinical outcome.</p>
+<section id="metadata-only" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="metadata-only"><span class="header-section-number">7.2.1</span> Metadata only</h3>
+<p>let’s do it with metadat aonly first</p>
+<section id="kaplan-meier" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="kaplan-meier"><span class="header-section-number">7.2.1.1</span> Kaplan Meier</h4>
+<p>plot the survival</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>compare survival plots</p>
+<p>log rank test</p>
+<p>Call: survival::survdiff(formula = survival::Surv(OS.time, vital_status) ~ cancer_type, data = metadata)</p>
+<p>n=885, 2 observations deleted due to missingness.</p>
+<pre><code>                    N Observed Expected (O-E)^2/E (O-E)^2/V</code></pre>
+<p>cancer_type=TCGA-KICH 65 9 26.0 11.14 12.87 cancer_type=TCGA-KIRC 531 174 140.4 8.04 21.18 cancer_type=TCGA-KIRP 289 44 60.6 4.54 6.26</p>
+<p>Chisq= 23.9 on 2 degrees of freedom, p= 6e-06</p>
+<p>As noted on this page the term (O-E)^2/V is the basis for the log-rank test.</p>
+<p>To know if the difference between the observed and expected events (O-E) for one group is significantly different from 0 (that is, the two groups have significantly different hazard functions), you need an estimate of the variance of that difference in the case (null hypothesis) that the groups have the same hazard function.</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-af005b1611ba4f82f2d2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-af005b1611ba4f82f2d2">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Log-ratio of survival differences bewteen cancer types<\/caption>","data":[["KICH","KIRC","KIRP"],[65,531,289],[9,174,44],[26,140,61],[11.14,8.039999999999999,4.54],[12.87,21.18,6.26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="cox-regression-model" class="level4" data-number="7.2.1.2">
+<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="cox-regression-model"><span class="header-section-number">7.2.1.2</span> Cox regression model</h4>
+<p>Cox proportional hazards regression is one of the most popular regression techniques for survival analysis. Other models can also be used since the Cox model requires important assumptions that need to be verified for an appropriate use such as the proportional hazards assumption: see references.</p>
+<p>In a Cox proportional hazards regression model, the measure of effect is the hazard rate (HR), which is the risk of failure (or the risk of death in our example), given that the participant has survived up to a specific time. Usually, we are interested in comparing independent groups with respect to their hazards, and we use a hazard ratio, which is analogous to an odds ratio in the setting of multiple logistic regression analysis. The cox.ph() function from the survival package is used to fit the model. The function cox.zph() from survival package may be used to test the proportional hazards assumption for a Cox regression model fit.</p>
+<p>NOTE: A probability must lie in the range 0 to 1. However, the hazard represents the expected number of events per one unit of time.</p>
+<ul>
+<li>If the hazard ratio for a predictor is close to 1 then that predictor does not affect survival,</li>
+<li>if the HR is less than 1, then the predictor is protective (i.e., associated with improved survival),</li>
+<li>and if the HR is greater than 1, then the predictor is associated with increased risk (or decreased survival).</li>
+</ul>
+<p>[[[now we can add more covariates, but we have to check if the proportional hazard assumption holds true]]]</p>
+<p>In another model we add more risk factors such as the source of infection and the number of days between date of onset and admission. This time, we first verify the proportional hazards assumption before going forward.</p>
+<p>In this model, we have included a continuous predictor (days_onset_hosp). In this case we interpret the parameter estimates as the increase in the expected log of the relative hazard for each one unit increase in the predictor, holding other predictors constant. We first verify the proportional hazards assumption.</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6cc778d9606a66f3238f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6cc778d9606a66f3238f">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","GLOBAL"],[2.282,2.282],[2,2],[0.32,0.32]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>let’s add more covariates into the model</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Demographic covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tumor grading covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Molecular subtype covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Demographic + Tumor grading + Molecular Subtype covariates</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>WE GET INFINITE COEFFICIEMT WITH RACE</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9f504912888c1e49e11c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9f504912888c1e49e11c">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","follow_up_tumor_status","GLOBAL"],[0.636,0.02,3.725,3.94],[2,1,1,4],[0.727,0.887,0.054,0.414]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Tumor stage “tumor_stage” Tumor histological grade “histological_grade” TMN main tumor pathology “pathologic_t” TMN lymph nodes metastatis “pathologic”</p>
+<p>print chi squared tab</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c21101c9d47f68abc2fb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c21101c9d47f68abc2fb">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","tumor_stage","pathologic_t","pathologic","GLOBAL"],[0.659,30.318,38.747,3.571,55.858],[2,4,11,3,20],[0.719,0,0,0.312,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>subtype_miRNA “Subtype_miRNA”, subtype_mRNA “Subtype_mRNA”, Subtype_selected “Subtype_Selected” Subtype_Immune_Model_Based</p>
+<p>print chi squared tab</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7ecea55dd294b8014f28" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7ecea55dd294b8014f28">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","GLOBAL"],[0.485,9.148999999999999,1.98,7.655,20.139],[1,3,3,4,11],[0.486,0.027,0.577,0.105,0.043]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-98d939341d3545dab53e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-98d939341d3545dab53e">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[0.149,0.994,12.297,24.741,1.413,14.24,6.808,13.451,19.669,0.129,70.78],[1,1,4,10,3,3,3,4,5,1,35],[0.7,0.319,0.015,0.006,0.702,0.003,0.078,0.008999999999999999,0.001,0.719,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>sssss</p>
+</section>
+<section id="more-modeling" class="level4" data-number="7.2.1.3">
+<h4 data-number="7.2.1.3" class="anchored" data-anchor-id="more-modeling"><span class="header-section-number">7.2.1.3</span> more modeling</h4>
+<p>we could model Tumor STage. other stages molecular subtypes &lt;– here we can improve on them later with more fancy classifications</p>
+<p>Sex “gdc_cases.demographic.gender_1_1” Disease status “cgc_follow_up_tumor_status_1_1” Tumor stage “cgc_case_pathologic_stage_1_1” Tumor histological grade “histological_grade” TMN main tumor pathology “cgc_case_pathologic_t_1_1” TMN lymph nodes metastatis “cgc_case_pathologic_n_1_1”</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Tumor Status</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="multi-omics-predictive-model-for-clinical-outcome" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="multi-omics-predictive-model-for-clinical-outcome"><span class="header-section-number">7.2.2</span> Multi-omics predictive model for clinical outcome</h3>
+<p>sssss</p>
+<p>cox_fit</p>
+<p>Likelihood ratio test=171.1 on 10 df, p=&lt; 2.2e-16 n= 885, number of events= 227 (2 observations deleted due to missingness)</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7cb134f310df7c5fe7a3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7cb134f310df7c5fe7a3">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["ZFactor1","ZFactor2","ZFactor3","ZFactor4","ZFactor5","ZFactor6","ZFactor7","ZFactor8","ZFactor9","ZFactor10"],["-0.210409","-0.141805","0.502391","-0.042219","0.192537","0.00665","0.179446","0.301923","-0.007285","-0.167755"],["0.810253","0.867791","1.652669","0.958659","1.212321","1.006672","1.196554","1.352457","0.992741","0.845561"],["0.060443","0.074405","0.061359","0.080386","0.061642","0.074367","0.063222","0.053316","0.071742","0.065304"],["-3.481","-1.906","8.188","-0.525","3.123","0.089","2.838","5.663","-0.102","-2.569"],["0.000499","0.056669","2.66E-16","0.599439","0.001787","0.928745","0.004535","1.49E-08","0.919114","0.010204"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Plot Hazard-Ratio</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Plot Kaplan-Meier</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="survival-analysis-progression-free-interval-pfi" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="survival-analysis-progression-free-interval-pfi"><span class="header-section-number">7.3</span> Survival Analysis: Progression-Free Interval (PFI)</h2>
+<section id="metadata-only---progression-free-interval-pfi" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="metadata-only---progression-free-interval-pfi"><span class="header-section-number">7.3.1</span> Metadata only - progression-free interval (PFI)</h3>
+<p>let’s do it with metadat aonly first</p>
+<section id="kaplan-meier-1" class="level4" data-number="7.3.1.1">
+<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="kaplan-meier-1"><span class="header-section-number">7.3.1.1</span> Kaplan Meier</h4>
+<p>plot the survival</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>compare survival plots</p>
+<p>log rank test</p>
+<p>Call: survival::survdiff(formula = survival::Surv(OS.time, vital_status) ~ cancer_type, data = metadata)</p>
+<p>n=885, 2 observations deleted due to missingness.</p>
+<pre><code>                    N Observed Expected (O-E)^2/E (O-E)^2/V</code></pre>
+<p>cancer_type=TCGA-KICH 65 9 26.0 11.14 12.87 cancer_type=TCGA-KIRC 531 174 140.4 8.04 21.18 cancer_type=TCGA-KIRP 289 44 60.6 4.54 6.26</p>
+<p>Chisq= 23.9 on 2 degrees of freedom, p= 6e-06</p>
+<p>As noted on this page the term (O-E)^2/V is the basis for the log-rank test.</p>
+<p>To know if the difference between the observed and expected events (O-E) for one group is significantly different from 0 (that is, the two groups have significantly different hazard functions), you need an estimate of the variance of that difference in the case (null hypothesis) that the groups have the same hazard function.</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-20b9893358fe6df40c47" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-20b9893358fe6df40c47">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Log-ratio of survival differences bewteen cancer types<\/caption>","data":[["KICH","KIRC","KIRP"],[65,529,288],[9,173,43],[25,135,65],[10.56,10.81,7.33],[12.31,27.11,10.41]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="cox-regression-model-1" class="level4" data-number="7.3.1.2">
+<h4 data-number="7.3.1.2" class="anchored" data-anchor-id="cox-regression-model-1"><span class="header-section-number">7.3.1.2</span> Cox regression model</h4>
+<p>Cox proportional hazards regression is one of the most popular regression techniques for survival analysis. Other models can also be used since the Cox model requires important assumptions that need to be verified for an appropriate use such as the proportional hazards assumption: see references.</p>
+<p>In a Cox proportional hazards regression model, the measure of effect is the hazard rate (HR), which is the risk of failure (or the risk of death in our example), given that the participant has survived up to a specific time. Usually, we are interested in comparing independent groups with respect to their hazards, and we use a hazard ratio, which is analogous to an odds ratio in the setting of multiple logistic regression analysis. The cox.ph() function from the survival package is used to fit the model. The function cox.zph() from survival package may be used to test the proportional hazards assumption for a Cox regression model fit.</p>
+<p>NOTE: A probability must lie in the range 0 to 1. However, the hazard represents the expected number of events per one unit of time.</p>
+<ul>
+<li>If the hazard ratio for a predictor is close to 1 then that predictor does not affect survival,</li>
+<li>if the HR is less than 1, then the predictor is protective (i.e., associated with improved survival),</li>
+<li>and if the HR is greater than 1, then the predictor is associated with increased risk (or decreased survival).</li>
+</ul>
+<p>[[[now we can add more covariates, but we have to check if the proportional hazard assumption holds true]]]</p>
+<p>In another model we add more risk factors such as the source of infection and the number of days between date of onset and admission. This time, we first verify the proportional hazards assumption before going forward.</p>
+<p>In this model, we have included a continuous predictor (days_onset_hosp). In this case we interpret the parameter estimates as the increase in the expected log of the relative hazard for each one unit increase in the predictor, holding other predictors constant. We first verify the proportional hazards assumption.</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bd021a85800a43ca7431" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bd021a85800a43ca7431">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","GLOBAL"],[6.917,6.917],[2,2],[0.031,0.031]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>let’s add more covariates into the model</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Demographic covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Tumor grading covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Molecular subtype covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Demographic + Tumor grading + Molecular Subtype covariates</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>WE GET INFINITE COEFFICIEMT WITH RACE</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-fba0fa7a5db737df0808" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fba0fa7a5db737df0808">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","follow_up_tumor_status","GLOBAL"],[4.355,0.099,8.127000000000001,11.706],[2,1,1,4],[0.113,0.753,0.004,0.02]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Tumor stage “tumor_stage” Tumor histological grade “histological_grade” TMN main tumor pathology “pathologic_t” TMN lymph nodes metastatis “pathologic”</p>
+<p>print chi squared tab</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-cd15664444ae2e467f9d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cd15664444ae2e467f9d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","tumor_stage","pathologic_t","pathologic","GLOBAL"],[5.362,32.615,51.302,7.744,63.421],[2,4,11,3,20],[0.068,0,0,0.052,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>subtype_miRNA “Subtype_miRNA”, subtype_mRNA “Subtype_mRNA”, Subtype_selected “Subtype_Selected” Subtype_Immune_Model_Based</p>
+<p>print chi squared tab</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-db396cbbbe555731fc04" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-db396cbbbe555731fc04">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","GLOBAL"],[0.226,5.321,4.129,3.616,17.104],[1,3,3,4,11],[0.635,0.15,0.248,0.461,0.105]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-95cc71f346a5f4d6b1cb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-95cc71f346a5f4d6b1cb">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[1.228,0.339,14.226,25.399,0.8110000000000001,11.258,6.491,5.967,15.455,0.259,68.66500000000001],[1,1,4,10,3,3,3,4,5,1,35],[0.268,0.5600000000000001,0.007,0.005,0.847,0.01,0.09,0.202,0.008999999999999999,0.611,0.001]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Forest plot</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>sssss</p>
+</section>
+<section id="more-modeling-1" class="level4" data-number="7.3.1.3">
+<h4 data-number="7.3.1.3" class="anchored" data-anchor-id="more-modeling-1"><span class="header-section-number">7.3.1.3</span> more modeling</h4>
+<p>we could model Tumor STage. other stages molecular subtypes &lt;– here we can improve on them later with more fancy classifications</p>
+<p>Sex “gdc_cases.demographic.gender_1_1” Disease status “cgc_follow_up_tumor_status_1_1” Tumor stage “cgc_case_pathologic_stage_1_1” Tumor histological grade “histological_grade” TMN main tumor pathology “cgc_case_pathologic_t_1_1” TMN lymph nodes metastatis “cgc_case_pathologic_n_1_1”</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Tumor Status</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: survival</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="multi-omics-predictive-model-for-clinical-outcome-1" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="multi-omics-predictive-model-for-clinical-outcome-1"><span class="header-section-number">7.3.2</span> Multi-omics predictive model for clinical outcome</h3>
+<p>sssss</p>
+<p>cox_fit</p>
+<p>Likelihood ratio test=171.1 on 10 df, p=&lt; 2.2e-16 n= 885, number of events= 227 (2 observations deleted due to missingness)</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ebffbc2b5265883d873d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ebffbc2b5265883d873d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["ZFactor1","ZFactor2","ZFactor3","ZFactor4","ZFactor5","ZFactor6","ZFactor7","ZFactor8","ZFactor9","ZFactor10"],["-0.250259","-0.137154","0.51265","-0.025933","0.227808","0.026058","0.25395","0.28466","-0.004506","-0.135766"],["0.778599","0.871836","1.66971","0.9744","1.255844","1.0264","1.289108","1.32931","0.995504","0.873047"],["0.060483","0.07498","0.062282","0.081319","0.063076","0.073998","0.064468","0.053568","0.073052","0.063964"],["-4.138","-1.829","8.231","-0.319","3.612","0.352","3.939","5.314","-0.062","-2.123"],["3.51E-05","0.06737","&lt; 2.00E-16","0.749799","0.000304","0.724731","8.18E-05","1.07E-07","0.950813","0.033794"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Plot Hazard-Ratio</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Plot Kaplan-Meier</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Plot hazard ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-lesson-learnt-survival-analysis" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-lesson-learnt-survival-analysis"><span class="header-section-number">7.4</span> Lessons Learnt</h2>
+<p>[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]</p>
+<p>So far, we have learnt:</p>
+<ul>
+<li>A</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./factor-analysis.html" class="pagination-link" aria-label="Factor Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Factor Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./kidney-carcinomas-lessons-learnt.html" class="pagination-link" aria-label="kidney-carcinomas-lessons-learnt.html">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">kidney-carcinomas-lessons-learnt.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2025 Andrea Del Cortona.
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://quarto.org/">
+<p>This page is built with ❤️ and <em>Quarto</em>.</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/19ADC99">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/andrea-del-cortona-86a75474/">
+      <i class="bi bi-linkedin" role="img" aria-label="Lindekin">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
