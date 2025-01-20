@@ -68,6 +68,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/dt-ext-fixedcolumns-1.13.6/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedcolumns-1.13.6/js/dataTables.fixedColumns.min.js"></script>
+<link href="site_libs/dt-ext-fixedheader-1.13.6/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+<script src="site_libs/dt-ext-fixedheader-1.13.6/js/dataTables.fixedHeader.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <style>
 #quarto-sidebar .sidebar-item-text {
   font-weight: bold;
@@ -294,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: micro-RNAs expression distributions before filtering</figcaption>
 </figure>
 </div>
@@ -308,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 2: micro-RNAs expression distributions after filtering</figcaption>
 </figure>
 </div>
@@ -326,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 3: Kidney proteomics UMAP</figcaption>
 </figure>
 </div>
@@ -340,7 +354,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 4: PCA, exploration</figcaption>
 </figure>
 </div>
@@ -352,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 5: PCA, biplot PC1 x PC2</figcaption>
 </figure>
 </div>
@@ -362,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 6: PCA, pairs plots</figcaption>
 </figure>
 </div>
@@ -384,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 6: PCA, loadings</figcaption>
 </figure>
 </div>
@@ -403,7 +417,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 6: PCA, correlations between clinical covariates and Principal Components</figcaption>
 </figure>
 </div>
@@ -422,7 +436,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 6: Volcano plots of each contrats reporting the proteins differentially expressed</figcaption>
 </figure>
 </div>
@@ -432,12 +446,28 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="micro-RNAs-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 7: UpSet reporting the proteins differentially expressed upregulated and downregulated in common across all contrasts</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>vvvvvv</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">KIRC vs KICH</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">KIRP vs KICH</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">KIRC vs KIRP</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>vv</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>vv</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>vv</p>
+</div>
+</div>
+</div>
+<p>dd</p>
 </section>
 </section>
 <section id="lessons-learnt" class="level2" data-number="4.5">
