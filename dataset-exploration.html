@@ -260,6 +260,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#sec-dataset-exploration" id="toc-sec-dataset-exploration" class="nav-link" data-scroll-target="#sec-dataset-exploration"><span class="header-section-number">1.3.7</span> Prognosis Outcome</a></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-dataset-exploration" id="toc-sec-lesson-learnt-dataset-exploration" class="nav-link" data-scroll-target="#sec-lesson-learnt-dataset-exploration"><span class="header-section-number">1.4</span> Lessons Learnt</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">1.5</span> Session Information</a></li>
   </ul>
 </nav>
     </div>
@@ -307,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Kidney UMAP - unfiltered data</figcaption>
+<figcaption>Figure 1: Kidney UMAP - unfiltered data.</figcaption>
 </figure>
 </div>
 </div>
@@ -322,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 2: Kidney Cancer: demographic overview</figcaption>
+<figcaption>Figure 2: Kidney Cancer: demographic overview.</figcaption>
 </figure>
 </div>
 </div>
@@ -340,8 +341,8 @@ ul.task-list li input[type="checkbox"] {
 <p>There are 596 males and 291 females in the three kidney cancer cohorts after filtering. Despite the imbalance, the difference across cancer types is not significant.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-81c5751bf474a019b41f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-81c5751bf474a019b41f">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Sex<\/caption>","data":[["KICH","KIRC","KIRP"],[27,188,76],[39,343,214]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>female<\/th>\n      <th>male<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"female","targets":1},{"name":"male","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7dd6d7b5a818d50ed9ab" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7dd6d7b5a818d50ed9ab">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 1: Contigency table, Sex.<\/caption>","data":[["KICH","KIRC","KIRP"],[27,188,76],[39,343,214]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>female<\/th>\n      <th>male<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"female","targets":1},{"name":"male","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -349,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 3: Contigency table, Sex</figcaption>
+<figcaption>Figure 3: Contigency table, Sex.</figcaption>
 </figure>
 </div>
 </div>
@@ -360,8 +361,8 @@ ul.task-list li input[type="checkbox"] {
 <p>After filtering, the three kidney cancer types contains 563 subject that are now tumor free, and 190 subject that still have tumor. It seems that KIRP have significantly more patients that are now tumor free, while there are still significantly more patients with tumor for KIRC. The small sample size of KICH patients may skew these results, so this outcome should be interpreted with a pinch of salt.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-6d0426c9c792b959d684" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6d0426c9c792b959d684">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 2: Contigency table, Disease Status<\/caption>","data":[["KICH","KIRC","KIRP"],[37,327,199],[8,148,34]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>TUMOR FREE<\/th>\n      <th>WITH TUMOR<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"TUMOR FREE","targets":1},{"name":"WITH TUMOR","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b8d187f6754bba09f960" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b8d187f6754bba09f960">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 2: Contigency table, Disease Status.<\/caption>","data":[["KICH","KIRC","KIRP"],[37,327,199],[8,148,34]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>TUMOR FREE<\/th>\n      <th>WITH TUMOR<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"TUMOR FREE","targets":1},{"name":"WITH TUMOR","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -369,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 4: Contigency table, Disease Status</figcaption>
+<figcaption>Figure 4: Contigency table, Disease Status.</figcaption>
 </figure>
 </div>
 </div>
@@ -388,8 +389,8 @@ ul.task-list li input[type="checkbox"] {
 <p>KIRC patients seem to have a higher number of Stage IV cancer, while KIRP patients have more STage I cancers. This can either be bias in the sampling of the cohort, or it could really indicate that KIRC cancer is more aggressive and fast progressing than KIRP.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-fd7eee812521ed74155d" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-fd7eee812521ed74155d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 3: Contigency table, Tumor Stage<\/caption>","data":[["KICH","KIRC","KIRP"],[21,266,171],[25,57,23],[14,123,52],[6,84,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stage I<\/th>\n      <th>Stage II<\/th>\n      <th>Stage III<\/th>\n      <th>Stage IV<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stage I","targets":1},{"name":"Stage II","targets":2},{"name":"Stage III","targets":3},{"name":"Stage IV","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8ed2307ae41ff7b85118" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8ed2307ae41ff7b85118">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 3: Contigency table, Tumor Stage.<\/caption>","data":[["KICH","KIRC","KIRP"],[21,266,171],[25,57,23],[14,123,52],[6,84,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Stage I<\/th>\n      <th>Stage II<\/th>\n      <th>Stage III<\/th>\n      <th>Stage IV<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Stage I","targets":1},{"name":"Stage II","targets":2},{"name":"Stage III","targets":3},{"name":"Stage IV","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -397,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 5: Contigency table, Tumor Stage</figcaption>
+<figcaption>Figure 5: Contigency table, Tumor Stage.</figcaption>
 </figure>
 </div>
 </div>
@@ -418,8 +419,8 @@ ul.task-list li input[type="checkbox"] {
 <p>For the KIRC tumors, 14 biopsys had G1 grade, 229 G2 grade, 204 had G3 grade, 76 G4 and 5 biopsys could not be graded (GX).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-83bd542eed26dbebaae1" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-83bd542eed26dbebaae1">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 4: Contigency table, Tumor Histology<\/caption>","data":[["","G1","G2","G3","G4","GX"],["66","0","0","0","0","0"],["3","14","229","204","76","5"],["290","0","0","0","0","0"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>KICH<\/th>\n      <th>KIRC<\/th>\n      <th>KIRP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"KICH","targets":1},{"name":"KIRC","targets":2},{"name":"KIRP","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-babef3e701be2cad1f50" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-babef3e701be2cad1f50">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 4: Contigency table, Tumor Histology.<\/caption>","data":[["","G1","G2","G3","G4","GX"],["66","0","0","0","0","0"],["3","14","229","204","76","5"],["290","0","0","0","0","0"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>KICH<\/th>\n      <th>KIRC<\/th>\n      <th>KIRP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"KICH","targets":1},{"name":"KIRC","targets":2},{"name":"KIRP","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -427,7 +428,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 6: Contigency table, Tumor Histology</figcaption>
+<figcaption>Figure 6: Contigency table, Tumor Histology.</figcaption>
 </figure>
 </div>
 </div>
@@ -447,8 +448,8 @@ ul.task-list li input[type="checkbox"] {
 <p>The presence of 12 distinct substaging for TMN, and the relative small sample size across the cohort makes the outcome of this comparison difficult to judge. We could claim that KIRP seems to be enriched in lower tumor stages (T1a) and depleted in higher tumor stages (T2, T3a, T3b) than KIRC.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-d7b49e95cb5ca918eb64" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d7b49e95cb5ca918eb64">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 5: Contigency table, TMN Main Tumor<\/caption>","data":[["KICH","KIRC","KIRP"],[5,21,23],[5,139,107],[11,111,62],[19,55,18],[0,10,9],[6,4,5],[1,5,9],[14,120,39],[3,52,11],[0,2,1],[2,11,2],[0,0,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>T1<\/th>\n      <th>T1a<\/th>\n      <th>T1b<\/th>\n      <th>T2<\/th>\n      <th>T2a<\/th>\n      <th>T2b<\/th>\n      <th>T3<\/th>\n      <th>T3a<\/th>\n      <th>T3b<\/th>\n      <th>T3c<\/th>\n      <th>T4<\/th>\n      <th>TX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"T1","targets":1},{"name":"T1a","targets":2},{"name":"T1b","targets":3},{"name":"T2","targets":4},{"name":"T2a","targets":5},{"name":"T2b","targets":6},{"name":"T3","targets":7},{"name":"T3a","targets":8},{"name":"T3b","targets":9},{"name":"T3c","targets":10},{"name":"T4","targets":11},{"name":"TX","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-13ecd8cdfb2bce2b277b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-13ecd8cdfb2bce2b277b">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 5: Contigency table, TMN Main Tumor.<\/caption>","data":[["KICH","KIRC","KIRP"],[5,21,23],[5,139,107],[11,111,62],[19,55,18],[0,10,9],[6,4,5],[1,5,9],[14,120,39],[3,52,11],[0,2,1],[2,11,2],[0,0,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>T1<\/th>\n      <th>T1a<\/th>\n      <th>T1b<\/th>\n      <th>T2<\/th>\n      <th>T2a<\/th>\n      <th>T2b<\/th>\n      <th>T3<\/th>\n      <th>T3a<\/th>\n      <th>T3b<\/th>\n      <th>T3c<\/th>\n      <th>T4<\/th>\n      <th>TX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"T1","targets":1},{"name":"T1a","targets":2},{"name":"T1b","targets":3},{"name":"T2","targets":4},{"name":"T2a","targets":5},{"name":"T2b","targets":6},{"name":"T3","targets":7},{"name":"T3a","targets":8},{"name":"T3b","targets":9},{"name":"T3c","targets":10},{"name":"T4","targets":11},{"name":"TX","targets":12}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -456,7 +457,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 7: Contigency table, TMN Main Tumor</figcaption>
+<figcaption>Figure 7: Contigency table, TMN Main Tumor.</figcaption>
 </figure>
 </div>
 </div>
@@ -474,8 +475,8 @@ ul.task-list li input[type="checkbox"] {
 <p>In the kidney cohort, lymph nodes of 506 patiens could not be scored (NX), 328 patients had a N0 score, 43 N1 and 7 had a N2 score. Lymph nodes of most patients with KIRP tumors could not be scored, they they were depleted in No and enriched in N1 if compared with patients with KIRC tumor.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-6c0b0d9189695e9ec066" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6c0b0d9189695e9ec066">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 6: Contigency table, TMN Lymph nodes<\/caption>","data":[["KICH","KIRC","KIRP"],[40,239,49],[3,16,24],[2,0,5],[21,275,210]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N0<\/th>\n      <th>N1<\/th>\n      <th>N2<\/th>\n      <th>NX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N0","targets":1},{"name":"N1","targets":2},{"name":"N2","targets":3},{"name":"NX","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c9535861830cbc3a25bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c9535861830cbc3a25bb">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 6: Contigency table, TMN Lymph nodes.<\/caption>","data":[["KICH","KIRC","KIRP"],[40,239,49],[3,16,24],[2,0,5],[21,275,210]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N0<\/th>\n      <th>N1<\/th>\n      <th>N2<\/th>\n      <th>NX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N0","targets":1},{"name":"N1","targets":2},{"name":"N2","targets":3},{"name":"NX","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -483,7 +484,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: Contigency table, TMN Lymph nodes</figcaption>
+<figcaption>Figure 8: Contigency table, TMN Lymph nodes.</figcaption>
 </figure>
 </div>
 </div>
@@ -494,8 +495,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Of the 887 petients with kidney tumor, 659 were alive at the time of the last check up, while 228 died. It appears that KIRC patients (48.7% dead) have worse prognosis than KIRP patients (17.9% dead), as observed in the previous comparisons. However, before drawing a formal conclusion, we should validate this observation at least in another independent cohort.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-67308fd4c3dec74eda48" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-67308fd4c3dec74eda48">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 7: Contigency table, Prognosis Outcome<\/caption>","data":[["KICH","KIRC","KIRP"],[56,357,246],[10,174,44]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Alive<\/th>\n      <th>Dead<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Alive","targets":1},{"name":"Dead","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-60805cb7d874972ddd58" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-60805cb7d874972ddd58">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 7: Contigency table, Prognosis Outcome.<\/caption>","data":[["KICH","KIRC","KIRP"],[56,357,246],[10,174,44]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Alive<\/th>\n      <th>Dead<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Alive","targets":1},{"name":"Dead","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -503,7 +504,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="dataset-exploration_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 9: Contigency table, Vital Status</figcaption>
+<figcaption>Figure 9: Contigency table, Vital Status.</figcaption>
 </figure>
 </div>
 </div>
@@ -528,6 +529,75 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>The clinical outcome for KIRC patients seems to be more polarized: or the patient were cancer free at the end of the study, or the patient had more advanced tumour or a worse outcome when compared to KIRP patients. This overview suggest the possibility that if we could develop biomarkers for early detection of KIRC cancers we could improve the clinical outcome for these patients.</li>
 </ul>
+</section>
+<section id="session-information" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="session-information"><span class="header-section-number">1.5</span> Session Information</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.2 (2023-10-31)
+Platform: x86_64-conda-linux-gnu (64-bit)
+Running under: openSUSE Tumbleweed
+
+Matrix products: default
+BLAS/LAPACK: /home/andrea/miniforge3/envs/moai/lib/libmkl_rt.so.2;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=it_IT.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Brussels
+tzcode source: system (glibc)
+
+attached base packages:
+[1] grid      stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] vcd_1.4-13         umap_0.2.10.0      stringr_1.5.1      scales_1.3.0      
+ [5] RColorBrewer_1.1-3 matrixStats_1.5.0  gridExtra_2.3      ggplot2_3.5.1     
+ [9] forcats_1.0.0      edgeR_4.0.16       limma_3.58.1       DT_0.33           
+[13] dplyr_1.1.4        data.table_1.16.4  cowplot_1.1.3     
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.9          tidyr_1.3.1         generics_0.1.3     
+ [4] stringi_1.8.4       lattice_0.22-6      digest_0.6.37      
+ [7] magrittr_2.0.3      evaluate_1.0.3      fastmap_1.2.0      
+[10] jsonlite_1.8.9      Matrix_1.6-5        RSpectra_0.16-2    
+[13] purrr_1.0.2         crosstalk_1.2.1     jquerylib_0.1.4    
+[16] cli_3.6.3           rlang_1.1.5         munsell_0.5.1      
+[19] cachem_1.1.0        withr_3.0.2         yaml_2.3.10        
+[22] tools_4.3.2         colorspace_2.1-1    locfit_1.5-9.10    
+[25] BiocGenerics_0.48.1 reticulate_1.40.0   vctrs_0.6.5        
+[28] R6_2.5.1            png_0.1-8           zoo_1.8-12         
+[31] lifecycle_1.0.4     htmlwidgets_1.6.4   MASS_7.3-60.0.1    
+[34] pkgconfig_2.0.3     bslib_0.8.0         pillar_1.10.1      
+[37] gtable_0.3.6        glue_1.8.0          Rcpp_1.0.14        
+[40] statmod_1.5.0       xfun_0.50           tibble_3.2.1       
+[43] lmtest_0.9-40       tidyselect_1.2.1    knitr_1.49         
+[46] farver_2.1.2        htmltools_0.5.8.1   labeling_0.4.3     
+[49] rmarkdown_2.29      compiler_4.3.2      askpass_1.2.1      
+[52] openssl_2.3.1      </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>

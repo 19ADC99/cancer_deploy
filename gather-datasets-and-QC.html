@@ -251,6 +251,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#clinical-overview" id="toc-clinical-overview" class="nav-link" data-scroll-target="#clinical-overview">Clinical overview</a></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-gather-datasets-and-QC" id="toc-sec-lesson-learnt-gather-datasets-and-QC" class="nav-link" data-scroll-target="#sec-lesson-learnt-gather-datasets-and-QC">Lessons Learnt</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information">Session Information</a></li>
   </ul>
 </nav>
     </div>
@@ -330,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Demographic overview</figcaption>
+<figcaption>Figure 1: Demographic overview.</figcaption>
 </figure>
 </div>
 </div>
@@ -345,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 2: Clinical overview</figcaption>
+<figcaption>Figure 2: Clinical overview.</figcaption>
 </figure>
 </div>
 </div>
@@ -356,7 +357,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 3: Clinical metadata breakdown by sex and ethnicity</figcaption>
+<figcaption>Figure 3: Clinical metadata breakdown by sex and ethnicity.</figcaption>
 </figure>
 </div>
 </div>
@@ -367,7 +368,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="gather-datasets-and-QC_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 4: UMAP RNAseq</figcaption>
+<figcaption>Figure 4: UMAP RNAseq.</figcaption>
 </figure>
 </div>
 </div>
@@ -383,6 +384,69 @@ ul.task-list li input[type="checkbox"] {
 <li>TCGA provides abundant molecular and clinical information for both biopsies and patients and it allows for patient stratification and therapeutic target discovery.</li>
 <li>Cancers with kidneys as primary sites are the third most abundant samples available in TCGA (n = 1,030 samples), after breast (n = 1,246) and lung biopsies (n = 1,156), and provides an excellent yet challenging case-study.</li>
 </ul>
+</section>
+<section id="session-information" class="level2">
+<h2 class="anchored" data-anchor-id="session-information">Session Information</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.2 (2023-10-31)
+Platform: x86_64-conda-linux-gnu (64-bit)
+Running under: openSUSE Tumbleweed
+
+Matrix products: default
+BLAS/LAPACK: /home/andrea/miniforge3/envs/moai/lib/libmkl_rt.so.2;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=it_IT.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Brussels
+tzcode source: system (glibc)
+
+attached base packages:
+[1] grid      stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] umap_0.2.10.0      stringr_1.5.1      scales_1.3.0       RColorBrewer_1.1-3
+ [5] matrixStats_1.5.0  gridExtra_2.3      ggplot2_3.5.1      forcats_1.0.0     
+ [9] edgeR_4.0.16       limma_3.58.1       DT_0.33            dplyr_1.1.4       
+[13] data.table_1.16.4  cowplot_1.1.3     
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.9        generics_0.1.3    stringi_1.8.4     lattice_0.22-6   
+ [5] digest_0.6.37     magrittr_2.0.3    evaluate_1.0.3    fastmap_1.2.0    
+ [9] jsonlite_1.8.9    Matrix_1.6-5      RSpectra_0.16-2   crosstalk_1.2.1  
+[13] jquerylib_0.1.4   cli_3.6.3         rlang_1.1.5       munsell_0.5.1    
+[17] cachem_1.1.0      withr_3.0.2       yaml_2.3.10       tools_4.3.2      
+[21] colorspace_2.1-1  locfit_1.5-9.10   reticulate_1.40.0 vctrs_0.6.5      
+[25] R6_2.5.1          png_0.1-8         lifecycle_1.0.4   htmlwidgets_1.6.4
+[29] pkgconfig_2.0.3   pillar_1.10.1     bslib_0.8.0       gtable_0.3.6     
+[33] glue_1.8.0        Rcpp_1.0.14       statmod_1.5.0     xfun_0.50        
+[37] tibble_3.2.1      tidyselect_1.2.1  knitr_1.49        farver_2.1.2     
+[41] htmltools_0.5.8.1 labeling_0.4.3    rmarkdown_2.29    compiler_4.3.2   
+[45] askpass_1.2.1     openssl_2.3.1    </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
