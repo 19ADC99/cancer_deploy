@@ -291,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="6.2" class="anchored" data-anchor-id="multi-omics-factor-analysis"><span class="header-section-number">6.2</span> Multi-Omics Factor Analysis</h2>
 <section id="data-normalization" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="data-normalization"><span class="header-section-number">6.2.1</span> Data normalization</h3>
-<p>In the previous chapters we have analysed independently the transcriptomics (see <a href="transcriptomics-analysis.html" class="quarto-xref"><span>Chapter 2</span></a>), proteomics (see <a href="proteomics-analysis.html" class="quarto-xref"><span>Chapter 3</span></a>), micro-RNAs (see <span class="citation" data-cites="microRNAs-analysis">@microRNAs-analysis</span>), genomics and epigenomics (see <a href="genomics-and-epigenomics-analysis.html" class="quarto-xref"><span>Chapter 5</span></a>) data from three different kidney carcinomas KICH, KIRC and KIRP. This provided quite some insights on how the three kidney carcinomas are different at a molecular level. Also, we observed that different omics layers provided insights on different aspects of the cancers: for example, biopsies from KIRC patients clearly showed a strong signature for enrichment in glycolysis, glycogen metabolism and <em>HIF1A</em>-mediated response to hypoxia (<a href="https://doi.org/10.1126/science.1160809">Warburg effect</a>) that was not so apparent in the other omics.</p>
+<p>In the previous chapters we have analysed independently the transcriptomics (see <a href="transcriptomics-analysis.html" class="quarto-xref"><span>Chapter 2</span></a>), proteomics (see <a href="proteomics-analysis.html" class="quarto-xref"><span>Chapter 3</span></a>), micro-RNAs (see <a href="micro-RNAs-analysis.html" class="quarto-xref"><span>Chapter 4</span></a>), genomics and epigenomics (see <a href="genomics-and-epigenomics-analysis.html" class="quarto-xref"><span>Chapter 5</span></a>) data from three different kidney carcinomas KICH, KIRC and KIRP. This provided quite some insights on how the three kidney carcinomas are different at a molecular level. Also, we observed that different omics layers provided insights on different aspects of the cancers: for example, biopsies from KIRC patients clearly showed a strong signature for enrichment in glycolysis, glycogen metabolism and <em>HIF1A</em>-mediated response to hypoxia (<a href="https://doi.org/10.1126/science.1160809">Warburg effect</a>) that was not so apparent in the other omics.</p>
 <p>We observed as well consistent biological signature across different omics layers. For example:</p>
 <ul>
 <li>A strong EMT signature in biopsies from KIRC patients was detected both at the transcriptomics level and at the epigenomics level.</li>
@@ -306,18 +306,27 @@ ul.task-list li input[type="checkbox"] {
 <li>micro-RNAs</li>
 <li>epigenomics</li>
 </ul>
-<p>we have decided not to include CNVs and non-silent somatic mutations because the model we are going to use fail to capture significant signal from those binary sparse data.</p>
-<p>Despite the preprocessing, to compare this multiomics readouts on different scales we need to rescale and normalize each table</p>
-<p>mRNA was scaled and normalized by variance stabilizing transformation, top 1000 most variables features selected</p>
-<p>miRNAs was quantile-normalized</p>
-<p>for methylation probes, top 1000 most variables features selected</p>
-<p>Almost 100% samples representation across transcriptomics, proteomics, micro-RNAs and epigenomics</p>
+<p>We have decided not to include CNVs and non-silent somatic mutations because the model we are going to use fail to capture significant signal from those binary sparse data.</p>
+<p>So far, we have preprocessed each omics readout independently, i.e.: filtering out lowly abundant transcripts, or dropping methylation probes with missing values. The omics data are on different scales, and for proper estimating each omics contribution in the Multi-Omics Factor Analysis we would need to rescale and normalize each omics readout. Moreover, a feature selection step is necessary since the data shape have 4 orders of magnitude of difference, from 190 features for the micro-RNA up to the 141,704 ones of the epigenomics. Briefly, the normalization steps we performed before multi-omics integration are:</p>
+<ul>
+<li>Transcriptomics counts were scaled and normalized by variance stabilizing transformation. The top 1,000 most variable genes were selected for integration.</li>
+<li>Proteomics readouts were already scaled and centered, and all the 234 features were kept for the integration.</li>
+<li>micro-RNAs counts were quantile-normalized. All 190 features were kept for the integration.</li>
+<li>Beta values of the methylation status of the epigenomics probes were not normalized. The top 1,000 most variable probes were selected for integration.</li>
+</ul>
+<p>We can visualize the distribution of the multi-omics features across the 887 kidney carcinoma patients. We can immediately notice that we have a good coverage of the patients across the different omics layers:</p>
+<ul>
+<li>Proteomics data for 79.9% (709 / 887) of patients.</li>
+<li>Transcriptomics data for all the patients, 100% (887 / 887).</li>
+<li>micro-RNA data for 95,4% (846 / 887) of patients.</li>
+<li>Epigenomics data for 72,7% (646 / 887) of patients.</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Multiomics data overview</figcaption>
+<figcaption>Figure 1: Distribution of the multi-omics features across the 887 kidney carcinoma patients</figcaption>
 </figure>
 </div>
 </div>
@@ -325,17 +334,26 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="multi-omics-data-integration-and-analysis" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="multi-omics-data-integration-and-analysis"><span class="header-section-number">6.2.2</span> Multi-omics data integration and analysis</h3>
-<p>model prediction outcomes</p>
+<p>Now that we have normalized and prepared the multi-omics data, it is time to integrate them and run the Multi-Omics Factor Analysis model on them. MOFA inference is done using the variational Bayes algorithm, which maximises a quantity called the Evidence Lower Bound (ELBO). The ELBO is supposed to increase monotonically up to convergence. For our multi-omics kidney carcinomas data, the model converged after 551 iterations, with an ELBO=-1156553.09 and a deltaELBO=46.776 (0.00033245%).</p>
+<p>Let’s now explore the Factors identified with the MOFA model, the amount of variance explained, and their correlation with the clinical covariates. The model explains at least 40% of the variance in each omics layer, from ~47% in proteomics up to 67.1% in the transcriptomics data. We trained the MOFA model to report on 10 hidden factors. If we look at the distribution of the variance captured in the hidden factors, we can see that Factor 1 and Factor 2 captures more than 30% of the variance for each omics layer, and most of the variance for each layer it is captured within these two factors. The only exception is Factor 3, which captures 14.4% of the micro-RNAs varaince, and Factor 5, which captures ~8% of epigenomics variance.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 2: Multiomics data overview</figcaption>
+<figcaption>Figure 2: Overview of the variance captured by the MOFA model.</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Then, we can look at the correlation between the factors and clinical covariates.</p>
+<p>and we see that the factors do not correlate with each other, suggesting that each of them captures a different aspect of the technical or biological variability of the dataset. The only exception could be Factor 5, which seems to weakly correlates with Factors 1, 2, 4, 6, 7 and 8.</p>
+<ul>
+<li>Factor 1: subtype integrative, histological grade, subtype microRNA, mRNA, cancert type histological type, clinical stage, stbtype selected</li>
+<li>Factor 2: subtype selectd, cancer_type, histological type</li>
+<li>Factor 3 Tumor_nuclei, pathologic_t, tumor_stage, vital_status, tumro cells, slightly on subtype selected</li>
+<li>confirmed taht factor5 is significantly associated iwht subtype DNAmethyl</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -354,11 +372,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>s</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 2:</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Each MOFA factor captures a different dimension of heterogeneity in the data. Mathematically, each factor ordinates cells along a one-dimensional axis centered at zero. Samples with different signs manifest opposite phenotypes along the inferred axis of variation, with higher absolute value indicating a stronger effect. Note that the interpretation of factors is analogous to the interpretation of the principal components in PCA.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -375,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -385,7 +415,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -397,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -407,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -419,7 +449,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -429,7 +459,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -441,7 +471,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -451,7 +481,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -463,7 +493,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -473,7 +503,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -485,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -495,7 +525,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -512,7 +542,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -547,7 +577,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KIRC vs KIRP model</figcaption>
 </figure>
 </div>
@@ -555,7 +585,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-25-2.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KIRC vs KIRP model</figcaption>
 </figure>
 </div>
@@ -575,7 +605,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -586,7 +616,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -604,7 +634,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -614,7 +644,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -626,7 +656,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -636,7 +666,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -648,7 +678,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -658,7 +688,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -670,7 +700,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -680,7 +710,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -697,7 +727,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -709,7 +739,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -717,7 +747,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-41-2.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-42-2.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -733,7 +763,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -745,7 +775,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
 </figure>
 </div>
@@ -756,7 +786,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -775,7 +805,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -785,7 +815,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -797,7 +827,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -807,7 +837,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -819,7 +849,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -829,7 +859,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -841,7 +871,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -851,7 +881,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -868,7 +898,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
 </figure>
 </div>
@@ -880,7 +910,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -888,7 +918,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-2.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-59-2.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -906,7 +936,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
 </figure>
 </div>
@@ -917,7 +947,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -938,7 +968,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid figure-img" width="864"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="864"></p>
 <figcaption>Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
 </figure>
 </div>
@@ -950,7 +980,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-67-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
 </figure>
 </div>
@@ -962,7 +992,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-67-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
 </figure>
 </div>
@@ -974,7 +1004,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 17: dotplot of enriched KEGG pathways</figcaption>
 </figure>
 </div>
@@ -986,7 +1016,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-69-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-70-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 20: dotplot of enriched Reactome pathways</figcaption>
 </figure>
 </div>
@@ -998,7 +1028,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-70-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 20: dotplot of enriched WikiPathways</figcaption>
 </figure>
 </div>
