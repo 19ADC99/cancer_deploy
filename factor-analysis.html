@@ -244,11 +244,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#multi-omics-interaction-network-1" id="toc-multi-omics-interaction-network-1" class="nav-link" data-scroll-target="#multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</a></li>
   <li><a href="#pathway-analysis-1" id="toc-pathway-analysis-1" class="nav-link" data-scroll-target="#pathway-analysis-1"><span class="header-section-number">6.2.4.2</span> Pathway analysis</a></li>
   </ul></li>
-  <li><a href="#factor-3-higher-hazard-ratio" id="toc-factor-3-higher-hazard-ratio" class="nav-link" data-scroll-target="#factor-3-higher-hazard-ratio"><span class="header-section-number">6.2.5</span> Factor 3: Higher Hazard Ratio</a>
-  <ul>
-  <li><a href="#multi-omics-interaction-network-2" id="toc-multi-omics-interaction-network-2" class="nav-link" data-scroll-target="#multi-omics-interaction-network-2"><span class="header-section-number">6.2.5.1</span> Multi-omics interaction network</a></li>
-  <li><a href="#pathway-analysis-2" id="toc-pathway-analysis-2" class="nav-link" data-scroll-target="#pathway-analysis-2"><span class="header-section-number">6.2.5.2</span> Pathway analysis</a></li>
-  </ul></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
   </ul>
@@ -579,7 +574,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+<figcaption>Figure 16: Dotplot of enriched Reactome pathways in Factor 1.</figcaption>
 </figure>
 </div>
 </div>
@@ -591,7 +586,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+<figcaption>Figure 17: Heatplot of enriched GO Reactome pathways in Factor 1.</figcaption>
 </figure>
 </div>
 </div>
@@ -603,7 +598,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
+<figcaption>Figure 18: Dotplot of enriched WikiPathways in Factor 1.</figcaption>
 </figure>
 </div>
 </div>
@@ -615,7 +610,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span data-colour="#b22222">Figure 8: dotplot of enriched GO Biological Process terms</span></figcaption>
+<figcaption><span data-colour="#4682B4">Figure 19: Heatplot of enriched WikiPathways in Factor 1.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -795,168 +790,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>saassaas</p>
-</section>
-</section>
-<section id="factor-3-higher-hazard-ratio" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="factor-3-higher-hazard-ratio"><span class="header-section-number">6.2.5</span> Factor 3: Higher Hazard Ratio</h3>
-<p>Let’s explore the contribution of each omics layer to Factor 3.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">methyl</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>daadadad</p>
-<section id="multi-omics-interaction-network-2" class="level4" data-number="6.2.5.1">
-<h4 data-number="6.2.5.1" class="anchored" data-anchor-id="multi-omics-interaction-network-2"><span class="header-section-number">6.2.5.1</span> Multi-omics interaction network</h4>
-<p>GET top molecules</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Let’s build the network now</p>
-<p>We can also remove the PPI interactions retrieved from STRING, and use only a gene interaction networks reconstructed from the OmniPath interaction networks. This may help to generate a simplified, more readable gene network.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 99: KICH model</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-2.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 99: KICH model</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>ss</p>
-</section>
-<section id="pathway-analysis-2" class="level4" data-number="6.2.5.2">
-<h4 data-number="6.2.5.2" class="anchored" data-anchor-id="pathway-analysis-2"><span class="header-section-number">6.2.5.2</span> Pathway analysis</h4>
-<p>prep gene list</p>
-<p>Some relevant biological processes</p>
-<p>No KEGG pathways</p>
-<p>No reactome (generatio &lt;= 10%)</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Wikipathways</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>wuwuwuwuwuwuwuwwuwuwuwuwuwuwu</p>
 </section>
 </section>
 </section>
