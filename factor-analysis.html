@@ -249,7 +249,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#multi-omics-interaction-network-2" id="toc-multi-omics-interaction-network-2" class="nav-link" data-scroll-target="#multi-omics-interaction-network-2"><span class="header-section-number">6.2.5.1</span> Multi-omics interaction network</a></li>
   <li><a href="#pathway-analysis-2" id="toc-pathway-analysis-2" class="nav-link" data-scroll-target="#pathway-analysis-2"><span class="header-section-number">6.2.5.2</span> Pathway analysis</a></li>
   </ul></li>
-  <li><a href="#enrichments-comparisons" id="toc-enrichments-comparisons" class="nav-link" data-scroll-target="#enrichments-comparisons"><span class="header-section-number">6.2.6</span> Enrichments comparisons</a></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
   </ul>
@@ -512,70 +511,69 @@ ul.task-list li input[type="checkbox"] {
 <p>Overall, based on these results, we expect transcriptomics, proteomics and epigenomics top features to characterize KIRC. KICH methylation profile seems overlapping with both KIRC and KIRP. micro-RNAs top features seems to separate the KIRC patients with had a worse clinical outocome.</p>
 <section id="multi-omics-interaction-network" class="level4" data-number="6.2.3.1">
 <h4 data-number="6.2.3.1" class="anchored" data-anchor-id="multi-omics-interaction-network"><span class="header-section-number">6.2.3.1</span> Multi-omics interaction network</h4>
-<p>GET top molecules</p>
+<p>In the next step, we retrieve the most important features in Factor 1 for each omics layer and we look manually curated databases for gene-gene interaction in order to refine the molecular signature we are building for the kidney carcinomas. We could follow two very naive strategies:</p>
+<ul>
+<li>if weights have a normal distribution, set a threshold above/below mean +/- 2sd (red dotted lines).</li>
+<li>Select top 10% features with highest / lowest weights for each omics layer (blue dots).</li>
+</ul>
+<p>Based on the sorted features vs weights distributions, we can see that for Factor 1 the features do not have a normal distribution in any of omics layer. We therefore decide to get the top 10% features with the highest absolute weight to build our gene network.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+<figcaption>Figure 14: Weight distributions of omics features in Factor 1.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Gather OmniPath and STRINGdb</p>
-<p>OmniPath can serve multiple kinds of interactions, based on the quality of the interactors or the interactions themselves:</p>
+<p>To include the epigenomics information in the gene network, we will map the top methylation probes to their corresponding gene based on the Illumina Methylation 450k chip annotation profile provided by the <a href="https://bioconductor.org/packages/release/bioc/html/minfi.html">minfi R package</a>.</p>
+<p>We retrieve the gene interactions networks from two main sources: the <a href="https://string-db.org/">STRING database</a> and <a href="https://omnipathdb.org/">OmniPath</a>. STRING aggregates information on Protein-Protein Interactions (PPIs) from multiple sources. They provide several levels of evidences with corresponding confidence scores. We have decided to retain only Protein-Protein Interactions that were experimentally validated and with a confidence score of at least 700 (in a scale from 0 to 1000). Among the others, OmniPath aggregates information on gene interactions, and it is not restricted to PPIs, but covers several aspects of gene interactions and regulatory networks. From OmniPath, we retrieve:</p>
 <ul>
-<li>post_translational i.e.&nbsp;physical interactions of proteins, protein-protein interactions (or PPIs)</li>
-<li>transcriptional i.e.&nbsp;gene regulatory interactions</li>
-<li>post_transcriptional i.e.&nbsp;miRNA-mRNA interactions</li>
-<li>mirna_transcriptional i.e.&nbsp;transcriptional regulation of miRNA genes</li>
+<li><em>post translational interactions</em>: physical interactions of proteins, i.e.: PPIs.</li>
+<li><em>transcriptional interactions</em>: gene regulatory interactions, i.e.&nbsp;interactions between transcription factors and the genes they regulates.</li>
+<li><em>post transcriptional interaction</em>: i.e.&nbsp;miRNAs-mRNA interactions and the resulting gene expression regulation.</li>
+<li><em>miRNAs transcriptional interactions</em>: i.e.&nbsp;transcriptional regulation of micrp-RNAs.</li>
 </ul>
-<p>LIST ALL INTERACTIONS</p>
-<p>get_intercell_resources()</p>
-<pre data-eval="FALSE"><code>##  [1] "Adhesome"             "Almen2009"            "Baccin2019"          
-##  [4] "CellCellInteractions" "CellPhoneDB"          "ComPPI"              
-##  [7] "CSPA"                 "DGIdb"                "EMBRACE"             
-## [10] "GO_Intercell"         "GPCRdb"               "Guide2Pharma"        
-## [13] "HGNC"                 "HPA_secretome"        "HPMR"                
-## [16] "ICELLNET"             "Integrins"            "iTALK"               
-## [19] "Kirouac2010"          "LOCATE"               "LRdb"                
-## [22] "Matrisome"            "MatrixDB"             "MCAM"                
-## [25] "Membranome"           "OmniPath"             "OPM"                 
-## [28] "Phobius"              "Ramilowski_location"  "Ramilowski2015"      
-## [31] "SignaLink_function"   "Surfaceome"           "TopDB"               
-## [34] "UniProt_keyword"      "UniProt_location"     "UniProt_topology"    
-## [37] "Zhong2015"</code></pre>
-<p>Let’s build the network now</p>
-<p>plot my network</p>
+<p>Let’s integrate the interaction networks pulled from OmniPath with the high confidence PPI retrieved from STRING into a single, cohesive gene interaction network where we can layer the multi-omics information from the kidney carcinomas.</p>
+<p>All these information combined allow us to leverage the contribution of the top features from each omics layer. Let’s plot them on the gene network we have reconstructed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 99: KIRC vs KIRP model</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 99: KIRC vs KIRP model</figcaption>
+<figcaption>Figure 15: KIRC vs KIRP and KIRC molecular gene network based on STRING and OmniPath interactions.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Let’s build a wider network</p>
-<p>MUST FIND A WAY TO SIMPLIFY NETWORK IF NO INTERACTION BETWEEN SIGNIFICANT IN MORE THAN 1 STEP</p>
+<p>The gene interaction network we have reconstructed provides great insights on the molecular characterization of KIRC and KIRP, based on the magnitude of the Factor 1 weights for each omics feature:</p>
+<ul>
+<li><strong>KIRC</strong>:
+<ul>
+<li><em>FLT1</em>, <em>HIF1A</em>, <em>NOTCH4</em>, <em>PDGFRB</em>, <em>VEGFA</em> suggest a hypoxia-driven microenvironment for KIRC.</li>
+<li>overexpression of <em>ENPP3</em> transcript and overabundance of the proteins <em>PYGB</em>, <em>PYGL</em>, <em>PYGM</em> suggest higher glycolysis and Warburg effect in KIRC compared to KICH and KIRP.</li>
+<li><em>miR-210-3p</em> and <em>miR-143-3p</em> supports the higher hypoxic adaptation and metabolic rewiring of KIRC.</li>
+<li><em>ITGA2</em> hypermethylated, and <em>COL3A1</em>, <em>COL5A3</em>, <em>COL6A3</em> suggests a stronger ECM remodelling and EMT signal in KIRC vs KIRP and KICH.</li>
+</ul></li>
+<li><strong>KIRP</strong>:
+<ul>
+<li><em>CHL1</em>, <em>CLDN7</em>, <em>KRT7</em>, <em>PIGR</em>, <em>SLC34A2</em>, <em>WFDC2</em>, suggest a larger role of epithelial integrity, tight junctions and differentiation in KIRP and KICH when compared to KIRC.</li>
+<li><em>miR-21-5p</em> and <em>miR-10a-5p</em> may promote proliferation and angiogenesis in KIRP.</li>
+</ul></li>
+</ul>
 </section>
 <section id="pathway-analysis" class="level4" data-number="6.2.3.2">
 <h4 data-number="6.2.3.2" class="anchored" data-anchor-id="pathway-analysis"><span class="header-section-number">6.2.3.2</span> Pathway analysis</h4>
-<p>prep gene list</p>
+<p>As we have done for the differentially abundant features at the single omics level, we can run a Gene Set Enrichment Analysis (GSEA) on the multi-omics features we have identified in Factor 1.</p>
 <p>Little GO relevant terms</p>
 <p>Some KEGG pathways, with very low gene coverage (false positive)</p>
 <p>some Reactome pathways, but with low coverage (max 10% of genes covered)</p>
 <p>The network we have built may reflect new interactions.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Reactome dotplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Reactome heatplot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">WikiPathways dotplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -586,7 +584,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Wikipathways</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -597,21 +596,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="factor-2-kich" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.4</span> Factor 2: KICH</h3>
-<p>Let’s explore the contribution of each omics layer to Factor 2.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">methyl</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
 </div>
@@ -621,13 +613,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+<figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+</div>
+</div>
+</section>
+</section>
+<section id="factor-2-kich" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.4</span> Factor 2: KICH</h3>
+<p>Let’s explore the contribution of each omics layer to Factor 2.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">methyl</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -649,7 +651,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -671,7 +673,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -693,12 +695,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>daadadad</p>
-<section id="multi-omics-interaction-network-1" class="level4" data-number="6.2.4.1">
-<h4 data-number="6.2.4.1" class="anchored" data-anchor-id="multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</h4>
-<p>GET top molecules</p>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -709,13 +706,40 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Let’s build the network now</p>
-<p>plot my network</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>daadadad</p>
+<section id="multi-omics-interaction-network-1" class="level4" data-number="6.2.4.1">
+<h4 data-number="6.2.4.1" class="anchored" data-anchor-id="multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</h4>
+<p>GET top molecules</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s build the network now</p>
+<p>We can also remove the PPI interactions retrieved from STRING, and use only a gene interaction networks reconstructed from the OmniPath interaction networks. This may help to generate a simplified, more readable gene network.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -723,7 +747,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-39-2.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-41-2.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -739,7 +763,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -751,7 +775,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
 </figure>
 </div>
@@ -762,7 +786,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -775,31 +799,9 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="6.2.5" class="anchored" data-anchor-id="factor-3-higher-hazard-ratio"><span class="header-section-number">6.2.5</span> Factor 3: Higher Hazard Ratio</h3>
 <p>Let’s explore the contribution of each omics layer to Factor 3.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">methyl</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">mRNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">methyl</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -821,7 +823,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -843,7 +845,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -865,12 +867,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>daadadad</p>
-<section id="multi-omics-interaction-network-2" class="level4" data-number="6.2.5.1">
-<h4 data-number="6.2.5.1" class="anchored" data-anchor-id="multi-omics-interaction-network-2"><span class="header-section-number">6.2.5.1</span> Multi-omics interaction network</h4>
-<p>GET top molecules</p>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -881,13 +878,40 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Let’s build the network now</p>
-<p>plot my network</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>daadadad</p>
+<section id="multi-omics-interaction-network-2" class="level4" data-number="6.2.5.1">
+<h4 data-number="6.2.5.1" class="anchored" data-anchor-id="multi-omics-interaction-network-2"><span class="header-section-number">6.2.5.1</span> Multi-omics interaction network</h4>
+<p>GET top molecules</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 1: Filtering Lowly Expressed Genes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s build the network now</p>
+<p>We can also remove the PPI interactions retrieved from STRING, and use only a gene interaction networks reconstructed from the OmniPath interaction networks. This may help to generate a simplified, more readable gene network.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -895,7 +919,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-56-2.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-58-2.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 99: KICH model</figcaption>
 </figure>
 </div>
@@ -913,7 +937,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of over-represented Reactome pathways</figcaption>
 </figure>
 </div>
@@ -924,7 +948,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="960"></p>
 <figcaption>Figure 8: dotplot of enriched GO Biological Process terms</figcaption>
 </figure>
 </div>
@@ -932,88 +956,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>wuwuwuwuwuwuwuwwuwuwuwuwuwuwu</p>
 </section>
-</section>
-<section id="enrichments-comparisons" class="level3" data-number="6.2.6">
-<h3 data-number="6.2.6" class="anchored" data-anchor-id="enrichments-comparisons"><span class="header-section-number">6.2.6</span> Enrichments comparisons</h3>
-<p>lets compare the KIRC vs KIRP and KICH gene lists</p>
-<p>prep gene lists</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">GO BP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">GO CC</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">GO MF</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">KEGG pathways</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false">Reactome pathways</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false">WikiPathways</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="864"></p>
-<figcaption>Figure 9: Term maps reporting relationships between GO Biological Process across the different contrasts</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 11: dotplot of enriched GO Cellular Compartments terms</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 14: dotplot of enriched GO Molecular Functions terms</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 17: dotplot of enriched KEGG pathways</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-67-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 20: dotplot of enriched Reactome pathways</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-68-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 20: dotplot of enriched WikiPathways</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
