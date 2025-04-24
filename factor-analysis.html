@@ -481,7 +481,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Interpretation of these high dimensional data is not straightforward, but we can pick on some emerging trends:</p>
 <ul>
-<li><strong>Trancriptomics</strong>:
+<li><strong>Transcriptomics</strong>:
 <ul>
 <li>Most of positive features seems not linear. Negative factors, which are strongly associated with KIRC, are instead linear.</li>
 <li>Looking at the heatmap with the top 100 features with highest absolute weight, we can see that these features are mostly associated to KIRC, which clusters in a single large block on the right hand side of the heatmap. KICH and KIRP seems as well quite clustered based on the top 100 transcriptomics features, except for a small clusters of KIRP patients that sits next to next to KIRC where most of the KIRP patients with worse outcome are located.</li>
@@ -537,7 +537,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 15: KIRC vs KIRP and KIRC molecular gene network based on STRING and OmniPath interactions.</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 15: KIRC vs KIRP and KICH molecular gene network based on STRING and OmniPath interactions.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -652,7 +652,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="6.2.4" class="anchored" data-anchor-id="factor-2-kich"><span class="header-section-number">6.2.4</span> Factor 2: KICH</h3>
 <p>Let’s explore the contribution of each omics layer to Factor 2. For each omics layer we generate the scatter plots and a biclustered heatmap for the top 40 and 100 features with higher weights, as we have done for Factor 1 (see <a href="#sec-factor1" class="quarto-xref"><span>Section 6.2.3</span></a>).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Transcriptomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">micro-RNA</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">methyl</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Transcriptomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">micro-RNAs</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Proteomics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Epigenomics</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
@@ -660,7 +660,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 22: Scatterplots for the top 40 transcriptomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -670,7 +670,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 23: Heatmap for the top 100 transcriptomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -682,7 +682,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 24: Scatterplots for the top 40 micro-RNAs features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -692,7 +692,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 25: Heatmap for the top 100 micro-RNAs features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -704,7 +704,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 26: Scatterplots for the top 40 proteomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -714,7 +714,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 27: Heatmap for the top 100 proteomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -726,7 +726,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 28: Scatterplots for the top 40 epigenomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -736,7 +736,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 19: Heatmap for the top 100 epigenomics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -744,81 +744,150 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>daadadad</p>
+<p>Let’s look at the emerging trends from the multi-omics factor model in Factor2:</p>
+<ul>
+<li><strong>Transcriptomics</strong>:
+<ul>
+<li>Most of the positive features, that are correlated with KICH, seems linear, in contrast to the negative ones. As also observed in the Factor 1 X Factor 2 biplot, KICH biopsies are clearly separated from KIRC and KIRP biopsies, which in general clusters together. Proto-oncogene <em>KIT</em> is strongly associated with KICH in Factor 2, which is consistent with what we observed in the proteomics analyses (see <a href="proteomics-analysis.html" class="quarto-xref"><span>Chapter 3</span></a>).</li>
+<li>Looking at the heatmap with the top 100 features with highest absolute weight, we can see that just 16 of them are associated with KICH, but their weight are very high. Based on Factor 2 weigths, expression profiles are similar in KIRC and KIRP, and the clusters of these two kidney carcinoma types are not well defined. A small subcluster of KIRC and KIRP biopsies sits next to the KICH cluster, has a different profile than the rest of KIRC and KIRP samples and seems enriched in patients with worse prognosis (<em>vital status</em>).</li>
+</ul></li>
+<li><strong>micro-RNAs</strong>:
+<ul>
+<li>The scatterplots indicates that the separation between KICH and KIRC or KIRP samples is less clear in the micro-RNAs when compared to the transcriptomics data. The linearity assumption seems respected in many cases, and we observe some linear artefacts as observed as well in Factor 1 (see <a href="#sec-factor1" class="quarto-xref"><span>Section 6.2.3</span></a>).</li>
+<li>The heatmap indicates again a clear solid cluster of KICH biopsies. KIRC and KIRP seems to have different expression profiles based on Factor 2 weights. KIRC samples clusters in two separated groups, the smallest one with a higher number of patients with worse outcome</li>
+</ul></li>
+<li><strong>Proteomics</strong>
+<ul>
+<li>Most of the proteomics features seems not linear for Factor 2, but they clearly separates KICH biopsies from KIRC and KIRP. For features strongly associate with KIRC (e.g.: <em>PYGB</em>, <em>HIF1ALPHA</em>, <em>LDHA</em>), there is a clear separation between KIRC and KIRP biopsies as well. The features with the highest positive weight (strongly associated with KIRC) are <em>CKIT</em>, <em>CLAUDIN7</em>, <em>ECADHERIN</em>, and this is consistent with the idea that KICH tumors generally retain their epitelial differentiation.</li>
+<li>The heatmap indicates again a clear solid cluster of KICH biopsies. KIRC and KIRP seems to have different expression profiles based on Factor 2 weights.</li>
+</ul></li>
+<li><strong>Epigenomics</strong>:
+<ul>
+<li>The scatterplots of the features with highest absolute weights suggested that linearity is present in most of these features.</li>
+<li>Looking at the heatmap, KICH biopsies have a strong profile of 44 probes with high positive weight in Factor 2. The top 100 features with highest absolute weight for Factor 2 fail to further discriminate between KIRC and KIRP biopsies, which clusters together in interspersed groups.</li>
+</ul></li>
+</ul>
+<p>Overall, based on these results, we expect Factor 2 transcriptomics, proteomics and epigenomics top features to characterize KICH biopsies.</p>
 <section id="multi-omics-interaction-network-1" class="level4" data-number="6.2.4.1">
 <h4 data-number="6.2.4.1" class="anchored" data-anchor-id="multi-omics-interaction-network-1"><span class="header-section-number">6.2.4.1</span> Multi-omics interaction network</h4>
-<p>GET top molecules</p>
+<p>In the next step, we retrieve the most important features in Factor 2 for each omics layer and we look manually curated databases for gene-gene interaction in order to refine the molecular signature we are building for the kidney carcinomas.</p>
+<p>Based on the sorted features vs weights distributions, we can see that for Factor 2 the features do not have a normal distribution in any of omics layer. We therefore decide to get the top 10% features with the highest absolute weight to build our gene network.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Filtering Lowly Expressed Genes</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 20: Weight distributions of omics features in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Let’s build the network now</p>
-<p>We can also remove the PPI interactions retrieved from STRING, and use only a gene interaction networks reconstructed from the OmniPath interaction networks. This may help to generate a simplified, more readable gene network.</p>
+<p>As we have done for Factor 1 (see <a href="#sec-factor1" class="quarto-xref"><span>Section 6.2.3</span></a>), we layer the multi-omics features identified with the Factor Analysis on top of a gene interaction network build by merging STRING and gene networks from OmniPath. To help to generate a simplified, more readable gene network, we can also remove the PPI interactions retrieved from STRING, and use only a gene interaction networks reconstructed from the OmniPath interaction networks.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 99: KICH model</span></figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="factor-analysis_files/figure-html/unnamed-chunk-43-2.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 99: KICH model</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 21: KICH molecular gene network based on OmniPath interactions.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>ss</p>
+<p>The gene interaction network we have reconstructed provides great insights on the molecular characterization of KICH, based on the magnitude of the Factor 2 weights for each omics feature:</p>
+<ul>
+<li>Overexpressed transcripts for genes <em>INPP5J</em>, <em>KIT</em>, <em>NTN1</em>, <em>SCNN1A</em> suggest a strong differentiated epithelial phenotype.</li>
+<li>Suppression of <em>HNF4</em> transcript and lower abundance of <em>HIF1A</em>, <em>LDHA</em> and <em>NDRG1</em> proteins suggest reduced metabolic activity and reliance on glycolysis in KICH compared to KIRC and KIRP.</li>
+<li>Hypometilation of homeobox genes <em>HOXA7</em>, <em>HOXB3</em>, <em>HOXB5</em>, <em>HOXC4</em> may allow activation of differentiation pathways, maintaining epithelial identity.</li>
+<li><em>miR-200c-3p</em> could be involved in maintaining the epithelial integrity and inhibit EMT in KICH.</li>
+<li>Suppressed <em>miR-21-5p</em> could explain the limited pathways associated with immune evasion and inflammation in KICH.</li>
+</ul>
 </section>
 <section id="pathway-analysis-1" class="level4" data-number="6.2.4.2">
 <h4 data-number="6.2.4.2" class="anchored" data-anchor-id="pathway-analysis-1"><span class="header-section-number">6.2.4.2</span> Pathway analysis</h4>
-<p>prep gene list</p>
-<p>Some relevant biological processes</p>
+<p>As we have done for the differentially abundant features at the single omics level, we can run a Gene Set Enrichment Analysis (GSEA) on the multi-omics features we have identified in Factor 2.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">GO BP ratios</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">GO BP genes</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Reactome ratios</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">Reactome genes</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false">WikiPathways ratios</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false">WikiPathways heatplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 8: dotplot of enriched GO Biological Process terms</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 22: dotplot of enriched GO Biological Process terms in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>No KEGG pathways</p>
-<p>No reactome (generatio &lt;= 10%)</p>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="factor-analysis_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 8: dotplot of over-represented Reactome pathways</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 23: Heatplot of enriched GO Biological Process terms in Factor 2.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Wikipathways</p>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <div class="cell">
 <div class="cell-output-display">
-<p>![`Figure 8: dotplot of enriched GO Biological Process terms]](factor-analysis_files/figure-html/unnamed-chunk-48-1.png){width=960}</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 24: Dotplot of enriched Reactome pathways in Factor 2.</span></figcaption>
+</figure>
 </div>
 </div>
-<p>saassaas</p>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 25: Heatplot of enriched Reactome pathways in Factor 2.</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 26: Dotplot of enriched WikiPathways in Factor 2.</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="factor-analysis_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 27: Heatplot of enriched WikiPathways in Factor 2.</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The combination of transcriptomics, proteomics, micro-RNA and epigenomics signal allowed the reconstruction of a molecular network of interactions that properly describe KICH. For each feature, we have information on its weight on the model, the omic origin (e.g: transcriptomics evidence), their molecular function (e.g.: transcription factor, transmembrane receptor, etc.) and the nature of the molecular interaction with the other features in the model.</p>
 </section>
 </section>
 </section>
 <section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</h2>
-<p>[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]</p>
 <p>So far, we have learnt:</p>
 <ul>
 <li>A</li>
