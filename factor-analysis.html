@@ -246,6 +246,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   </ul></li>
   <li><a href="#sec-lesson-learnt-factor-analysis" id="toc-sec-lesson-learnt-factor-analysis" class="nav-link" data-scroll-target="#sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">6.4</span> Session Information</a></li>
   </ul>
 </nav>
     </div>
@@ -892,6 +893,261 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>A</li>
 </ul>
+<p>Based on genomics and epigenomics data, we have learnt:</p>
+<ul>
+<li>Copy Number Variants:
+<ul>
+<li>KICH has significantly more genome instability and CNV events than KIRC and KIRP</li>
+<li>whole genome duplication seems more likely to occur than loss of chromosomes</li>
+<li>there is a link between CNVs signatures and cancer advancement, which is a common feature across all kidney carcinomas and not limited to KIRC, KIRP or KICH.</li>
+</ul></li>
+<li>Somatic Mutations:
+<ul>
+<li>KIRC is the kidney carcinoma with the highest amount of non-silent somatic mutations.</li>
+<li>KICH:
+<ul>
+<li>~30% of the patients (21 / 66) had a non-silent mutation in TP53.</li>
+<li>9% of patients (6 / 66) having a mutation on PTEN.</li>
+</ul></li>
+<li>KIRC:
+<ul>
+<li>47% of patients (170 / 365) with mutation in VHL</li>
+<li>~40% of patients (145 / 365) with mutation on PBRM1</li>
+<li>~20% of patients (72 / 365) with non-silent somatic mutations on TTN</li>
+</ul></li>
+<li>KIRP:
+<ul>
+<li>16% of KIRP patients (45 / 280) has non-silent somatic mutations on TTN</li>
+<li>9% of KIRP patients (25 / 280) with mutation on MUC16</li>
+<li>8% of KIRP patients (22 / 280) with mutation on MET</li>
+</ul></li>
+</ul></li>
+<li>Epigenomics:
+<ul>
+<li>Exploratory analysis suggests:
+<ul>
+<li>Principal Component Analysis can discriminates between KICH, KIRC and KIRP.</li>
+<li><em>subtype DNAmeth</em> co-correlates with residual disease, more advanced cancer and worse prognosis, suggesting that DNA methylations and epigenomics plays a major role in cancer evolution and disease outcome.</li>
+</ul></li>
+<li>Differential Gene Expression analysis:
+<ul>
+<li>strong methylation signature that discriminates KICH from KIRC and KIRP (&gt; 4,000 probes).</li>
+<li>GSEA on differentially methylated probes supports the idea that:
+<ul>
+<li>KICH biopsies mostly retained their epithelial differentiation that was instead lost in KIRC and in KIRP.</li>
+<li>Higher abundance of infiltrating Macrophages M0 and M2 in KIRP.</li>
+<li>A pro-inflammatory, hypoxic microenvironment in KIRC.</li>
+</ul></li>
+<li>GSEA on Differentially Methylated function Regions support the idea that:
+<ul>
+<li>General theme of epithelial differentiation retention in KICH.</li>
+<li>A stronger Epithelial-to-Mesenchimal Transition in KIRC, with a signature of extra-cellular matrix remodelling and cell migration.</li>
+<li><em>MET</em> pathway is differentially methylated in KIRP, which is consistent with the higher chance of <em>MET</em> non-silent somatic mutation in this kind of kidney carcinoma.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="session-information" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="session-information"><span class="header-section-number">6.4</span> Session Information</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.2 (2023-10-31)
+Platform: x86_64-conda-linux-gnu (64-bit)
+Running under: openSUSE Tumbleweed
+
+Matrix products: default
+BLAS/LAPACK: /home/andrea/miniforge3/envs/moai/lib/libmkl_rt.so.2;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=it_IT.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Brussels
+tzcode source: system (glibc)
+
+attached base packages:
+ [1] parallel  grid      stats4    stats     graphics  grDevices utils    
+ [8] datasets  methods   base     
+
+other attached packages:
+ [1] UpSetR_1.4.0                                      
+ [2] tidygraph_1.3.1                                   
+ [3] umap_0.2.10.0                                     
+ [4] stringr_1.5.1                                     
+ [5] STRINGdb_2.14.3                                   
+ [6] scales_1.3.0                                      
+ [7] RColorBrewer_1.1-3                                
+ [8] pathview_1.42.0                                   
+ [9] org.Hs.eg.db_3.18.0                               
+[10] MOFA2_1.12.1                                      
+[11] infiltR_0.1.0                                     
+[12] IlluminaHumanMethylation450kanno.ilmn12.hg19_0.6.1
+[13] minfi_1.48.0                                      
+[14] bumphunter_1.44.0                                 
+[15] locfit_1.5-9.10                                   
+[16] iterators_1.0.14                                  
+[17] foreach_1.5.2                                     
+[18] Biostrings_2.70.3                                 
+[19] XVector_0.42.0                                    
+[20] igraph_2.1.4                                      
+[21] gridExtra_2.3                                     
+[22] ggraph_2.2.1                                      
+[23] ggplot2_3.5.1                                     
+[24] forcats_1.0.0                                     
+[25] edgeR_4.0.16                                      
+[26] limma_3.58.1                                      
+[27] DT_0.33                                           
+[28] dplyr_1.1.4                                       
+[29] DOSE_3.28.2                                       
+[30] DESeq2_1.42.1                                     
+[31] SummarizedExperiment_1.32.0                       
+[32] MatrixGenerics_1.14.0                             
+[33] matrixStats_1.5.0                                 
+[34] GenomicRanges_1.54.1                              
+[35] GenomeInfoDb_1.38.8                               
+[36] data.table_1.16.4                                 
+[37] cowplot_1.1.3                                     
+[38] clusterProfiler_4.10.1                            
+[39] BiocSingular_1.18.0                               
+[40] BiocParallel_1.36.0                               
+[41] AnnotationDbi_1.64.1                              
+[42] IRanges_2.36.0                                    
+[43] S4Vectors_0.40.2                                  
+[44] Biobase_2.62.0                                    
+[45] BiocGenerics_0.48.1                               
+
+loaded via a namespace (and not attached):
+  [1] vroom_1.6.5               progress_1.2.3           
+  [3] ggpp_0.5.8-1              HDF5Array_1.30.1         
+  [5] vctrs_0.6.5               RApiSerialize_0.1.4      
+  [7] shape_1.4.6.1             digest_0.6.37            
+  [9] png_0.1-8                 proxy_0.4-27             
+ [11] OmnipathR_3.10.1          ggrepel_0.9.6            
+ [13] corrplot_0.95             magick_2.8.5             
+ [15] MASS_7.3-60.0.1           reshape_0.8.9            
+ [17] reshape2_1.4.4            qvalue_2.34.0            
+ [19] withr_3.0.2               psych_2.4.12             
+ [21] xfun_0.50                 ggfun_0.1.8              
+ [23] ggpubr_0.6.0              survival_3.8-3           
+ [25] doRNG_1.8.6.1             memoise_2.0.1            
+ [27] MatrixModels_0.5-3        gson_0.1.0               
+ [29] GlobalOptions_0.1.2       tidytree_0.4.6           
+ [31] gtools_3.9.5              KEGGgraph_1.62.0         
+ [33] Formula_1.2-5             prettyunits_1.2.0        
+ [35] KEGGREST_1.42.0           httr_1.4.7               
+ [37] rstatix_0.7.2             restfulr_0.0.15          
+ [39] hash_2.2.6.3              rhdf5filters_1.14.1      
+ [41] stringfish_0.16.0         rhdf5_2.46.1             
+ [43] generics_0.1.3            reactome.db_1.86.2       
+ [45] dir.expiry_1.10.0         curl_6.2.0               
+ [47] zlibbioc_1.48.2           ScaledMatrix_1.10.0      
+ [49] polyclip_1.10-7           doSNOW_1.0.20            
+ [51] GenomeInfoDbData_1.2.11   quadprog_1.5-8           
+ [53] SparseArray_1.2.4         doParallel_1.0.17        
+ [55] xtable_1.8-4              evaluate_1.0.3           
+ [57] S4Arrays_1.2.1            BiocFileCache_2.10.2     
+ [59] preprocessCore_1.64.0     hms_1.1.3                
+ [61] irlba_2.3.5.1             qs_0.27.2                
+ [63] colorspace_2.1-1          filelock_1.0.3           
+ [65] polynom_1.4-1             readxl_1.4.3             
+ [67] reticulate_1.40.0         magrittr_2.0.3           
+ [69] readr_2.1.5               Rgraphviz_2.46.0         
+ [71] later_1.4.1               viridis_0.6.5            
+ [73] ggtree_3.10.1             limSolve_1.5.7.1         
+ [75] lattice_0.22-6            genefilter_1.84.0        
+ [77] SparseM_1.84-2            XML_3.99-0.18            
+ [79] shadowtext_0.1.4          class_7.3-23             
+ [81] pillar_1.10.1             nlme_3.1-167             
+ [83] caTools_1.18.3            compiler_4.3.2           
+ [85] beachmat_2.18.1           RSpectra_0.16-2          
+ [87] stringi_1.8.4             lubridate_1.9.4          
+ [89] GenomicAlignments_1.38.2  plyr_1.8.9               
+ [91] crayon_1.5.3              abind_1.4-8              
+ [93] BiocIO_1.12.0             gridGraphics_0.5-1       
+ [95] chron_2.3-62              graphlayouts_1.2.2       
+ [97] bit_4.5.0.1               fastmatch_1.1-6          
+ [99] codetools_0.2-20          openssl_2.3.1            
+[101] MCPcounter_1.2.0          e1071_1.7-16             
+[103] GetoptLong_1.0.5          multtest_2.58.0          
+[105] splines_4.3.2             circlize_0.4.16          
+[107] Rcpp_1.0.14               basilisk_1.14.3          
+[109] quantreg_6.00             dbplyr_2.5.0             
+[111] sparseMatrixStats_1.14.0  HDO.db_0.99.1            
+[113] cellranger_1.1.0          knitr_1.49               
+[115] blob_1.2.4                clue_0.3-66              
+[117] fs_1.6.5                  checkmate_2.3.2          
+[119] DelayedMatrixStats_1.24.0 logger_0.4.0             
+[121] ggsignif_0.6.4            ggplotify_0.1.2          
+[123] tibble_3.2.1              sqldf_0.4-11             
+[125] Matrix_1.6-5              statmod_1.5.0            
+[127] tzdb_0.4.0                lpSolve_5.6.23           
+[129] tweenr_2.0.3              pkgconfig_2.0.3          
+[131] pheatmap_1.0.12           tools_4.3.2              
+[133] cachem_1.1.0              RSQLite_2.3.9            
+[135] rvest_1.0.4               viridisLite_0.4.2        
+[137] DBI_1.2.3                 graphite_1.48.0          
+[139] fastmap_1.2.0             rmarkdown_2.29           
+[141] Rsamtools_2.18.0          broom_1.0.7              
+[143] patchwork_1.3.0           graph_1.80.0             
+[145] carData_3.0-5             scrime_1.3.5             
+[147] selectr_0.4-2             snow_0.4-4               
+[149] farver_2.1.2              mgcv_1.9-1               
+[151] scatterpie_0.2.4          gsubfn_0.7               
+[153] yaml_2.3.10               rtracklayer_1.62.0       
+[155] illuminaio_0.44.0         cli_3.6.3                
+[157] purrr_1.0.2               siggenes_1.76.0          
+[159] GEOquery_2.70.0           lifecycle_1.0.4          
+[161] askpass_1.2.1             uwot_0.2.2               
+[163] ggpmisc_0.6.1             backports_1.5.0          
+[165] annotate_1.80.0           timechange_0.3.0         
+[167] gtable_0.3.6              rjson_0.2.23             
+[169] ape_5.8-1                 jsonlite_1.8.9           
+[171] bitops_1.0-9              bit64_4.6.0-1            
+[173] Rtsne_0.17                yulab.utils_0.2.0        
+[175] base64_2.0.2              ReactomePA_1.46.0        
+[177] proto_1.0.0               RcppParallel_5.1.10      
+[179] GOSemSim_2.28.1           lazyeval_0.2.2           
+[181] htmltools_0.5.8.1         enrichplot_1.22.0        
+[183] GO.db_3.18.0              rappdirs_0.3.3           
+[185] basilisk.utils_1.14.1     glue_1.8.0               
+[187] RCurl_1.98-1.16           treeio_1.26.0            
+[189] mclust_6.1.1              mnormt_2.1.1             
+[191] quantiseqr_1.10.0         R6_2.5.1                 
+[193] tidyr_1.3.1               gplots_3.2.0             
+[195] labeling_0.4.3            GenomicFeatures_1.54.4   
+[197] cluster_2.1.8             rngtools_1.5.2           
+[199] Rhdf5lib_1.24.2           beanplot_1.3.1           
+[201] aplot_0.2.4               DelayedArray_0.28.0      
+[203] tidyselect_1.2.1          plotrix_3.8-4            
+[205] ggforce_0.4.2             xml2_1.3.6               
+[207] car_3.1-3                 rsvd_1.0.5               
+[209] munsell_0.5.1             KernSmooth_2.23-26       
+[211] nor1mix_1.3-3             ComplexHeatmap_2.18.0    
+[213] htmlwidgets_1.6.4         fgsea_1.28.0             
+[215] biomaRt_2.58.2            rlang_1.1.5              
+[217] Cairo_1.6-2              </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
