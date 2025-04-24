@@ -883,69 +883,24 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>We gathered the following insights from the gene set enrichment analyses:</p>
+<ul>
+<li>Enriched GO Biological Process terms hints to two major themes with overlapping gene signatures: <em>primary metabolic process</em> and <em>anatomical structure development</em>. These terms are driven mainly by a group of transcription factors with strong positive weights (i.e.: positively correlating with KICH), including Myc Box-Dependent-Interacting Protein 1 <em>BIN1</em>, CUT-like homeobox 1 <em>CUX1</em>, Forkhead Box N3 <em>FOXN3</em> and <em>KIT</em>, and a group of homeobox transcription factors with strong negative weights (i.e.: positively correlating with KICH), including <em>HOXA7</em>, <em>HOXB3</em>, <em>HOXB5</em>, <em>HOXC4</em>, <em>HOXC5</em>, <em>HOXD3</em> and <em>HOXD8</em>. This support the idea that the major difference between KICH and KIRC and KIRP is at the level of maintainance of cellular differentiation and difference in rewiring of key regulators of cell development and pluripotency.</li>
+<li>We have identified 10 Reactome Pathways with an adjusted p-value =&lt; 0.05. The pathways suggested a reduced response to oxidative stress or lack of it (i.e.: <em>Biological oxidations</em>) in KICH when compared to KIRC and KIRP, and overall less <em>SLC-mediated transmembrane transport</em>, with 11 SLC transporters having negative weights in Factor 2.</li>
+<li>We have identified 12 Wikipathways with an adjusted p-value =&lt; 0.05, mostly driven by genes with negative weights. Among the others, we identified: <em>Clear cell renal cell carcinoma pathways</em>, <em>Hippo-Merlin signaling dysregulation</em> and <em>NRF2 pathway</em>.</li>
+</ul>
 <p>The combination of transcriptomics, proteomics, micro-RNA and epigenomics signal allowed the reconstruction of a molecular network of interactions that properly describe KICH. For each feature, we have information on its weight on the model, the omic origin (e.g: transcriptomics evidence), their molecular function (e.g.: transcription factor, transmembrane receptor, etc.) and the nature of the molecular interaction with the other features in the model.</p>
 </section>
 </section>
 </section>
 <section id="sec-lesson-learnt-factor-analysis" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-lesson-learnt-factor-analysis"><span class="header-section-number">6.3</span> Lessons Learnt</h2>
-<p>So far, we have learnt:</p>
+<p>The multi-omics factor analyses helped us further molecularly define the three types of kidney carcinomas:</p>
 <ul>
-<li>A</li>
-</ul>
-<p>Based on genomics and epigenomics data, we have learnt:</p>
-<ul>
-<li>Copy Number Variants:
-<ul>
-<li>KICH has significantly more genome instability and CNV events than KIRC and KIRP</li>
-<li>whole genome duplication seems more likely to occur than loss of chromosomes</li>
-<li>there is a link between CNVs signatures and cancer advancement, which is a common feature across all kidney carcinomas and not limited to KIRC, KIRP or KICH.</li>
-</ul></li>
-<li>Somatic Mutations:
-<ul>
-<li>KIRC is the kidney carcinoma with the highest amount of non-silent somatic mutations.</li>
-<li>KICH:
-<ul>
-<li>~30% of the patients (21 / 66) had a non-silent mutation in TP53.</li>
-<li>9% of patients (6 / 66) having a mutation on PTEN.</li>
-</ul></li>
-<li>KIRC:
-<ul>
-<li>47% of patients (170 / 365) with mutation in VHL</li>
-<li>~40% of patients (145 / 365) with mutation on PBRM1</li>
-<li>~20% of patients (72 / 365) with non-silent somatic mutations on TTN</li>
-</ul></li>
-<li>KIRP:
-<ul>
-<li>16% of KIRP patients (45 / 280) has non-silent somatic mutations on TTN</li>
-<li>9% of KIRP patients (25 / 280) with mutation on MUC16</li>
-<li>8% of KIRP patients (22 / 280) with mutation on MET</li>
-</ul></li>
-</ul></li>
-<li>Epigenomics:
-<ul>
-<li>Exploratory analysis suggests:
-<ul>
-<li>Principal Component Analysis can discriminates between KICH, KIRC and KIRP.</li>
-<li><em>subtype DNAmeth</em> co-correlates with residual disease, more advanced cancer and worse prognosis, suggesting that DNA methylations and epigenomics plays a major role in cancer evolution and disease outcome.</li>
-</ul></li>
-<li>Differential Gene Expression analysis:
-<ul>
-<li>strong methylation signature that discriminates KICH from KIRC and KIRP (&gt; 4,000 probes).</li>
-<li>GSEA on differentially methylated probes supports the idea that:
-<ul>
-<li>KICH biopsies mostly retained their epithelial differentiation that was instead lost in KIRC and in KIRP.</li>
-<li>Higher abundance of infiltrating Macrophages M0 and M2 in KIRP.</li>
-<li>A pro-inflammatory, hypoxic microenvironment in KIRC.</li>
-</ul></li>
-<li>GSEA on Differentially Methylated function Regions support the idea that:
-<ul>
-<li>General theme of epithelial differentiation retention in KICH.</li>
-<li>A stronger Epithelial-to-Mesenchimal Transition in KIRC, with a signature of extra-cellular matrix remodelling and cell migration.</li>
-<li><em>MET</em> pathway is differentially methylated in KIRP, which is consistent with the higher chance of <em>MET</em> non-silent somatic mutation in this kind of kidney carcinoma.</li>
-</ul></li>
-</ul></li>
-</ul></li>
+<li>KICH: reduced metabolic rewiring, potentially more differentiated and with more epithelial integrity, as supported by the retention of epithelial markers such as E-Cadherin and Claudin-7.</li>
+<li>KIRC: hypoxia driven microenvironment (<em>HIF1A</em>), that relies on glycolysis and shows hallmarks of ECM remodelling and EMT.</li>
+<li>KIRP: more differentiated than KIRC, and without the strong presence of hypoxia markers.</li>
+<li>We could identify clear multi-omics signatures that could help differentiate between these three cancer types, and develop diagnostic and potentially prognostic biomarkers as well.</li>
 </ul>
 </section>
 <section id="session-information" class="level2" data-number="6.4">
