@@ -205,33 +205,12 @@ ul.task-list li input[type="checkbox"] {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Characterization of Kidney Clear Cell Cancer molecular subtypes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cancer-signatures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">cancer-signatures.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./autoencoder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">autoencoder.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cellular-deconvolution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cellular Deconvolution from Bulk RNA-seq</span></span></a>
-  </div>
-</li>
-      </ul>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Discovery of Prognostic Biomarkers in Kidney Carcinomas</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Therapeutic target Discovery in Kidney Clear Cell Cancer</span></span>
   </li>
     </ul>
     </div>
@@ -255,9 +234,9 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#survival-analysis-progression-free-interval-pfi" id="toc-survival-analysis-progression-free-interval-pfi" class="nav-link" data-scroll-target="#survival-analysis-progression-free-interval-pfi"><span class="header-section-number">7.3</span> Survival Analysis: Progression-Free Interval (PFI)</a>
   <ul>
-  <li><a href="#metadata-only---progression-free-interval-pfi" id="toc-metadata-only---progression-free-interval-pfi" class="nav-link" data-scroll-target="#metadata-only---progression-free-interval-pfi"><span class="header-section-number">7.3.1</span> Metadata only - progression-free interval (PFI)</a>
+  <li><a href="#metadata-only-1" id="toc-metadata-only-1" class="nav-link" data-scroll-target="#metadata-only-1"><span class="header-section-number">7.3.1</span> Metadata only</a>
   <ul>
-  <li><a href="#kaplan-meier" id="toc-kaplan-meier" class="nav-link" data-scroll-target="#kaplan-meier"><span class="header-section-number">7.3.1.1</span> Kaplan Meier</a></li>
+  <li><a href="#kaplan-meier-estimator-1" id="toc-kaplan-meier-estimator-1" class="nav-link" data-scroll-target="#kaplan-meier-estimator-1"><span class="header-section-number">7.3.1.1</span> Kaplan-Meier Estimator</a></li>
   <li><a href="#cox-regression-model" id="toc-cox-regression-model" class="nav-link" data-scroll-target="#cox-regression-model"><span class="header-section-number">7.3.1.2</span> Cox regression model</a></li>
   </ul></li>
   <li><a href="#multi-omics-predictive-model-for-clinical-outcome-1" id="toc-multi-omics-predictive-model-for-clinical-outcome-1" class="nav-link" data-scroll-target="#multi-omics-predictive-model-for-clinical-outcome-1"><span class="header-section-number">7.3.2</span> Multi-omics predictive model for clinical outcome</a></li>
@@ -314,23 +293,23 @@ ul.task-list li input[type="checkbox"] {
 <p>Let’s model the observational metadata on the clinical outcome reported by TCGA.</p>
 <section id="kaplan-meier-estimator" class="level4" data-number="7.2.1.1">
 <h4 data-number="7.2.1.1" class="anchored" data-anchor-id="kaplan-meier-estimator"><span class="header-section-number">7.2.1.1</span> Kaplan-Meier Estimator</h4>
-<p>The <a href="https://doi.org/10.1016/j.otohns.2010.05.007">Kaplan-Meier estimator</a> is commonly used to analyze time-to-event data, such as the time until death occurs. For this, the Kaplan Meier curve graphically represent the survival rate or survival function. Time is plotted on the x-axis and the survival rate is plotted on the y-axis.</p>
+<p>The <a href="https://doi.org/10.1016/j.otohns.2010.05.007">Kaplan-Meier estimator</a> is commonly used to analyze time-to-event data, such as the time until death occurs. For this, the Kaplan-Meier curve graphically represent the survival rate or survival function. Time is plotted on the x-axis and the survival rate is plotted on the y-axis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="survival-analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Kidney carcinoma types Kaplan-Meier Overal Survival curve.</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 1: Kidney carcinoma types Kaplan-Meier Overall Survival curve.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>We calculated the Kaplan-Meier curve as a function of the Overall Survival time versus the vital status of the patient (<em>Alive</em> or <em>Dead</em>) in function of the kidney carcinoma type. We can already observe some differences in the Kaplan-Meier curves for the three kidney carcinoma types, with KIRC patients having a lower curve (higher mortality), KICH patients having a higher curve (lower mortality) and KIRP patients sitting in between KIRC and KICH curves. This is consistent with what we have observed in the exploration of the datasets lokking for significant difference of each observed clinical covariate (see <a href="dataset-exploration.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
-<p>While plotting the curves can help provide a visual representation of the differences between the three time-to-event group of data, we should run a <em>log rank test</em> to measure the statistical difference between the curves. The results are summarized in the table below. We observed a statistical difference between the Overal Survival time of the three kidney carcinomas (<em>n = 885</em>, <em>Chisq = 23.9</em> on 2 degree of freedom, <em>p-value = 6e-06</em>), confirming the hypothesis that KIRC patients have a significantly worse clinical outcome than KIRP patients or KICH patients.</p>
+<p>We calculated the Kaplan-Meier curve as a function of the Overall Survival time versus the vital status of the patient (<em>Alive</em> or <em>Dead</em>) in function of the kidney carcinoma type. We can already observe some differences in the Kaplan-Meier curves for the three kidney carcinoma types, with KIRC patients having a lower curve (higher mortality), KICH patients having a higher curve (lower mortality) and KIRP patients sitting in between KIRC and KICH curves. This is consistent with what we have observed in the exploration of the datasets looking for significant difference of each observed clinical covariate (see <a href="dataset-exploration.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
+<p>While plotting the curves can help provide a visual representation of the differences between the three time-to-event group of data, we should run a <em>log rank test</em> to measure the statistical difference between the curves. The results are summarized in the table below. We observed a statistical difference between the Overall Survival time of the three kidney carcinomas (<em>n = 885</em>, <em>Chisq = 23.9</em> on 2 degree of freedom, <em>p-value = 6e-06</em>), confirming the hypothesis that KIRC patients have a significantly worse clinical outcome than KIRP patients or KICH patients.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4264562ab606b8228ab4" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4264562ab606b8228ab4">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 1: Log-ratio of Overal Survival differences bewteen kidney carcinoma types.<\/caption>","data":[["KICH","KIRC","KIRP"],[65,531,289],[9,174,44],[26,140,61],[11.14,8.039999999999999,4.54],[12.87,21.18,6.26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-59b5022d3f50ec74176b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-59b5022d3f50ec74176b">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 1: Log-ratio of Overall Survival differences bewteen kidney carcinoma types.<\/caption>","data":[["KICH","KIRC","KIRP"],[65,531,289],[9,174,44],[26,140,61],[11.14,8.039999999999999,4.54],[12.87,21.18,6.26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -353,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>The Cox model we have generated is among the simpler we could have generated, and does not take into account several clinical covariates that are available for the kidney cafrcinoma patients that may correlate with each other and contribute the the Hazard Ratios.</p>
+<p>The Cox model we have generated is among the simpler we could have generated, and does not take into account several clinical covariates that are available for the kidney carcinoma patients that may correlate with each other and contribute the the Hazard Ratios.</p>
 <p>Based on the initial exploration of the clinical covariates (see <a href="dataset-exploration.html" class="quarto-xref"><span>Chapter 1</span></a>) and their correlation with the multi-omics signatures we have generated (see <a href="factor-analysis.html" class="quarto-xref"><span>Chapter 6</span></a>), we include the following clinical covariates in our model:</p>
 <ul>
 <li><em>gender</em></li>
@@ -381,8 +360,8 @@ ul.task-list li input[type="checkbox"] {
 <p>With such an inclusive model, we should test if the assumption of the Cox regression model still holds true: the groups should be independent with respect to their hazards. Let’s test the proportional hazard assumption.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-d782395543e3068b434f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d782395543e3068b434f">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 2: Cox Proportional Hazard Assumption for the full model based on patients Overall Survival.<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[0.1487,0.994,12.2967,24.7414,1.4131,14.2402,6.808,13.4509,14.8351,0.129,70.7799],[1,1,4,10,3,3,3,4,5,1,35],[0.6998,0.3188,0.0153,0.0059,0.7025,0.0026,0.07829999999999999,0.009299999999999999,0.0111,0.7194,0.0003]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":11,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2c84d785a8a33d3dab64" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2c84d785a8a33d3dab64">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 2: Cox Proportional Hazard Assumption for the full model based on patients Overall Survival.<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[0.1487,0.994,12.2967,24.7414,1.4131,14.2402,6.808,13.4509,14.8351,0.129,70.7799],[1,1,4,10,3,3,3,4,5,1,35],[0.6998,0.3188,0.0153,0.0059,0.7025,0.0026,0.07829999999999999,0.009299999999999999,0.0111,0.7194,0.0003]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":11,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The test indicates that <em>tumor_stage</em>, TMN main tumor pathology (<em>pathologic_t</em>), Molecular subtypes based on transcriptomics (<em>Subtype_mRNA</em>), Subtype based on immune response (<em>Subtype_Immune_Model_Based</em>) and Selected cancer subtype (<em>Subtype_Selected</em>) violates the proportional hazards assumption of independence. We can further characterize the association by displaying the scaled Schoenfeld residuals.</p>
@@ -411,8 +390,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Let’s test that the proportional hazards assumptions are respected.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b51bc0b315ab98d51b28" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b51bc0b315ab98d51b28">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 3: Cox Proportional Hazard Assumption for the final model based on patients Overall Survival.<\/caption>","data":[["cancer_type","gender","pathologic","Subtype_miRNA","follow_up_tumor_status","GLOBAL"],[0.1177,0.109,3.035,3.4221,0.5229,6.7158],[1,1,3,3,1,9],[0.7315,0.7413,0.3863,0.331,0.4696,0.6667]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":11,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d2582bd7687c0dd87520" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d2582bd7687c0dd87520">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 3: Cox Proportional Hazard Assumption for the final model based on patients Overall Survival.<\/caption>","data":[["cancer_type","gender","pathologic","Subtype_miRNA","follow_up_tumor_status","GLOBAL"],[0.1177,0.109,3.035,3.4221,0.5229,6.7158],[1,1,3,3,1,9],[0.7315,0.7413,0.3863,0.331,0.4696,0.6667]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":11,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The final model is in contrast with initial, more naive, simple model of Overall Survival in function of the cancer type, and suggests that <strong>there is no significantly higher hazard associated with KIRC when compared to KICH or KIRP</strong>. Presence of metastases on lymphnodes (<em>pathologic</em>) have significantly higher risk: for N1, 1.04 to 3.8 HR with a p-value of 0.037, N2 is not significant (p-value = 0.291) possibly due to its lower counts (N=7). Subtype microRNA 2 is also associated with higher risk (HR between 1.34 and 3.5, p-value = 0.002), and of course, residual disease is strongly associated with higher risk of worse clinical outcome (HR between 3.86 and 7.9, p-value &lt; 0.001).</p>
@@ -435,8 +414,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-6ba3c9c7e8bc8cb40635" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6ba3c9c7e8bc8cb40635">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 4: Cox Proportional Hazard model for the multi-omics factors based on patients Overall Survival.<\/caption>","data":[["Factor 1","Factor 2","Factor 3","Factor 4","Factor 5","Factor 6","Factor 7","Factor 8","Factor 9","Factor 10"],["-0.210409","-0.141805","0.502391","-0.042219","0.192537","0.00665","0.179446","0.301923","-0.007285","-0.167755"],["0.810253","0.867791","1.652669","0.958659","1.212321","1.006672","1.196554","1.352457","0.992741","0.845561"],["0.060443","0.074405","0.061359","0.080386","0.061642","0.074367","0.063222","0.053316","0.071742","0.065304"],["-3.481","-1.906","8.188","-0.525","3.123","0.089","2.838","5.663","-0.102","-2.569"],["0.000499","0.056669","2.66E-16","0.599439","0.001787","0.928745","0.004535","1.49E-08","0.919114","0.010204"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ca224053e174027645fb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ca224053e174027645fb">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 4: Cox Proportional Hazard model for the multi-omics factors based on patients Overall Survival.<\/caption>","data":[["Factor 1","Factor 2","Factor 3","Factor 4","Factor 5","Factor 6","Factor 7","Factor 8","Factor 9","Factor 10"],["-0.210409","-0.141805","0.502391","-0.042219","0.192537","0.00665","0.179446","0.301923","-0.007285","-0.167755"],["0.810253","0.867791","1.652669","0.958659","1.212321","1.006672","1.196554","1.352457","0.992741","0.845561"],["0.060443","0.074405","0.061359","0.080386","0.061642","0.074367","0.063222","0.053316","0.071742","0.065304"],["-3.481","-1.906","8.188","-0.525","3.123","0.089","2.838","5.663","-0.102","-2.569"],["0.000499","0.056669","2.66E-16","0.599439","0.001787","0.928745","0.004535","1.49E-08","0.919114","0.010204"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Visualizing the Cox proportional Hazard Ratio model results on a forest plot help better visualizing the higher Hazard Ratio associated with Factor 3.</p>
@@ -456,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="survival-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 8: Multi-omics factors Kaplan-Meier Overal Survival curve.</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 8: Multi-omics factors Kaplan-Meier Overall Survival curve.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -465,187 +444,125 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="survival-analysis-progression-free-interval-pfi" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="survival-analysis-progression-free-interval-pfi"><span class="header-section-number">7.3</span> Survival Analysis: Progression-Free Interval (PFI)</h2>
-<section id="metadata-only---progression-free-interval-pfi" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="metadata-only---progression-free-interval-pfi"><span class="header-section-number">7.3.1</span> Metadata only - progression-free interval (PFI)</h3>
-<p>let’s do it with metadat aonly first</p>
-<section id="kaplan-meier" class="level4" data-number="7.3.1.1">
-<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="kaplan-meier"><span class="header-section-number">7.3.1.1</span> Kaplan Meier</h4>
-<p>plot the survival</p>
+<p>While Overall Survival provides a good overview of the clinical outcome, it does not take into account that in the meanwhile patients may die due to causes unrelated to cancer. Therefore, we have decide to perform a similar survival analysis based on the Progression-Free Interval (PFI) time data available at TCGA for the kidney carcinoma patients. As we have done for the Overall Survival, we start with the observational metadata only, before stratifying the patients based on the molecular signatures we have generated with the multi-omics factor analysis. In both cases, we model the Kaplan-Meier estimator and the Cox hazard regression model.</p>
+<section id="metadata-only-1" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="metadata-only-1"><span class="header-section-number">7.3.1</span> Metadata only</h3>
+<p>Let’s model the observational metadata on the clinical outcome reported by TCGA.</p>
+<section id="kaplan-meier-estimator-1" class="level4" data-number="7.3.1.1">
+<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="kaplan-meier-estimator-1"><span class="header-section-number">7.3.1.1</span> Kaplan-Meier Estimator</h4>
+<p>The Kaplan-Meier curves obtained in function of the Progression-Free Interval are very similar to the ones obtained with the Overall Survival data, with the only noticeable difference being a slightly lower curve for KICH and KIRP cancers within the first 500 days after diagnosis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="survival-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 9: Kidney carcinoma types Kaplan-Meier Progression-Free Interval curve.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>compare survival plots</p>
-<p>log rank test</p>
-<p>Call: survival::survdiff(formula = survival::Surv(OS.time, vital_status) ~ cancer_type, data = metadata)</p>
-<p>n=885, 2 observations deleted due to missingness.</p>
-<pre><code>                    N Observed Expected (O-E)^2/E (O-E)^2/V</code></pre>
-<p>cancer_type=TCGA-KICH 65 9 26.0 11.14 12.87 cancer_type=TCGA-KIRC 531 174 140.4 8.04 21.18 cancer_type=TCGA-KIRP 289 44 60.6 4.54 6.26</p>
-<p>Chisq= 23.9 on 2 degrees of freedom, p= 6e-06</p>
-<p>As noted on this page the term (O-E)^2/V is the basis for the log-rank test.</p>
-<p>To know if the difference between the observed and expected events (O-E) for one group is significantly different from 0 (that is, the two groups have significantly different hazard functions), you need an estimate of the variance of that difference in the case (null hypothesis) that the groups have the same hazard function.</p>
+<p>While plotting the curves can help provide a visual representation of the differences between the three time-to-event group of data, we should run a log rank test to measure the statistical difference between the curves. The results are summarized in the table below. We observed a statistical difference between the Progression-Free Interval of the three kidney carcinomas (n = 885, Chisq = 23.9 on 2 degree of freedom, p-value = 6e-06), similarly to what observed with the Overall Survival data.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-4a2c542be8c78f49c7d0" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4a2c542be8c78f49c7d0">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Log-ratio of survival differences bewteen cancer types<\/caption>","data":[["KICH","KIRC","KIRP"],[65,529,288],[9,173,43],[25,135,65],[10.56,10.81,7.33],[12.31,27.11,10.41]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8d2e861e6f5d1d6e53c3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8d2e861e6f5d1d6e53c3">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 5: Log-ratio of the Progression-Free Interval differences bewteen kidney carcinoma types.<\/caption>","data":[["KICH","KIRC","KIRP"],[65,529,288],[9,173,43],[25,135,65],[10.56,10.81,7.33],[12.31,27.11,10.41]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>N<\/th>\n      <th>Observed<\/th>\n      <th>Expected<\/th>\n      <th>(O-E)^2/E<\/th>\n      <th>(O-E)^2/V<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"N","targets":1},{"name":"Observed","targets":2},{"name":"Expected","targets":3},{"name":"(O-E)^2/E","targets":4},{"name":"(O-E)^2/V","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="cox-regression-model" class="level4" data-number="7.3.1.2">
 <h4 data-number="7.3.1.2" class="anchored" data-anchor-id="cox-regression-model"><span class="header-section-number">7.3.1.2</span> Cox regression model</h4>
-<p>Cox proportional hazards regression is one of the most popular regression techniques for survival analysis. Other models can also be used since the Cox model requires important assumptions that need to be verified for an appropriate use such as the proportional hazards assumption: see references.</p>
-<p>In a Cox proportional hazards regression model, the measure of effect is the hazard rate (HR), which is the risk of failure (or the risk of death in our example), given that the participant has survived up to a specific time. Usually, we are interested in comparing independent groups with respect to their hazards, and we use a hazard ratio, which is analogous to an odds ratio in the setting of multiple logistic regression analysis. The cox.ph() function from the survival package is used to fit the model. The function cox.zph() from survival package may be used to test the proportional hazards assumption for a Cox regression model fit.</p>
-<p>NOTE: A probability must lie in the range 0 to 1. However, the hazard represents the expected number of events per one unit of time.</p>
-<ul>
-<li>If the hazard ratio for a predictor is close to 1 then that predictor does not affect survival,</li>
-<li>if the HR is less than 1, then the predictor is protective (i.e., associated with improved survival),</li>
-<li>and if the HR is greater than 1, then the predictor is associated with increased risk (or decreased survival).</li>
-</ul>
-<p>[[[now we can add more covariates, but we have to check if the proportional hazard assumption holds true]]]</p>
-<p>In another model we add more risk factors such as the source of infection and the number of days between date of onset and admission. This time, we first verify the proportional hazards assumption before going forward.</p>
-<p>In this model, we have included a continuous predictor (days_onset_hosp). In this case we interpret the parameter estimates as the increase in the expected log of the relative hazard for each one unit increase in the predictor, holding other predictors constant. We first verify the proportional hazards assumption.</p>
-<div class="cell" data-cap-location="margin">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-355b024954df66df08d6" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-355b024954df66df08d6">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","GLOBAL"],[6.917,6.917],[2,2],[0.031,0.031]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Forest plot</p>
+<p>Let’s now model the Cox proportional hazards regression on the Progression-Free Interval data.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="survival-analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 10: Kidney carcinomas Cox Proportional Harard model estimates based on patients Progression-Free Interval.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>let’s add more covariates into the model</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Demographic covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tumor grading covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Molecular subtype covariates</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Demographic + Tumor grading + Molecular Subtype covariates</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>WE GET INFINITE COEFFICIEMT WITH RACE</p>
+<p>The forest plot of the Cox Hazard Rations on patients Progression-Free Interval indicates that KIRC patients have a significantly higher risk of worse outcome than KICH or KIRP patients. This is in contrast with the simple Cox regression model on Overall Surviaval, where also KIRP patients had a significant higher risk than KICH patients.</p>
+<p>Let’s now evaluate the full model by adding the clinical covariates: <em>gender</em>, <em>tumor_stage</em>, <em>pathologic_t</em>, <em>pathologic</em>, <em>Subtype_miRNA</em>, <em>Subtype_mRNA</em>, <em>Subtype_Immune_Model_Based</em>, <em>Subtype_Selected</em>, <em>follow_up_tumor_status</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 11: Full Cox Proportional Harxard model estimates based on patients Progression-Free Interval.</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Similarly to what observed for the Overall Survival data, when including all clinical covariates in the model, we see a different picture on the Hazard Ratios than on the simple model based on kidney carcinoma types only. Under this more comprehensive model, KIRC patients don’t have a significantly higher risk when compared to KICH or KIRP patients. Significant higher risk is associated with more advanced tumor stages (<em>stage iv</em>, HR between 1.109 and 9.80 with a p-value = 0.032), the subtype microRNA 2 (HR between 1.108 and 3.72, p-value = 0.022) and presence of residual disease (<em>WITH TUMOR</em>, HR between 3.773 and 9.71, with a p-value &lt; 0.001). Lower risk is instead significantly associated with the <em>inflammatory immune subtype (immune C3)</em> and the <em>Lymphocyte Depleted (immune C4)</em> subtype, with reduced HR between 0.0075 and 0.63 and 0.053 and 0.75, respectively.</p>
+<p>As for theOverall Survival data, we should test if the assumption of the Cox regression model still holds true: the groups should be independent with respect to their hazards. Let’s test the proportional hazard assumption.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-397d13ef56d9345974ac" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-397d13ef56d9345974ac">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","follow_up_tumor_status","GLOBAL"],[4.355,0.099,8.127000000000001,11.706],[2,1,1,4],[0.113,0.753,0.004,0.02]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a8214da0258f5243a071" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a8214da0258f5243a071">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 6: Cox Proportional Hazard Assumption for the full model based on patients Progression-Free Interval.<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[1.2284,0.3392,14.2257,25.399,0.8114,11.2578,6.4911,5.967,7.5377,0.2592,68.6647],[1,1,4,10,3,3,3,4,5,1,35],[0.2677,0.5603,0.0066,0.0046,0.8467,0.0104,0.09,0.2016,0.1836,0.6107,0.0005999999999999999]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Forest plot</p>
+<p>The test indicates that <em>tumor_stage</em>, TMN main tumor pathology (<em>pathologic_t</em>), Molecular subtypes based on transcriptomics (<em>Subtype_mRNA</em>), Subtype based on immune response (<em>Subtype_Immune_Model_Based</em>) and Selected cancer subtype (<em>Subtype_Selected</em>) violates the proportional hazards assumption of independence. We can further characterize the association by displaying the scaled Schoenfeld residuals.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="survival-analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 12: Graphical Test of Proportional Hazards based on patients Progression-Free Interval.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Tumor stage “tumor_stage” Tumor histological grade “histological_grade” TMN main tumor pathology “pathologic_t” TMN lymph nodes metastatis “pathologic”</p>
-<p>print chi squared tab</p>
-<div class="cell" data-cap-location="margin">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-49231b753bcf2e2037ea" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-49231b753bcf2e2037ea">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","tumor_stage","pathologic_t","pathologic","GLOBAL"],[5.362,32.615,51.302,7.744,63.421],[2,4,11,3,20],[0.068,0,0,0.052,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Forest plot</p>
+<p>The model results indicate there is a significant positive association between tumor stage and all-cause mortality, and a statistically non-significant positive association with <em>Subtype_mRNA</em> and a statistically non-significant overall negative association with <em>Subtype_Immune_Model_Based</em> and <em>Subtype_Selected</em> and the all-cause mortality.</p>
+<p>The full model provides us with fundamental insights to drop clinical covariates that vilates the proportional hazard assumption and allows us to compute the final Cox proportional Hazard Ratios.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="survival-analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 13: Final Cox Proportional Harxard model estimates based on patients Progression-Free Interval.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>subtype_miRNA “Subtype_miRNA”, subtype_mRNA “Subtype_mRNA”, Subtype_selected “Subtype_Selected” Subtype_Immune_Model_Based</p>
-<p>print chi squared tab</p>
+<p>Let’s confirm that the proportional hazards assumptions are respected.</p>
 <div class="cell" data-cap-location="margin">
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-e934991478edcd5ee5cc" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e934991478edcd5ee5cc">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","GLOBAL"],[0.226,5.321,4.129,3.616,17.104],[1,3,3,4,11],[0.635,0.15,0.248,0.461,0.105]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-58147c1c961d23c2f245" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-58147c1c961d23c2f245">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 7: Cox Proportional Hazard Assumption for the final model based on patients Progression-Free Interval.<\/caption>","data":[["cancer_type","gender","pathologic","Subtype_miRNA","follow_up_tumor_status","GLOBAL"],[1.2635,0.09859999999999999,0.1331,3.3536,1.6579,6.6227],[1,1,3,3,1,9],[0.261,0.7536,0.9876,0.3402,0.1979,0.6763]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":11,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Forest plot</p>
+<p>The final model is in contrast with initial, more naive, simple model of Progression-Free Interval in function of the cancer type, and suggests that <strong>there is no significantly higher hazard associated with KIRC when compared to KICH or KIRP</strong>. Presence of metastases on lymphnodes (<em>pathologic</em>) have significantly higher risk: N1 is not significant (p-value = 0.056), N2 is significant, 1.01 to 14.4 HR with a (p-value = 0.048). Subtype microRNA 2 and 3 are also associated with higher risk, and of course, residual disease is strongly associated with higher risk of worse clinical outcome (HR between 6.04 and 12.8, p-value &lt; 0.001).</p>
+</section>
+</section>
+<section id="multi-omics-predictive-model-for-clinical-outcome-1" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="multi-omics-predictive-model-for-clinical-outcome-1"><span class="header-section-number">7.3.2</span> Multi-omics predictive model for clinical outcome</h3>
+<p>Now, we are going to test the correlation between the factors we have molecularly characterized (i.e.: Factor 1 and Factor 2) with the Progression-Free Interval of the kidney carcinomas patients. We can test if the biopsies clustered based on the multi-omics signatures can provide a better predictive model of clinical outcome than the one based solely on the provided metadata.</p>
+<p>When fitting the Cox hazard model and testing the significance with a log rank test we obtain a significant results (<em>Likelihood ratio test = 171.1</em> on 10 degrees of freedom, <em>p-value =&lt; 2.2e-16</em>), indicating that there is a significant association between the multi-omics factors and and increased or a decreased risk.</p>
+<div class="cell" data-cap-location="margin">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-7a9a315e2c0280d739ce" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7a9a315e2c0280d739ce">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Table 8: Cox Proportional Hazard model for the multi-omics factors based on patients Progression-Free Interval.<\/caption>","data":[["Factor 1","Factor 2","Factor 3","Factor 4","Factor 5","Factor 6","Factor 7","Factor 8","Factor 9","Factor 10"],["-0.250259","-0.137154","0.51265","-0.025933","0.227808","0.026058","0.25395","0.28466","-0.004506","-0.135766"],["0.778599","0.871836","1.66971","0.9744","1.255844","1.0264","1.289108","1.32931","0.995504","0.873047"],["0.060483","0.07498","0.062282","0.081319","0.063076","0.073998","0.064468","0.053568","0.073052","0.063964"],["-4.138","-1.829","8.231","-0.319","3.612","0.352","3.939","5.314","-0.062","-2.123"],["3.51E-05","0.06737","&lt; 2.00E-16","0.749799","0.000304","0.724731","8.18E-05","1.07E-07","0.950813","0.033794"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Visualizing the Cox proportional Hazard Ratio model results on a forest plot help better visualizing the higher Hazard Ratio associated with Factor 3.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="survival-analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
+<figcaption><span style="color: steelblue;">Figure 14: Cox Proportional Harxard model estimates based on multi-omics factos and patients Progression-Free Interval.</span></figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<div class="cell" data-cap-location="margin">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-e29e18910f49be70167d" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e29e18910f49be70167d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["cancer_type","gender","tumor_stage","pathologic_t","pathologic","Subtype_mRNA","Subtype_miRNA","Subtype_Immune_Model_Based","Subtype_Selected","follow_up_tumor_status","GLOBAL"],[1.228,0.339,14.226,25.399,0.8110000000000001,11.258,6.491,5.967,7.538,0.259,68.66500000000001],[1,1,4,10,3,3,3,4,5,1,35],[0.268,0.5600000000000001,0.007,0.005,0.847,0.01,0.09,0.202,0.184,0.611,0.001]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chisq<\/th>\n      <th>df<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"chisq","targets":1},{"name":"df","targets":2},{"name":"p","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Forest plot</p>
+<p>Also the Kaplan-Meier survival curves propely visualize the difference in survival times between Factor 1 or Factor 2 multi-omics signatures (discriminating between KIRC vs.&nbsp;KICH and KIRP, and KICH vs.&nbsp;KIRC and KIRP, respectively) and Factor 3 multi-omics signature (correlating with more advanced tumor, residual disease and worse clinical outcome).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="survival-analysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: survival</span></figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>sssss</p>
-</section>
-</section>
-<section id="multi-omics-predictive-model-for-clinical-outcome-1" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="multi-omics-predictive-model-for-clinical-outcome-1"><span class="header-section-number">7.3.2</span> Multi-omics predictive model for clinical outcome</h3>
-<p>sssss</p>
-<p>cox_fit</p>
-<p>Likelihood ratio test=171.1 on 10 df, p=&lt; 2.2e-16 n= 885, number of events= 227 (2 observations deleted due to missingness)</p>
-<div class="cell" data-cap-location="margin">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-85c9d54862deffcc3e04" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-85c9d54862deffcc3e04">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns","FixedHeader"],"caption":"<caption>Cox Proportional Hazard model<\/caption>","data":[["ZFactor1","ZFactor2","ZFactor3","ZFactor4","ZFactor5","ZFactor6","ZFactor7","ZFactor8","ZFactor9","ZFactor10"],["-0.250259","-0.137154","0.51265","-0.025933","0.227808","0.026058","0.25395","0.28466","-0.004506","-0.135766"],["0.778599","0.871836","1.66971","0.9744","1.255844","1.0264","1.289108","1.32931","0.995504","0.873047"],["0.060483","0.07498","0.062282","0.081319","0.063076","0.073998","0.064468","0.053568","0.073052","0.063964"],["-4.138","-1.829","8.231","-0.319","3.612","0.352","3.939","5.314","-0.062","-2.123"],["3.51E-05","0.06737","&lt; 2.00E-16","0.749799","0.000304","0.724731","8.18E-05","1.07E-07","0.950813","0.033794"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>coef<\/th>\n      <th>exp.coef.<\/th>\n      <th>se.coef.<\/th>\n      <th>z<\/th>\n      <th>p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"paging":true,"fixedHeader":false,"pageLength":10,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"coef","targets":1},{"name":"exp.coef.","targets":2},{"name":"se.coef.","targets":3},{"name":"z","targets":4},{"name":"p","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Plot Hazard-Ratio</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="survival-analysis_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Plot hazard ratio</span></figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Plot Kaplan-Meier</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="survival-analysis_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption><span style="color: steelblue;">Figure 1: Plot hazard ratio</span></figcaption>
+<p><img src="survival-analysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption><span style="color: steelblue;">Figure 15: Multi-omics factors Kaplan-Meier Progression-Free Interval curve.</span></figcaption>
 </figure>
 </div>
 </div>
@@ -654,10 +571,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-lesson-learnt-survival-analysis" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-lesson-learnt-survival-analysis"><span class="header-section-number">7.4</span> Lessons Learnt</h2>
-<p>[[[[PROPER DESCRIPTION OF FINDINGS AND TRANSCRIPTOMICS ENRICHMENTS]]]]</p>
-<p>So far, we have learnt:</p>
+<p>The survival analysis finally provided us with enough evidence to answer the hypothesis we have formulated upon a first inspection of the clinical data (see <a href="dataset-exploration.html" class="quarto-xref"><span>Chapter 1</span></a>): is KIRC associated with worse prognosis? Based on the clinical and the multi-omics data, we have learnt:</p>
 <ul>
-<li>A</li>
+<li>KIRC patients seem to have a poorer prognosis when compared to KICH or KIRP patients based on both Overall Survival and Progression-Free Interval if we model the survival analyses purely on the kidney carcinoma type (i.e.: KICH, KIRC or KIRP).</li>
+<li>When including additional clinical covariates, it emerges a different picture: KIRC is not associated with worse clinical outcome, but residual disease and presence of metastasis on lymph nodes (<em>TMN lymph nodes metastatis</em>) are.</li>
+<li>The multi-omics signatures we have identified with the factor analysis (see <a href="factor-analysis.html" class="quarto-xref"><span>Chapter 6</span></a>) confirmed that there is little higher risk associated with Factor 1 signature (discriminating KIRC from KICH and KIRP) and Factor 2 (discriminating KICH from KIRC and KIRP). However, Factor 3 is strongly associated with a higher Hazard Ratio (<em>HR: 1.65</em>) and with a poorer prognosis based on the Kaplan-Meier estimate. Factor 3 is associated with the tumor severity and the covariates <em>pathologic tumor grading</em>, <em>subtype selected</em>, <em>tumor cells</em>, <em>tumor nuclei</em>, <em>tumor stage</em>, <em>tumor status</em> and <em>vital status</em>.</li>
+<li>The results of the survival analysis are consistent for both the Overall Survival and the Progression-Free Interval times.</li>
 </ul>
 </section>
 <section id="session-information" class="level2" data-number="7.5">
